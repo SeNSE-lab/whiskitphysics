@@ -1,7 +1,8 @@
 # Repostory folder
 lib/
 build/
-
+bulletlib/lib/
+bulletlib/build/
 
 # Prerequisites
 *.d
