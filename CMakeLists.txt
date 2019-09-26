@@ -82,17 +82,17 @@ ENDIF()
 
 INCLUDE_DIRECTORIES(
 	include
-	whisker-bullet/
-    whisker-bullet/src
-    whisker-bullet/examples
-    whisker-bullet/Extras
-    whisker-bullet/examples/CommonInterfaces
-    whisker-bullet/examples/OpenGLWindow
-    whisker-bullet/examples/ExampleBrowser
-    whisker-bullet/examples/ThirdPartyLibs
-    whisker-bullet/examples/ThirdPartyLibs/Glew
-    whisker-bullet/examples/Importers
-    whisker-bullet/Extras/Serialize
+	bulletlib/
+    bulletlib/src
+    bulletlib/examples
+    bulletlib/Extras
+    bulletlib/examples/CommonInterfaces
+    bulletlib/examples/OpenGLWindow
+    bulletlib/examples/ExampleBrowser
+    bulletlib/examples/ThirdPartyLibs
+    bulletlib/examples/ThirdPartyLibs/Glew
+    bulletlib/examples/Importers
+    bulletlib/Extras/Serialize
     ${OPENGL_INCLUDE_DIRS}
 	${GLUT_INCLUDE_DIRS}
 	)
@@ -113,27 +113,27 @@ SET(SOURCES
 )
 
 SET(EXT_SOURCES
-    whisker-bullet/build3/bullet.rc
-    whisker-bullet/examples/ExampleBrowser/OpenGLGuiHelper.cpp
-    whisker-bullet/examples/ExampleBrowser/GL_ShapeDrawer.cpp
-    whisker-bullet/examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp
-    whisker-bullet/examples/Utils/b3Clock.cpp
-    whisker-bullet/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp
-    whisker-bullet/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
-    whisker-bullet/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp
-    whisker-bullet/examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp
-    whisker-bullet/examples/OpenGLWindow/SimpleOpenGL3App.cpp
-    whisker-bullet/examples/Importers/ImportURDFDemo/UrdfParser.cpp
-    whisker-bullet/examples/Utils/b3ResourcePath.cpp
-    whisker-bullet/examples/ThirdPartyLibs/tinyxml/tinystr.cpp
-    whisker-bullet/examples/ThirdPartyLibs/tinyxml/tinyxml.cpp
-    whisker-bullet/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp
-    whisker-bullet/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp
-    whisker-bullet/examples/Importers/ImportURDFDemo/urdfStringSplit.cpp
-    whisker-bullet/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
-    whisker-bullet/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp
-    whisker-bullet/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp
-    whisker-bullet/examples/ThirdPartyLibs/stb_image/stb_image.cpp
+    bulletlib/build3/bullet.rc
+    bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.cpp
+    bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.cpp
+    bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp
+    bulletlib/examples/Utils/b3Clock.cpp
+    bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp
+    bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
+    bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp
+    bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp
+    bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.cpp
+    bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.cpp
+    bulletlib/examples/Utils/b3ResourcePath.cpp
+    bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.cpp
+    bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.cpp
+    bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp
+    bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp
+    bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.cpp
+    bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
+    bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp
+    bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp
+    bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.cpp
 
 )
 
@@ -142,7 +142,7 @@ IF(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
 ENDIF(COMMAND cmake_policy)
 
-LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/whisker-bullet/lib)
+LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/bulletlib/lib)
 
 LINK_LIBRARIES(
 	libOpenGLWindow.a

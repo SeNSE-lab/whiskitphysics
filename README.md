@@ -1,6 +1,6 @@
 # virtual-rat
 
-In this repository, we're building a 3D dynamical model of the full rat whisker array based on the open source physics engin Bullet Physics and OpenGL. This repository uses a submodule "whisker-bullet" (code extracted from Bullet Physics Library).
+In this repository, we're building a 3D dynamical model of the full rat whisker array based on the open source physics engin Bullet Physics and OpenGL. This repository uses code extracted from Bullet Physics Library (bulletlib) which has to be compiled beforehand.
 
 ## Installation Instructions:
 1. Install OpenGL/Glut with `sudo apt-get install freeglut3-dev`
@@ -10,21 +10,20 @@ In this repository, we're building a 3D dynamical model of the full rat whisker 
 3. Clone this repository including submodule:
 
 ```
-	git clone --recursive https://github.com/SeNSE-lab/virtual-rat.git
+	git clone https://github.com/SeNSE-lab/whisketphysics.git
 ```
 
 4. First, compile Bullet Physics Library with (may take a while):
 ```
-	cd your/path/to/whisker-bullet
-	git submodule update --init // if you haven't used "--recursive" when cloning repo
+	cd your/path/to/bulletlib
 	mkdir build
 	cd build
 	cmake ..
 	make
 ```
-5. Compile virtual-rat with:
+5. Compile whisketphysics with:
 ```
-	cd your/path/to/virtual-rat
+	cd your/path/to/whisketphysics
 	mkdir build
 	cd build
 	cmake ..
@@ -35,7 +34,7 @@ In this repository, we're building a 3D dynamical model of the full rat whisker 
    If boost library is not found by cmake try:
 
 ```
-	cd your/path/to/virtual-rat
+	cd your/path/to/whisketphysics
 	mkdir build
 	cd build
 	sudo cmake --check-system-vars ..
