@@ -158,7 +158,7 @@ void Simulation::initPhysics()
 		pegShape->setMargin(0.0001);
 		m_collisionShapes.push_back(pegShape);
 		btTransform trans = createFrame(peg_init,btVector3(PI/4,0,PI/12));
-		peg = createDynamicBody(1, 0.5,trans, pegShape, m_guiHelper,  BLUE);
+		peg = createDynamicBody(1,trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
 		
@@ -169,7 +169,7 @@ void Simulation::initPhysics()
 		wallShape->setMargin(0.0001);
 		m_collisionShapes.push_back(wallShape);
 		btTransform trans = createFrame(btVector3(45,0,0),btVector3(0,0,0));
-		wall = createDynamicBody(0, 0.5,trans, wallShape, m_guiHelper,  BLUE);
+		wall = createDynamicBody(0, trans, wallShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	// create object from 3D scan

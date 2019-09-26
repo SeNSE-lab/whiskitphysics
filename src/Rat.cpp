@@ -15,7 +15,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	ratTransform.setRotation(init_quat);
 	btSphereShape* ratShape = new btSphereShape(0.0001*SCALE);
 	shapes->push_back(ratShape);
-	rat = createDynamicBody(1,0.5,ratTransform,ratShape,helper,color);
+	rat = createDynamicBody(1,ratTransform,ratShape,helper,color);
 	world->addRigidBody(rat,COL_HEAD,headCollidesWith);
 	ratTransform = rat->getCenterOfMassTransform();
 
@@ -32,7 +32,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	btTransform originTransform = createFrame(originOffset*SCALE,originOrientation);
 	btSphereShape* originShape = new btSphereShape(0.0001*SCALE);
 	shapes->push_back(originShape);
-	origin = createDynamicBody(1000.0,0.5,ratTransform*headTransform*originTransform,originShape,helper,color);
+	origin = createDynamicBody(1000.0,ratTransform*headTransform*originTransform,originShape,helper,color);
 	world->addRigidBody(origin,COL_HEAD,headCollidesWith);
 
 	// activate bodies
@@ -71,8 +71,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
-			Whisker* whisker = new Whisker(world,helper, shapes,parameters, origin);
-			whisker->createWhisker(parameters->WHISKER_NAMES[w]);
+			Whisker* whisker = new Whisker(world,helper, shapes,parameters, origin,parameters->WHISKER_NAMES[w]);
 			m_whiskerArray.push_back(whisker);
 	
 		}
@@ -131,7 +130,7 @@ void Rat::moveArray(btScalar t, btScalar dt, btScalar freq, btScalar angle_fwd, 
 	btScalar dtheta = (theta-prevtheta)/dt;
 
 	for (int i=0;i<m_whiskerArray.size();i++){
-		m_whiskerArray[i]->moveWhisker(dtheta);
+		m_whiskerArray[i]->whisk(dtheta);
 	}
 
 }

@@ -10,7 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/home/nadina/Github/virtual-rat/build/CMakeFiles/3.9.1/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/home/nadina/Github/whisketphysics/build/CMakeFiles/3.9.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/home/nadina/Github/virtual-rat/build/CMakeFiles/3.9.1/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/home/nadina/Github/whisketphysics/build/CMakeFiles/3.9.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_b0c6e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_b0c6e.dir/build.make CMakeFiles/cmTC_b0c6e.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b0c6e.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_b0c6e.dir/testCCompiler.c.o   -c /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_b0c6e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0c6e.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b0c6e.dir/testCCompiler.c.o  -o cmTC_b0c6e 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_e239f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e239f.dir/build.make CMakeFiles/cmTC_e239f.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e239f.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e239f.dir/testCCompiler.c.o   -c /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_e239f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e239f.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_e239f.dir/testCCompiler.c.o  -o cmTC_e239f 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6a483/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6a483.dir/build.make CMakeFiles/cmTC_6a483.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_6a483
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6a483.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o  -o cmTC_6a483 
+Run Build Command:"/usr/bin/make" "cmTC_c50a5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c50a5.dir/build.make CMakeFiles/cmTC_c50a5.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_c50a5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c50a5.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o  -o cmTC_c50a5 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -61,24 +61,24 @@ Thread model: posix
 gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_6a483' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOAl6dB.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_6a483 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_6a483' '-mtune=generic' '-march=x86-64'
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_c50a5' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPt9OBG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c50a5 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_c50a5' '-mtune=generic' '-march=x86-64'
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_6a483/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_6a483.dir/build.make CMakeFiles/cmTC_6a483.dir/build]
-  ignore line: [make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_6a483]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6a483.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o  -o cmTC_6a483 ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_c50a5/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_c50a5.dir/build.make CMakeFiles/cmTC_c50a5.dir/build]
+  ignore line: [make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.9/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_c50a5]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c50a5.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o  -o cmTC_c50a5 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_6a483' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOAl6dB.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_6a483 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_c50a5' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPt9OBG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_c50a5 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccOAl6dB.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccPt9OBG.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -116,7 +116,7 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_6a483] ==> ignore
+    arg [cmTC_c50a5] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -128,7 +128,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_6a483.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_c50a5.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -156,17 +156,17 @@ Parsed C implicit link information from above output:
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d69ef/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d69ef.dir/build.make CMakeFiles/cmTC_d69ef.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d69ef.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_d69ef.dir/feature_tests.c.o   -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_d69ef
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d69ef.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d69ef.dir/feature_tests.c.o  -o cmTC_d69ef 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_d1515/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d1515.dir/build.make CMakeFiles/cmTC_d1515.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d1515.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_d1515.dir/feature_tests.c.o   -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d1515
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1515.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d1515.dir/feature_tests.c.o  -o cmTC_d1515 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -176,17 +176,17 @@ make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMa
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_505a6/fast"
-/usr/bin/make -f CMakeFiles/cmTC_505a6.dir/build.make CMakeFiles/cmTC_505a6.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_505a6.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_505a6.dir/feature_tests.c.o   -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_505a6
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_505a6.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_505a6.dir/feature_tests.c.o  -o cmTC_505a6 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_bbef2/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bbef2.dir/build.make CMakeFiles/cmTC_bbef2.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bbef2.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_bbef2.dir/feature_tests.c.o   -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_bbef2
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bbef2.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_bbef2.dir/feature_tests.c.o  -o cmTC_bbef2 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -196,17 +196,17 @@ make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMa
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c9f2c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c9f2c.dir/build.make CMakeFiles/cmTC_c9f2c.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c9f2c.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_c9f2c.dir/feature_tests.c.o   -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_c9f2c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c9f2c.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_c9f2c.dir/feature_tests.c.o  -o cmTC_c9f2c 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_b570d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b570d.dir/build.make CMakeFiles/cmTC_b570d.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b570d.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_b570d.dir/feature_tests.c.o   -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_b570d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b570d.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_b570d.dir/feature_tests.c.o  -o cmTC_b570d 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -214,30 +214,30 @@ make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMa
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
 Determining if the CXX compiler works passed with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_49590/fast"
-/usr/bin/make -f CMakeFiles/cmTC_49590.dir/build.make CMakeFiles/cmTC_49590.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_49590.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_49590.dir/testCXXCompiler.cxx.o -c /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_49590
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49590.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_49590.dir/testCXXCompiler.cxx.o  -o cmTC_49590 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_5b9c5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5b9c5.dir/build.make CMakeFiles/cmTC_5b9c5.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_5b9c5.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_5b9c5.dir/testCXXCompiler.cxx.o -c /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_5b9c5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b9c5.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_5b9c5.dir/testCXXCompiler.cxx.o  -o cmTC_5b9c5 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_31bdb/fast"
-/usr/bin/make -f CMakeFiles/cmTC_31bdb.dir/build.make CMakeFiles/cmTC_31bdb.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_31bdb
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_31bdb.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_31bdb 
+Run Build Command:"/usr/bin/make" "cmTC_0c116/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0c116.dir/build.make CMakeFiles/cmTC_0c116.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_0c116
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0c116.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_0c116 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -249,24 +249,24 @@ Thread model: posix
 gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_31bdb' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccl9Lz64.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_31bdb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_31bdb' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_0c116' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccn3IdV0.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_0c116 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_0c116' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp]
+  ignore line: [Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_31bdb/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_31bdb.dir/build.make CMakeFiles/cmTC_31bdb.dir/build]
-  ignore line: [make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_31bdb]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_31bdb.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_31bdb ]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_0c116/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_0c116.dir/build.make CMakeFiles/cmTC_0c116.dir/build]
+  ignore line: [make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.9/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_0c116]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0c116.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_0c116 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -278,13 +278,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.2.0 (Ubuntu 7.2.0-8ubuntu3.2) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_31bdb' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccl9Lz64.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_31bdb /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_0c116' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccn3IdV0.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_0c116 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccl9Lz64.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccn3IdV0.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -304,7 +304,7 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_31bdb] ==> ignore
+    arg [cmTC_0c116] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -316,7 +316,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_31bdb.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_0c116.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -342,17 +342,17 @@ Parsed CXX implicit link information from above output:
 
 
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_65ea7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_65ea7.dir/build.make CMakeFiles/cmTC_65ea7.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_65ea7.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_65ea7.dir/feature_tests.cxx.o -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_65ea7
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65ea7.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_65ea7.dir/feature_tests.cxx.o  -o cmTC_65ea7 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_37925/fast"
+/usr/bin/make -f CMakeFiles/cmTC_37925.dir/build.make CMakeFiles/cmTC_37925.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_37925.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_37925.dir/feature_tests.cxx.o -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_37925
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_37925.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_37925.dir/feature_tests.cxx.o  -o cmTC_37925 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -415,17 +415,17 @@ make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMa
 
 
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d1771/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d1771.dir/build.make CMakeFiles/cmTC_d1771.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_d1771.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_d1771.dir/feature_tests.cxx.o -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_d1771
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1771.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_d1771.dir/feature_tests.cxx.o  -o cmTC_d1771 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_8f0b9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8f0b9.dir/build.make CMakeFiles/cmTC_8f0b9.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_8f0b9.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_8f0b9.dir/feature_tests.cxx.o -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_8f0b9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f0b9.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_8f0b9.dir/feature_tests.cxx.o  -o cmTC_8f0b9 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -488,17 +488,17 @@ make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMa
 
 
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d8f8c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d8f8c.dir/build.make CMakeFiles/cmTC_d8f8c.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_d8f8c.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_d8f8c.dir/feature_tests.cxx.o -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_d8f8c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d8f8c.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_d8f8c.dir/feature_tests.cxx.o  -o cmTC_d8f8c 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_92bed/fast"
+/usr/bin/make -f CMakeFiles/cmTC_92bed.dir/build.make CMakeFiles/cmTC_92bed.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_92bed.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_92bed.dir/feature_tests.cxx.o -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_92bed
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92bed.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_92bed.dir/feature_tests.cxx.o  -o cmTC_92bed 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -561,17 +561,17 @@ make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMa
 
 
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
-Change Dir: /home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp
+Change Dir: /home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e2786/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e2786.dir/build.make CMakeFiles/cmTC_e2786.dir/build
-make[1]: Entering directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_e2786.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_e2786.dir/feature_tests.cxx.o -c /home/nadina/Github/virtual-rat/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_e2786
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2786.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_e2786.dir/feature_tests.cxx.o  -o cmTC_e2786 
-make[1]: Leaving directory '/home/nadina/Github/virtual-rat/build/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_38270/fast"
+/usr/bin/make -f CMakeFiles/cmTC_38270.dir/build.make CMakeFiles/cmTC_38270.dir/build
+make[1]: Entering directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_38270.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_38270.dir/feature_tests.cxx.o -c /home/nadina/Github/whisketphysics/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_38270
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_38270.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_38270.dir/feature_tests.cxx.o  -o cmTC_38270 
+make[1]: Leaving directory '/home/nadina/Github/whisketphysics/build/CMakeFiles/CMakeTmp'
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

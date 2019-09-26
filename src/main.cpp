@@ -169,7 +169,6 @@ int main(int argc, char* argv[])
 			Simulation* simulation = SimulationCreateFunc(options);
 
 			 // save parameters in simulation object
-			
 			simulation->parameters = param;
 			simulation->initPhysics();
 			std::cout.precision(17);
@@ -200,7 +199,6 @@ int main(int argc, char* argv[])
 	      std::cerr << desc << std::endl; 
 	      return 1; 
 	    } 
- // application code here // 
  
   	} 
   	catch(std::exception& e) 

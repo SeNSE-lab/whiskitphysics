@@ -2,26 +2,19 @@
 
 btVector4 color = btVector4(0,1,0,1);
 
-Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters, btRigidBody* ref){
-		// save parameters and global variables to whisker object
-		m_collisionShapes = shapes;	// shape vector pointer
-		m_dynamicsWorld = world;	// simulation world pointer
-		m_guiHelper = helper;
-		para = parameters;			// whisker parameters
-		origin = ref; 				// reference point for base point position
+Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* params, btRigidBody* refbody, std::string w_name){
+	// save parameters and global variables to whisker object
+	m_collisionShapes = shapes;	// shape vector pointer
+	m_dynamicsWorld = world;	// simulation world pointer
+	m_guiHelper = helper;		// gui helper pointer
+	parameters = params;			// whisker parameters
+	origin = refbody; 				// reference body for base point position
 
-		m_angle = 0.;		// initialize protraction angle
-		m_time = 0;			// initialize time
-}
-
-// function to create whisker
-void Whisker::createWhisker(std::string w_name){
-
-    btScalar dt =para->TIME_STEP;
-	config = get_parameters(w_name,para);	// get parameters for whisker configuration
+    btScalar dt =parameters->TIME_STEP;
+	config = load_config(w_name,parameters);	// get parameters for whisker configuration
     
 
-	int NUM_LINKS = para->NUM_UNITS;	// set number of units
+	int NUM_LINKS = parameters->NUM_UNITS;	// set number of units
 	int NUM_JOINTS = NUM_LINKS - 1;
 	std::vector<int> all_zeros(NUM_LINKS, 0);
 	collide = all_zeros;
@@ -35,10 +28,10 @@ void Whisker::createWhisker(std::string w_name){
 
 	std::vector<btScalar> link_angles = config.link_angles;
 
-    btScalar rho = para->ROH_BASE/pow(SCALE,3);
-    btScalar rho_slope = ((para->ROH_TIP-para->ROH_BASE)/pow(SCALE,3)) / length;
-    btScalar zeta = para->ZETA_BASE;
-    btScalar E = para->E_BASE*1e9/SCALE;
+    btScalar rho = parameters->ROH_BASE/pow(SCALE,3);
+    btScalar rho_slope = ((parameters->ROH_TIP-parameters->ROH_BASE)/pow(SCALE,3)) / length;
+    btScalar zeta = parameters->ZETA_BASE;
+    btScalar E = parameters->E_BASE*1e9/SCALE;
 
 	/// CREATE BASE POINT
 	/// ====================================
@@ -48,7 +41,7 @@ void Whisker::createWhisker(std::string w_name){
 	btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base,radius_base,radius_base));
 	m_collisionShapes->push_back(basepointShape);
 	
-	basepoint = createDynamicBody(btScalar(100),friction,originTransform*basepointTransform,basepointShape,m_guiHelper,color);
+	basepoint = createDynamicBody(btScalar(100),originTransform*basepointTransform,basepointShape,m_guiHelper,color);
 	m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
 	basepoint->setActivationState(DISABLE_DEACTIVATION);
 
@@ -70,7 +63,7 @@ void Whisker::createWhisker(std::string w_name){
 	btCollisionShape* baseShape = createSphereShape(radius_base*5);
 	m_collisionShapes->push_back(baseShape);
 	
-	base = createDynamicBody(btScalar(10),friction,basepointTransform,baseShape,m_guiHelper,color);
+	base = createDynamicBody(btScalar(10),basepointTransform,baseShape,m_guiHelper,color);
 	m_dynamicsWorld->addRigidBody(base,COL_BASE,baseCollidesWith);
 	base->setActivationState(DISABLE_DEACTIVATION);
 
@@ -111,7 +104,7 @@ void Whisker::createWhisker(std::string w_name){
         // calculate parameters of the whisker
         rho = rho + rho_slope*link_length;
         btScalar mass = calc_mass(link_length, radius, radius_next, rho); // in kg
-        if (para->NO_MASS){
+        if (parameters->NO_MASS){
             mass = 0.;
         }
         btScalar com = calc_com(link_length, radius, radius_next); // in cm
@@ -124,7 +117,7 @@ void Whisker::createWhisker(std::string w_name){
         btScalar damping = calc_damping(stiffness, mass_distal, com_distal, zeta, dt);
 
         // generate shape for unit
-        btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*para->BLOW, radius_next*para->BLOW, link_length,0);
+        btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*parameters->BLOW, radius_next*parameters->BLOW, link_length,0);
         linkShape->setMargin(0.0001);
         m_collisionShapes->push_back(linkShape);
 
@@ -145,7 +138,7 @@ void Whisker::createWhisker(std::string w_name){
         }
 
         // add unit to whisker and world
-        btRigidBody* link = createDynamicBody(mass,friction,totalTransform,linkShape,m_guiHelper,color);
+        btRigidBody* link = createDynamicBody(mass,totalTransform,linkShape,m_guiHelper,color);
         whisker.push_back(link);	
         
         if(config.side){ 
@@ -211,15 +204,15 @@ void Whisker::createWhisker(std::string w_name){
 }
 
 
-btRigidBody* Whisker::get_unit(int idx){
-	return whisker[idx];
-}
+// btRigidBody* Whisker::get_unit(int idx){
+// 	return whisker[idx];
+// }
 
-btRigidBody* Whisker::get_base(){
-	return base;
-}
+// btRigidBody* Whisker::get_base(){
+// 	return base;
+// }
 
-void Whisker::moveWhisker(btScalar dtheta){
+void Whisker::whisk(btScalar dtheta){
 
 	btScalar dphi = -dtheta * get_dphi(config.row-1);
 	btScalar dzeta = dtheta * get_dzeta(config.row-1);
@@ -233,9 +226,9 @@ void Whisker::moveWhisker(btScalar dtheta){
 	btVector3 worldProtraction = (basepoint->getWorldTransform().getBasis()*btVector3(0,0,dtheta));
 	btVector3 worldElevation = (basepoint->getWorldTransform().getBasis()*btVector3(0,dphi,0));
 	btVector3 worldTorsion = (whisker[0]->getWorldTransform().getBasis()*btVector3(dzeta,0,0));
-	btVector3 totalTorque = worldProtraction+worldElevation+worldTorsion;
+	btVector3 totalVelocity = worldProtraction+worldElevation+worldTorsion;
 
-	base->setAngularVelocity(totalTorque);
+	base->setAngularVelocity(totalVelocity);
 	
 }
 
@@ -244,7 +237,7 @@ std::vector<int> Whisker::getCollision(){
 
 	for (int i=0; i<whisker.size(); i++){
 		int f = collide[i];
-		if(para->PRINT==1){
+		if(parameters->PRINT==1){
 			std::cout << "c " << i << ": " << f << std::endl;
 		}
 		flags.push_back(f);
@@ -259,7 +252,7 @@ std::vector<int> Whisker::getCollision(){
 btVector3 Whisker::getTorques(){
 
 	btVector3 torques = baseConstraint->getJointFeedback()->m_appliedTorqueBodyA;
-	if(para->PRINT==1){
+	if(parameters->PRINT==1){
 		std::cout << "Mx : " << torques[0] << std::endl;
 		std::cout << "My : " << torques[1] << std::endl;
 		std::cout << "Mz : " << torques[2] << std::endl;
@@ -271,7 +264,7 @@ btVector3 Whisker::getTorques(){
 btVector3 Whisker::getForces(){
 
 	btVector3 forces = baseConstraint->getJointFeedback()->m_appliedForceBodyA;
-	if(para->PRINT==1){
+	if(parameters->PRINT==1){
 		std::cout << "Fx : " << forces[0] << std::endl;
 		std::cout << "Fy : " << forces[1] << std::endl;
 		std::cout << "Fz : " << forces[2] << std::endl;
@@ -289,7 +282,7 @@ std::vector<btScalar> Whisker::getX(){
 	// loop through units and get world coordinates of each
 	for (int i=0; i<whisker.size(); i++){
 		btScalar x = whisker[i]->getCenterOfMassTransform().getOrigin()[0];
-		if(para->PRINT==1){
+		if(parameters->PRINT==1){
 			std::cout << "x " << i << ": " << x << std::endl;
 		}
 		trajectories.push_back(x);
@@ -306,7 +299,7 @@ std::vector<btScalar> Whisker::getY(){
 	// loop through units and get world coordinates of each
 	for (int i=0; i<whisker.size(); i++){
 		btScalar y = whisker[i]->getCenterOfMassTransform().getOrigin()[1];
-		if(para->PRINT==1){
+		if(parameters->PRINT==1){
 			std::cout << "y " << i << ": " << y << std::endl;
 		}
 		trajectories.push_back(y);
@@ -323,7 +316,7 @@ std::vector<btScalar> Whisker::getZ(){
 	// loop through units and get world coordinates of each
 	for (int i=0; i<whisker.size(); i++){
 		btScalar z = whisker[i]->getCenterOfMassTransform().getOrigin()[2];
-		if(para->PRINT==1){
+		if(parameters->PRINT==1){
 			std::cout << "z " << i << ": " << z << std::endl;
 		}
 		trajectories.push_back(z);

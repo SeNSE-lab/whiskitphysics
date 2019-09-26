@@ -1,4 +1,4 @@
-# Install script for directory: /home/nadina/Github/virtual-rat
+# Install script for directory: /home/nadina/Github/whisketphysics
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/nadina/Github/virtual-rat/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nadina/Github/whisketphysics/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

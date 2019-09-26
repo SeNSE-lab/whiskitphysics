@@ -16,28 +16,16 @@ subject to the following restrictions:
 #define WHISKER_HPP
 
 #include "Whisker_utility.hpp"
-#include "Whisker_config.hpp"
 #include "Simulation_utility.hpp"
 #include "Parameters.hpp"
 #include <vector>
 #include <string>
 
-struct link_data
-{
-	int nr;
-	btCollisionShape* shape;
-	btScalar halfextent;
-	btVector3 pt1;
-	btVector3 pt2;
-	btScalar radius1;
-	btScalar radius2;
-
-};
-
-
 class Whisker
 {
 private:
+
+
 	btDiscreteDynamicsWorld* m_dynamicsWorld;
 	btAlignedObjectArray<btCollisionShape*>* m_collisionShapes;
 	GUIHelperInterface* m_guiHelper;
@@ -52,26 +40,16 @@ private:
 	btGeneric6DofConstraint* baseConstraint;
 	btJointFeedback baseFeedback;
 
-	float m_time;
-	float m_angle;
-
 	whisker_config config;
-	Parameters* para;
+	Parameters* parameters;
 	std::vector<int> collide;
-	float friction=.5;
 
-	btScalar mass;
 public:
 
-	Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters, btRigidBody* refBody);
+	Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters, btRigidBody* refBody, std::string w_name);
 	~Whisker(){}
 	
-	void createWhisker(std::string w_name);
-	btRigidBody* get_unit(int idx);
-	btRigidBody* get_follicle();
-	btRigidBody* get_base();
-
-	void moveWhisker(btScalar dps);
+	void whisk(btScalar dps);
 
 	btVector3 getTorques();
 	btVector3 getForces();
@@ -84,4 +62,4 @@ public:
 };
 
 
-#endif //BASIC_DEMO_PHYSICS_SETUP_H
+#endif //WHISKER_HPP

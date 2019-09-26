@@ -27,7 +27,7 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 		btTransform someTransform = createFrame();
 		btSphereShape* sphere = new btSphereShape(0.5);
 		shapes->push_back(sphere);
-		body = createDynamicBody(0,0.5,someTransform,sphere,helper,color);
+		body = createDynamicBody(0,someTransform,sphere,helper,color);
 		shape = body->getCollisionShape();
 		
 	}
@@ -137,7 +137,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
 	btCollisionShape* shape_compound = LoadShapeFromObj(fileName.c_str(), "", btVector3(scaling[0], scaling[1],scaling[2]));
 	hull->setMargin(0.0001);
-	btRigidBody* body = createDynamicBody(mass, 0.5,trans, shape_compound,m_guiHelper,color);
+	btRigidBody* body = createDynamicBody(mass,trans, shape_compound,m_guiHelper,color);
 	
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
                                                                     glmesh->m_numvertices, 
@@ -200,14 +200,7 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
        meshInterface->addTriangle(hull->getScaledPoint(i*3), hull->getScaledPoint(i*3+1), hull->getScaledPoint(i*3+2));
     btBvhTriangleMeshShape* trimesh = new btBvhTriangleMeshShape(meshInterface,true,true);
 	trimesh->setMargin(0.0001);
-	btRigidBody* body = createDynamicBody(0,0.5,trans,trimesh,m_guiHelper,color);
-	
-
-
-	// trimesh_gimpact = new btGImpactMeshShape(meshInterface);
-	// trimesh_gimpact->setMargin(0.0001);
-	// trimesh_gimpact->updateBound();
-	// btRigidBody* body = createDynamicBody(0,0.5,trans,trimesh_gimpact,m_guiHelper,color);
+	btRigidBody* body = createDynamicBody(0,trans,trimesh,m_guiHelper,color);
 	
 		
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
@@ -228,32 +221,3 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
     return body;
 }
 
-// void Object::checkDistance(btVector3 init){
-
-// 	btVector3 center;
-// 	btScalar bounds;
-// 	getBounds(center,bounds);
-
-// 	btVector3 direction = (center-init).normalized();
-// 	btVector3 start = center - bounds*direction;
-
-// 	btVector3 nosePosition = btVector3(0,0.06*SCALE,0.017*SCALE);
-// 	btScalar length = nosePosition.norm();
-// 	for(int i=0; i<100; i++){
-
-
-// 		btCollisionWorld::ClosestRayResultCallback RayCallback(Start, End);
-
-// 		// Perform raycast
-// 		m_dynamicsWorld->rayTest(Start, End, RayCallback);
-
-// 		if(RayCallback.hasHit()) {
-// 			End = RayCallback.m_hitPointWorld;
-// 			std::cout << "Hit position: " << End[0] << ", " << End[1] << ", " << End[2] << std::endl;
-// 			// Do some clever stuff here
-// 		}
-
-
-// 	}
-	
-// }
