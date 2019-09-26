@@ -1,0 +1,4 @@
+/home/nadina/Github/virtual-rat/build/CMakeFiles/edit_cache.dir
+/home/nadina/Github/virtual-rat/build/CMakeFiles/App_Whisker.dir
+/home/nadina/Github/virtual-rat/build/CMakeFiles/rebuild_cache.dir
+/home/nadina/Github/virtual-rat/build/CMakeFiles/AppWhiskerGui.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/App_BasicExample.dir/BasicExample.o CMakeFiles/App_BasicExample.dir/main.o  -o App_BasicExample ../../lib/libBulletDynamics.a ../../lib/libBulletCollision.a ../../lib/libLinearMath.a 
