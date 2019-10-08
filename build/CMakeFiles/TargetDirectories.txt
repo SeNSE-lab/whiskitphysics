@@ -1,4 +1,4 @@
-/home/nadina/Github/whisketphysics/build/CMakeFiles/edit_cache.dir
-/home/nadina/Github/whisketphysics/build/CMakeFiles/App_Whisker.dir
-/home/nadina/Github/whisketphysics/build/CMakeFiles/rebuild_cache.dir
-/home/nadina/Github/whisketphysics/build/CMakeFiles/AppWhiskerGui.dir
+/home/nadina/Github/whiskitphysics/build/CMakeFiles/rebuild_cache.dir
+/home/nadina/Github/whiskitphysics/build/CMakeFiles/whiskit.dir
+/home/nadina/Github/whiskitphysics/build/CMakeFiles/edit_cache.dir
+/home/nadina/Github/whiskitphysics/build/CMakeFiles/whiskit_gui.dir

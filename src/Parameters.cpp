@@ -12,24 +12,23 @@ void set_default(Parameters* param){
     param->PRINT = 0;			// set print out of results (necessary for optimization)
 	param->SAVE = 0;			// save results to csv file
 	param->SAVE_VIDEO = 0;		// save video when running main_opengl.cpp
-	param->OBJECT = 0;			
 
-	// whisker related input arguments
+	// collision object type
+	param->OBJECT = 0;			// 0: no object; 1: 
+
+	// whisker configuration parameters
 	param->WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
     param->BLOW = 1;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	param->NO_CURVATURE = 0;		// disable curvature
 	param->NO_MASS = 0;				// disable mass of bodies
-	param->NO_WHISKERS = 0;			
-	param->NUM_UNITS = 20;			// set number of units
-	param->NUM_LINKS = 19;			// set number of links
+	param->NO_WHISKERS = 0;			// disable whiskers
+	param->NUM_LINKS = 20;			// set number of links
 	param->ROH_BASE = 1260.0;		// set densidy at whisker base
 	param->ROH_TIP = 1690.0;		// set density at whisker tip
-	param->E_BASE = 3.5;			// set young's modulus at whisker base
-	param->E_TIP = 3.5;				// set young's modulus at whisker tip
-	param->ZETA_BASE = 0.31;		// set damping coefficient zeta at whisker base
-	param->ZETA_TIP = 0.31;			// set damping coefficient zeta at whisker tip
+	param->E = 5.0;					// set young's modulus at whisker base
+	param->ZETA = 0.32;				// set damping coefficient zeta at whisker base
 
-	// whisking
+	// whisking parameters
 	param->ACTIVE = 0;				// enable active whisking mode
 	param->AMP_BWD = 20;			// set whisking retraction in degrees
 	param->AMP_FWD = 40;			// set whisking protraction in degrees
@@ -38,7 +37,7 @@ void set_default(Parameters* param){
 	// speed for moving object
 	param->SPEED = 10;	
 
-	// rat position/orientation arguments
+	// rat position/orientation parameters
 	param->POSITION = {0,0,0}; 		// set position of rathead
 	param->ORIENTATION = {0,1,0}; 	// set initial heading of rathead
 	param->PITCH=0;					// set pitch of rathead (degrees)

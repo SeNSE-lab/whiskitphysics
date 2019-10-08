@@ -48,24 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/nadina/Github/whisketphysics
+CMAKE_SOURCE_DIR = /home/nadina/Github/whiskitphysics
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/nadina/Github/whisketphysics/build
+CMAKE_BINARY_DIR = /home/nadina/Github/whiskitphysics/build
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -78,11 +67,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nadina/Github/whisketphysics/build/CMakeFiles /home/nadina/Github/whisketphysics/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nadina/Github/whiskitphysics/build/CMakeFiles /home/nadina/Github/whiskitphysics/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/nadina/Github/whisketphysics/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/nadina/Github/whiskitphysics/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,563 +111,563 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named App_Whisker
+# Target rules for targets named whiskit
 
 # Build rule for target.
-App_Whisker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_Whisker
-.PHONY : App_Whisker
+whiskit: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 whiskit
+.PHONY : whiskit
 
 # fast build rule for target.
-App_Whisker/fast:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/build
-.PHONY : App_Whisker/fast
+whiskit/fast:
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/build
+.PHONY : whiskit/fast
 
 #=============================================================================
-# Target rules for targets named AppWhiskerGui
+# Target rules for targets named whiskit_gui
 
 # Build rule for target.
-AppWhiskerGui: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AppWhiskerGui
-.PHONY : AppWhiskerGui
+whiskit_gui: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 whiskit_gui
+.PHONY : whiskit_gui
 
 # fast build rule for target.
-AppWhiskerGui/fast:
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/build
-.PHONY : AppWhiskerGui/fast
+whiskit_gui/fast:
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/build
+.PHONY : whiskit_gui/fast
 
 # target to build an object file
 bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o
 .PHONY : bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o
 
 # target to preprocess a source file
 bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i
 .PHONY : bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i
 
 # target to generate assembly for a file
 bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s
 .PHONY : bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s
 
 # target to build an object file
 bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.o
 .PHONY : bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.o
 
 # target to preprocess a source file
 bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.i
 .PHONY : bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.i
 
 # target to generate assembly for a file
 bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.s
 .PHONY : bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.s
 
 # target to build an object file
 bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.o
 .PHONY : bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.o
 
 # target to preprocess a source file
 bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.i
 .PHONY : bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.i
 
 # target to generate assembly for a file
 bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.s
 .PHONY : bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.o
 .PHONY : bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.i
 .PHONY : bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.s
 .PHONY : bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.o
 .PHONY : bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.i
 .PHONY : bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.s
 .PHONY : bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.o
 .PHONY : bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.i
 .PHONY : bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.s
 .PHONY : bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
 .PHONY : bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
 .PHONY : bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
 .PHONY : bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.o
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.i
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.s
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.o
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.i
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.s
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.s
 
 # target to build an object file
 bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.o
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.o
 
 # target to preprocess a source file
 bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.i
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.i
 
 # target to generate assembly for a file
 bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.s
 .PHONY : bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.s
 
 # target to build an object file
 bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.o
 .PHONY : bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.o
 
 # target to preprocess a source file
 bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.i
 .PHONY : bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.i
 
 # target to generate assembly for a file
 bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.s
 .PHONY : bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.s
 
 # target to build an object file
 bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o
 .PHONY : bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o
 
 # target to preprocess a source file
 bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.i
 .PHONY : bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.i
 
 # target to generate assembly for a file
 bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.s
 .PHONY : bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.s
 
 # target to build an object file
 bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.o
 .PHONY : bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.o
 
 # target to preprocess a source file
 bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.i
 .PHONY : bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.i
 
 # target to generate assembly for a file
 bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.s
 .PHONY : bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.s
 
 # target to build an object file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.o
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.o
 
 # target to preprocess a source file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.i
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.i
 
 # target to generate assembly for a file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.s
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.s
 
 # target to build an object file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.o
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.o
 
 # target to preprocess a source file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.i
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.i
 
 # target to generate assembly for a file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.s
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.s
 
 # target to build an object file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.o
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.o
 
 # target to preprocess a source file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.i
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.i
 
 # target to generate assembly for a file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.s
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.s
 
 # target to build an object file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.o
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.o
 
 # target to preprocess a source file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.i
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.i
 
 # target to generate assembly for a file
 bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.s
 .PHONY : bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.s
 
 # target to build an object file
 bulletlib/examples/Utils/b3Clock.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Utils/b3Clock.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Utils/b3Clock.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Utils/b3Clock.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Utils/b3Clock.o
 .PHONY : bulletlib/examples/Utils/b3Clock.o
 
 # target to preprocess a source file
 bulletlib/examples/Utils/b3Clock.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Utils/b3Clock.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Utils/b3Clock.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Utils/b3Clock.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Utils/b3Clock.i
 .PHONY : bulletlib/examples/Utils/b3Clock.i
 
 # target to generate assembly for a file
 bulletlib/examples/Utils/b3Clock.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Utils/b3Clock.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Utils/b3Clock.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Utils/b3Clock.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Utils/b3Clock.s
 .PHONY : bulletlib/examples/Utils/b3Clock.s
 
 # target to build an object file
 bulletlib/examples/Utils/b3ResourcePath.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Utils/b3ResourcePath.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Utils/b3ResourcePath.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Utils/b3ResourcePath.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Utils/b3ResourcePath.o
 .PHONY : bulletlib/examples/Utils/b3ResourcePath.o
 
 # target to preprocess a source file
 bulletlib/examples/Utils/b3ResourcePath.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Utils/b3ResourcePath.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Utils/b3ResourcePath.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Utils/b3ResourcePath.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Utils/b3ResourcePath.i
 .PHONY : bulletlib/examples/Utils/b3ResourcePath.i
 
 # target to generate assembly for a file
 bulletlib/examples/Utils/b3ResourcePath.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/bulletlib/examples/Utils/b3ResourcePath.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/bulletlib/examples/Utils/b3ResourcePath.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/bulletlib/examples/Utils/b3ResourcePath.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/bulletlib/examples/Utils/b3ResourcePath.s
 .PHONY : bulletlib/examples/Utils/b3ResourcePath.s
 
 # target to build an object file
 src/LoadObj.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/LoadObj.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/LoadObj.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/LoadObj.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/LoadObj.o
 .PHONY : src/LoadObj.o
 
 # target to preprocess a source file
 src/LoadObj.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/LoadObj.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/LoadObj.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/LoadObj.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/LoadObj.i
 .PHONY : src/LoadObj.i
 
 # target to generate assembly for a file
 src/LoadObj.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/LoadObj.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/LoadObj.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/LoadObj.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/LoadObj.s
 .PHONY : src/LoadObj.s
 
 # target to build an object file
 src/Object.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Object.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Object.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Object.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Object.o
 .PHONY : src/Object.o
 
 # target to preprocess a source file
 src/Object.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Object.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Object.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Object.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Object.i
 .PHONY : src/Object.i
 
 # target to generate assembly for a file
 src/Object.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Object.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Object.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Object.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Object.s
 .PHONY : src/Object.s
 
 # target to build an object file
 src/Parameters.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Parameters.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Parameters.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Parameters.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Parameters.o
 .PHONY : src/Parameters.o
 
 # target to preprocess a source file
 src/Parameters.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Parameters.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Parameters.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Parameters.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Parameters.i
 .PHONY : src/Parameters.i
 
 # target to generate assembly for a file
 src/Parameters.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Parameters.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Parameters.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Parameters.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Parameters.s
 .PHONY : src/Parameters.s
 
 # target to build an object file
 src/Rat.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Rat.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Rat.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Rat.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Rat.o
 .PHONY : src/Rat.o
 
 # target to preprocess a source file
 src/Rat.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Rat.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Rat.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Rat.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Rat.i
 .PHONY : src/Rat.i
 
 # target to generate assembly for a file
 src/Rat.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Rat.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Rat.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Rat.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Rat.s
 .PHONY : src/Rat.s
 
 # target to build an object file
 src/Simulation.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation.o
 .PHONY : src/Simulation.o
 
 # target to preprocess a source file
 src/Simulation.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation.i
 .PHONY : src/Simulation.i
 
 # target to generate assembly for a file
 src/Simulation.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation.s
 .PHONY : src/Simulation.s
 
 # target to build an object file
 src/Simulation_IO.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation_IO.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation_IO.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation_IO.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation_IO.o
 .PHONY : src/Simulation_IO.o
 
 # target to preprocess a source file
 src/Simulation_IO.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation_IO.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation_IO.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation_IO.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation_IO.i
 .PHONY : src/Simulation_IO.i
 
 # target to generate assembly for a file
 src/Simulation_IO.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation_IO.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation_IO.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation_IO.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation_IO.s
 .PHONY : src/Simulation_IO.s
 
 # target to build an object file
 src/Simulation_utility.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation_utility.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation_utility.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation_utility.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation_utility.o
 .PHONY : src/Simulation_utility.o
 
 # target to preprocess a source file
 src/Simulation_utility.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation_utility.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation_utility.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation_utility.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation_utility.i
 .PHONY : src/Simulation_utility.i
 
 # target to generate assembly for a file
 src/Simulation_utility.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Simulation_utility.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Simulation_utility.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Simulation_utility.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Simulation_utility.s
 .PHONY : src/Simulation_utility.s
 
 # target to build an object file
 src/Whisker.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Whisker.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Whisker.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Whisker.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Whisker.o
 .PHONY : src/Whisker.o
 
 # target to preprocess a source file
 src/Whisker.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Whisker.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Whisker.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Whisker.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Whisker.i
 .PHONY : src/Whisker.i
 
 # target to generate assembly for a file
 src/Whisker.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Whisker.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Whisker.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Whisker.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Whisker.s
 .PHONY : src/Whisker.s
 
 # target to build an object file
 src/Whisker_utility.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Whisker_utility.o
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Whisker_utility.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Whisker_utility.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Whisker_utility.o
 .PHONY : src/Whisker_utility.o
 
 # target to preprocess a source file
 src/Whisker_utility.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Whisker_utility.i
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Whisker_utility.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Whisker_utility.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Whisker_utility.i
 .PHONY : src/Whisker_utility.i
 
 # target to generate assembly for a file
 src/Whisker_utility.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/Whisker_utility.s
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/Whisker_utility.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/Whisker_utility.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/Whisker_utility.s
 .PHONY : src/Whisker_utility.s
 
 # target to build an object file
 src/main.o:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/main.o
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/main.o
 .PHONY : src/main.o
 
 # target to preprocess a source file
 src/main.i:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/main.i
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/main.i
 .PHONY : src/main.i
 
 # target to generate assembly for a file
 src/main.s:
-	$(MAKE) -f CMakeFiles/App_Whisker.dir/build.make CMakeFiles/App_Whisker.dir/src/main.s
+	$(MAKE) -f CMakeFiles/whiskit.dir/build.make CMakeFiles/whiskit.dir/src/main.s
 .PHONY : src/main.s
 
 # target to build an object file
 src/main_opengl.o:
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/main_opengl.o
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/main_opengl.o
 .PHONY : src/main_opengl.o
 
 # target to preprocess a source file
 src/main_opengl.i:
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/main_opengl.i
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/main_opengl.i
 .PHONY : src/main_opengl.i
 
 # target to generate assembly for a file
 src/main_opengl.s:
-	$(MAKE) -f CMakeFiles/AppWhiskerGui.dir/build.make CMakeFiles/AppWhiskerGui.dir/src/main_opengl.s
+	$(MAKE) -f CMakeFiles/whiskit_gui.dir/build.make CMakeFiles/whiskit_gui.dir/src/main_opengl.s
 .PHONY : src/main_opengl.s
 
 # Help Target
@@ -676,10 +676,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... App_Whisker"
 	@echo "... rebuild_cache"
-	@echo "... AppWhiskerGui"
+	@echo "... whiskit"
+	@echo "... edit_cache"
+	@echo "... whiskit_gui"
 	@echo "... bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.o"
 	@echo "... bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.i"
 	@echo "... bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.s"

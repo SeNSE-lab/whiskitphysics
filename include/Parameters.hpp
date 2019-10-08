@@ -14,44 +14,53 @@
 
 struct Parameters{
 	
-	int DEBUG;
+
+	// integration parameters
 	float TIME_STEP;
 	int NUM_STEP_INT;
 	float TIME_STOP;
+
+	// simulation parameters
+	int DEBUG;
 	int PRINT;
 	int SAVE;
 	int SAVE_VIDEO;
-	int OBJECT;
 	
+	// collision object type
+	int OBJECT;
+
+	// whisker model parameters
     std::vector<std::string> WHISKER_NAMES;
-    float BLOW;
-	int NO_CURVATURE;
-	int NO_MASS;
-	int NO_WHISKERS;
-	int NUM_UNITS;
+    float BLOW; // scale whisker diameter for visibility - ATTENTION: will affect dynamics!!!
+	int NO_CURVATURE; // remove curvature for debugging
+	int NO_MASS; 	  // set mass to zero for debugging
+	int NO_WHISKERS;  // remove whiskers for debugging
 	int NUM_LINKS;
 	float ROH_BASE;
 	float ROH_TIP;
-	float E_BASE;
-	float E_TIP;
-	float ZETA_BASE;
-	float ZETA_TIP;
+	float E;
+	float ZETA;
+	
+	// configuration parameters of rat head
 	std::vector<float> POSITION;
 	std::vector<float> ORIENTATION;
 	float PITCH;
 	float YAW;
 	float ROLL;
 
+	// whisking parameters
+	int ACTIVE;
+	float AMP_BWD; // in degrees
+	float AMP_FWD; // in degrees
+	float WHISK_FREQ; // in hertz
+	float SPEED; // in mm/second
+	
+	// camera configuration
 	float DIST;
 	float CPITCH;
 	float CYAW;
 
-	int ACTIVE;
-	float AMP_BWD;
-	float AMP_FWD;
-	float WHISK_FREQ;
-	float SPEED;
-	
+	// directories/paths
 	std::string dir_out;
 	std::string file_video;
 	std::string file_env;

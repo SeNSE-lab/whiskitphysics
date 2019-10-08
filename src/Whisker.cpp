@@ -11,11 +11,10 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	origin = refbody; 				// reference body for base point position
 
     btScalar dt =parameters->TIME_STEP;
-	config = load_config(w_name,parameters);	// get parameters for whisker configuration
+	config = load_config(w_name,parameters); // get parameters for whisker configuration
     
 
-	int NUM_LINKS = parameters->NUM_UNITS;	// set number of units
-	int NUM_JOINTS = NUM_LINKS - 1;
+	int NUM_LINKS = parameters->NUM_LINKS;	// set number of links
 	std::vector<int> all_zeros(NUM_LINKS, 0);
 	collide = all_zeros;
 
@@ -30,8 +29,8 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 
     btScalar rho = parameters->ROH_BASE/pow(SCALE,3);
     btScalar rho_slope = ((parameters->ROH_TIP-parameters->ROH_BASE)/pow(SCALE,3)) / length;
-    btScalar zeta = parameters->ZETA_BASE;
-    btScalar E = parameters->E_BASE*1e9/SCALE;
+    btScalar zeta = parameters->ZETA;
+    btScalar E = parameters->E*1e9/SCALE;
 
 	/// CREATE BASE POINT
 	/// ====================================
@@ -172,14 +171,14 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
             btTransform frameInPrev = createFrame(btVector3(link_length/2.f,0,0),btVector3(0,0,0));
 		    btTransform frameInCurr = createFrame(btVector3(-link_length/2.f,0,0),btVector3(0,0,0));
         
-            // create link (between units) constraint
+            // create link (between links) constraint
             btGeneric6DofSpringConstraint* spring = new btGeneric6DofSpringConstraint(*link_prev, *link, frameInPrev,frameInCurr,true);
 
-            // set spring parameters of links
+            // set spring parameters of node
             // ----------------------------------------------------------		
-            spring->setLinearLowerLimit(btVector3(0,0,0)); // lock the units
+            spring->setLinearLowerLimit(btVector3(0,0,0)); // lock the links
             spring->setLinearUpperLimit(btVector3(0,0,0));
-            spring->setAngularLowerLimit(btVector3(0.,1.,1.)); // lock angles between units at x axis but free around y and z axis
+            spring->setAngularLowerLimit(btVector3(0.,1.,1.)); // lock angles between links at x axis but free around y and z axis
             spring->setAngularUpperLimit(btVector3(0.,0.,0.));
 
             // add constraint to world
@@ -279,7 +278,7 @@ std::vector<btScalar> Whisker::getX(){
 	std::vector<btScalar> trajectories;
 	trajectories.push_back(base->getCenterOfMassTransform().getOrigin()[0]);
 
-	// loop through units and get world coordinates of each
+	// loop through links and get world coordinates of each
 	for (int i=0; i<whisker.size(); i++){
 		btScalar x = whisker[i]->getCenterOfMassTransform().getOrigin()[0];
 		if(parameters->PRINT==1){
@@ -296,7 +295,7 @@ std::vector<btScalar> Whisker::getY(){
 	std::vector<btScalar> trajectories;
 	trajectories.push_back(base->getCenterOfMassTransform().getOrigin()[1]);
 
-	// loop through units and get world coordinates of each
+	// loop through links and get world coordinates of each
 	for (int i=0; i<whisker.size(); i++){
 		btScalar y = whisker[i]->getCenterOfMassTransform().getOrigin()[1];
 		if(parameters->PRINT==1){
@@ -313,7 +312,7 @@ std::vector<btScalar> Whisker::getZ(){
 	std::vector<btScalar> trajectories;
 	trajectories.push_back(base->getCenterOfMassTransform().getOrigin()[2]);
 
-	// loop through units and get world coordinates of each
+	// loop through links and get world coordinates of each
 	for (int i=0; i<whisker.size(); i++){
 		btScalar z = whisker[i]->getCenterOfMassTransform().getOrigin()[2];
 		if(parameters->PRINT==1){

@@ -46,6 +46,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/App_Whisker.dir/DependInfo.cmake"
-  "CMakeFiles/AppWhiskerGui.dir/DependInfo.cmake"
+  "CMakeFiles/whiskit.dir/DependInfo.cmake"
+  "CMakeFiles/whiskit_gui.dir/DependInfo.cmake"
   )

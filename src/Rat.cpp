@@ -40,19 +40,19 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	origin->setActivationState(DISABLE_SIMULATION);
 	rat->setActivationState(DISABLE_SIMULATION);
 
-	// define constraints for neck
+	// define constraints for control
 	btTransform headFrame = headTransform.inverse();
-	btTransform neckFrame = createFrame();
-	neckConstraint = new btGeneric6DofConstraint (*rat, *rathead->body, neckFrame, headFrame,true);
+	btTransform controlFrame = createFrame();
+	controlConstraint = new btGeneric6DofConstraint (*rat, *rathead->body, controlFrame, headFrame,true);
 
-	neckConstraint->setLinearLowerLimit(btVector3(0.,0.,0));
-	neckConstraint->setLinearUpperLimit(btVector3(0.,0.,0));
-	neckConstraint->setAngularLowerLimit(btVector3(0,0.,0));
-	neckConstraint->setAngularUpperLimit(btVector3(0,0,0));
+	controlConstraint->setLinearLowerLimit(btVector3(0.,0.,0));
+	controlConstraint->setLinearUpperLimit(btVector3(0.,0.,0));
+	controlConstraint->setAngularLowerLimit(btVector3(0,0.,0));
+	controlConstraint->setAngularUpperLimit(btVector3(0,0,0));
 
 	// add constraint to world
-	world->addConstraint(neckConstraint,true);
-	neckConstraint->setDbgDrawSize(btScalar(1.f));
+	world->addConstraint(controlConstraint,true);
+	controlConstraint->setDbgDrawSize(btScalar(1.f));
 
 	// define constraints for array origin
 	headFrame = createFrame();

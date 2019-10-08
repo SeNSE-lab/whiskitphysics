@@ -15,7 +15,7 @@ class Rat
 private:
 
 	btGeneric6DofConstraint* ratConstraint;
-	btGeneric6DofConstraint* neckConstraint;
+	btGeneric6DofConstraint* controlConstraint;
 	btGeneric6DofConstraint* originConstraint;
 
 	btAlignedObjectArray<Whisker*> m_whiskerArray;
