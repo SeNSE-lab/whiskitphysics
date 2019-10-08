@@ -7,13 +7,13 @@ In this repository, we're building a 3D dynamical model of the full rat whisker 
 
 2. Install Boost 1.62 library with `sudo apt-get install libboost1.62-all-dev`
 
-3. Clone this repository including submodule:
+3. Clone this repository:
 
 ```
-	git clone https://github.com/SeNSE-lab/whisketphysics.git
+	git clone https://github.com/SeNSE-lab/whiskitphysics.git
 ```
 
-4. First, compile Bullet Physics Library with (may take a while):
+4. First, compile Bullet Physics Library (may take a while):
 ```
 	cd your/path/to/bulletlib
 	mkdir build
@@ -21,9 +21,9 @@ In this repository, we're building a 3D dynamical model of the full rat whisker 
 	cmake ..
 	make
 ```
-5. Compile whisketphysics with:
+5. Compile whisketphysics:
 ```
-	cd your/path/to/whisketphysics
+	cd your/path/to/whiskitphysics
 	mkdir build
 	cd build
 	cmake ..
@@ -34,7 +34,7 @@ In this repository, we're building a 3D dynamical model of the full rat whisker 
    If boost library is not found by cmake try:
 
 ```
-	cd your/path/to/whisketphysics
+	cd your/path/to/whiskitphysics
 	mkdir build
 	cd build
 	sudo cmake --check-system-vars ..
