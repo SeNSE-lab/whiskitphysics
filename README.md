@@ -4,7 +4,9 @@
 
 In this repository, we're building a 3D dynamical model of the full rat whisker array based on the open source physics engine Bullet Physics and OpenGL.
 
-<img src="docs/whiskit_peg_active.gif" align="left">
+<p align="center">
+	<img src="docs/whiskit_peg_active.gif">
+</p>
 
 ## Installation Instructions:
 1. Install OpenGL/Glut with `sudo apt-get install freeglut3-dev`
