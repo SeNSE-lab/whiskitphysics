@@ -1,6 +1,6 @@
-# Bullet Physics SDK
+# Custom Mini-Library extracted from Bullet Physics SDK
 
-This is NOT the official repository of the Bullet Physics SDK. Only Bullet Physics code used in WHISKiT Physics is contained in this folder. To access the official source code repository go to https://github.com/bulletphysics/bullet3.
+This is NOT the official repository of the Bullet Physics SDK. Only Bullet Physics code used in WHISKiT Physics is contained in this folder. To access the official source code repository visit https://github.com/bulletphysics/bullet3
 
 WHISKiT Physics is based on following Bullet Physics directories:
 
@@ -14,8 +14,9 @@ WHISKiT Physics is based on following Bullet Physics directories:
     bulletlib/examples/Importers
     bulletlib/Extras/Serialize
 
-	These files (or parts thereof) were used to facilitate the development of WHISKiT Physics:
-    bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.cpp
+These files (or parts thereof) were used to facilitate the development of WHISKiT Physics:
+    
+	bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.cpp
     bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.cpp
     bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp
     bulletlib/examples/Utils/b3Clock.cpp
