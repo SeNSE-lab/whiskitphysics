@@ -1,4 +1,0 @@
-/home/nadina/Github/whiskitphysics/build/CMakeFiles/rebuild_cache.dir
-/home/nadina/Github/whiskitphysics/build/CMakeFiles/whiskit.dir
-/home/nadina/Github/whiskitphysics/build/CMakeFiles/edit_cache.dir
-/home/nadina/Github/whiskitphysics/build/CMakeFiles/whiskit_gui.dir

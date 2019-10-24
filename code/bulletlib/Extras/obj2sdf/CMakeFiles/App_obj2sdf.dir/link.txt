@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG  -rdynamic CMakeFiles/App_obj2sdf.dir/obj2sdf.o CMakeFiles/App_obj2sdf.dir/__/__/examples/Utils/b3ResourcePath.o CMakeFiles/App_obj2sdf.dir/__/__/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.o  -o App_obj2sdf ../../lib/libBullet3Common.a 

@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/nadina/Github/Dynamo/real-whisker/3D-dynamics-model/bullet/src/clew/clew.c
+clew.h
+/home/nadina/Github/Dynamo/real-whisker/3D-dynamics-model/bullet/src/clew/clew.h
+windows.h
+-
+dlfcn.h
+-
+stdlib.h
+-
+
+/home/nadina/Github/Dynamo/real-whisker/3D-dynamics-model/bullet/src/clew/clew.h
+AvailabilityMacros.h
+-
+stdint.h
+-
+stddef.h
+-
+altivec.h
+-
+intrin.h
+-
+xmmintrin.h
+-
+intrin.h
+-
+emmintrin.h
+-
+mmintrin.h
+-
+intrin.h
+-
+immintrin.h
+-
+

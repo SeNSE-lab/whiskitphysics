@@ -3,6 +3,7 @@ output/
 build/
 bulletlib/lib/
 bulletlib/build/
+.vscode/
 
 # Prerequisites
 *.d
