@@ -1,4 +1,3 @@
-# WHISKiT Physics
 
 <img src="docs/whiskit_physics_logo_bg_white.png" height="203px" width="444px" >
 
