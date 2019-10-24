@@ -1,6 +1,6 @@
 # Mini-Bullet Physics SDK
 
-This is NOT the official repository of the Bullet Physics SDK. Only Bullet Physics code used in WHISKiT Physics is contained in this folder. To access the official source code repository visit https://github.com/bulletphysics/bullet3
+This is NOT the official repository of the Bullet Physics SDK. Only Bullet Physics code used in WHISKiT Physics is contained in this folder. To access the official source code repository visit https://github.com/bulletphysics/bullet3.
 Therefor this "Mini-Bullet Physics Library" is not subject to automatic updates and development of the official Bullet Physics SDK. Currently, Mini-Bullet Phyiscs is based on version 2.88.
 
 WHISKiT Physics is based on following Bullet Physics directories:
