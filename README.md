@@ -22,7 +22,7 @@ For more information or feedback contact nzweifel@u.northwestern.edu
 
 4. First, compile Bullet Physics Library (may take a while):
 ```
-	cd your/path/to/bulletlib
+	cd your/path/to/whiskitphysics/code/bulletlib
 	mkdir build
 	cd build
 	cmake ..
@@ -30,7 +30,7 @@ For more information or feedback contact nzweifel@u.northwestern.edu
 ```
 5. Compile whisketphysics:
 ```
-	cd your/path/to/whiskitphysics
+	cd your/path/to/whiskitphysics/code
 	mkdir build
 	cd build
 	cmake ..
@@ -41,12 +41,12 @@ For more information or feedback contact nzweifel@u.northwestern.edu
    If boost library is not found by cmake try:
 
 ```
-	cd your/path/to/whiskitphysics
+	cd your/path/to/whiskitphysics/code
 	mkdir build
 	cd build
 	sudo cmake --check-system-vars ..
 	sudo make
 
 ```
-6. Run `App_Whisker` (no graphics) or `AppWhiskerGui` (with graphics). Use --help or -h for information about command line arguments. Bash scripts for simulation presets are available in "script" folder.
+6. Run `whiskit` (no graphics) or `whiskit_gui` (with graphics). Use --help or -h for information about command line arguments. Bash scripts for simulation presets are available in "script" folder.
  

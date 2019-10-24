@@ -24,7 +24,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	headTransform.setRotation(headRotation);
 
 	// define shape and body of head
-	rathead = new Object(helper,world,shapes,"../data/3D_data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
+	rathead = new Object(helper,world,shapes,"../data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
 	btTransform trans = ratTransform*headTransform;
 	rathead->body->setCenterOfMassTransform(trans);
 

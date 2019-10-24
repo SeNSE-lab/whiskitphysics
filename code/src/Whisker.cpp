@@ -216,7 +216,8 @@ void Whisker::whisk(btScalar dtheta){
 	btVector3 worldProtraction = (basepoint->getWorldTransform().getBasis()*btVector3(0,0,dtheta));
 	btVector3 worldElevation = (basepoint->getWorldTransform().getBasis()*btVector3(0,dphi,0));
 	btVector3 worldTorsion = (whisker[0]->getWorldTransform().getBasis()*btVector3(dzeta,0,0));
-	btVector3 totalVelocity = worldProtraction+worldElevation+worldTorsion;
+	btVector3 headvelocity = origin->getAngularVelocity();
+	btVector3 totalVelocity = worldProtraction+worldElevation+worldTorsion + headvelocity;
 
 	base->setAngularVelocity(totalVelocity);
 	

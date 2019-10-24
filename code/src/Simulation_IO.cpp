@@ -23,19 +23,32 @@ void clear_output(output* data){
 }
 
 void save_data(output* data, std::string dirname){
-            
-    if(boost::filesystem::exists(dirname)){
+    
+    if(boost::filesystem::exists("../output")){
         std::cout << "Saving data..." << std::endl;
-        std::cout << "- Output folder exists." << std::endl;
     }
     else{
         std::cout << "Saving data..." << std::endl;
+        try{
+            boost::filesystem::create_directory("../output");
+        }
+        catch(int e){
+            printf("- Error creating output directory!\n");
+            exit(1);
+        }
+
+    }
+
+    if(boost::filesystem::exists(dirname)){
+        std::cout << "- Output folder exists." << std::endl;
+    }
+    else{
         std::cout << "- Creating new output folder." << std::endl;
         try{
             boost::filesystem::create_directory(dirname);
         }
         catch(int e){
-            printf("- Error creating output subdirectory!\n");
+            printf("- Error creating output target directory!\n");
             exit(1);
         }
 

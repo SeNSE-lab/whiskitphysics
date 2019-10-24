@@ -63,9 +63,9 @@ void Simulation::stepSimulation(){
 	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 	m_time_elapsed += duration.count()/1000.f;
 	auto factor = m_time_elapsed / m_time;
-	auto time_remaining = (int)((parameters->TIME_STOP - m_time) * factor);
+	auto time_remaining = (int)((parameters->TIME_STOP - m_time) * (factor));
 	if(parameters->PRINT==2){
-		std::cout << "\rCompleted: " << std::setprecision(2) << m_time/parameters->TIME_STOP*100 << " %\t\tTime remaining: " << std::setprecision(4) << time_remaining/60 << " min " << std::setprecision(4) << (time_remaining % 60) << " s" << std::flush;
+		std::cout << "\rCompleted: " << std::setprecision(2) << m_time/parameters->TIME_STOP*100 << " %\tTime remaining: " << std::setprecision(4) << time_remaining/60 << " min " << std::setprecision(4) << (time_remaining % 60) << " s\n" << std::flush;
 	}
     
 }
