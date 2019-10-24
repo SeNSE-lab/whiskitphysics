@@ -202,15 +202,6 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	
 }
 
-
-// btRigidBody* Whisker::get_unit(int idx){
-// 	return whisker[idx];
-// }
-
-// btRigidBody* Whisker::get_base(){
-// 	return base;
-// }
-
 void Whisker::whisk(btScalar dtheta){
 
 	btScalar dphi = -dtheta * get_dphi(config.row-1);
