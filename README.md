@@ -1,8 +1,6 @@
 # WHISKiT Physics
 
-![whiskit logo](docs/whiskit_physics_logo_bg_white.png){:class="img-responsive"}
-![whiskit logo](docs/whiskit_physics_logo_bg_white.png){:height="50%" width="50%"}
-![whiskit logo](docs/whiskit_physics_logo_bg_white.png){:height="700px" width="400px"}
+![whiskit logo](docs/whiskit_physics_logo_bg_white.png) <!-- .element height="50%" width="50%" -->
 
 In this repository, we're building a 3D dynamical model of the full rat whisker array based on the open source physics engine Bullet Physics and OpenGL.
 
