@@ -3,11 +3,11 @@
 
 WHISKiT is a 3D dynamical model of the full rat vibrissal array using the open-source physics engine Bullet Physics and OpenGL (https://github.com/bulletphysics/bullet3), developed by the SeNSE (Hartmann) Lab at Northwestern University. This tool allows researchers to simulate the sensory input of the vibrissal system, i.e. the mechanical signals (moment and force) generated at the base of each whisker in the array. The model includes 56 whiskers of an average whisker array (Belli et al. 2017, Belli et al. 2018) which are actuated according to the equations of motion by Knutsen et al. 2008. Each whisker is modeled as a chain of 20 rigid conical links connected with torsional springs of two degrees of freedom. The parameters of the springs were optimized and validated using data of real whiskers. A detailed description of the model is currently in preparation. When using this tool, be aware that it is still under development. 
 
-For more information: nzweifel@u.northwestern.edu
-
 <p align="center">
 	<img src="docs/whiskit_peg_active.gif">
 </p>
+
+For more information: nzweifel@u.northwestern.edu
 
 ## Installation Instructions:
 1. Install OpenGL/Glut with `sudo apt-get install freeglut3-dev`
