@@ -36,58 +36,50 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	/// ====================================
 	btTransform originTransform = origin->getCenterOfMassTransform();	
 
-	btTransform basepointTransform = createFrame(config.base_pos);
+	basepointTransform = createFrame(config.base_pos);
 	btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base,radius_base,radius_base));
 	m_collisionShapes->push_back(basepointShape);
 	
-	basepoint = createDynamicBody(btScalar(100),originTransform*basepointTransform,basepointShape,m_guiHelper,color);
+	basepoint = createDynamicBody(btScalar(1),originTransform*basepointTransform,basepointShape,m_guiHelper,color);
 	m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
 	basepoint->setActivationState(DISABLE_DEACTIVATION);
 
-	btTransform originFrame = createFrame();
-    btTransform basepointFrame = createFrame();
-	basePointConstraint = new btGeneric6DofConstraint(*origin, *basepoint, originFrame, basepointFrame,true);
+	// btTransform originFrame = createFrame();
+    // btTransform basepointFrame = createFrame();
+	// basePointConstraint = new btGeneric6DofConstraint(*origin, *basepoint, originFrame, basepointFrame,true);
 
-	basePointConstraint->setLinearLowerLimit(config.base_pos);
-	basePointConstraint->setLinearUpperLimit(config.base_pos);
-	basePointConstraint->setAngularLowerLimit(btVector3(0,0,0));
-	basePointConstraint->setAngularUpperLimit(btVector3(0,0,0));
+	// basePointConstraint->setLinearLowerLimit(config.base_pos);
+	// basePointConstraint->setLinearUpperLimit(config.base_pos);
+	// basePointConstraint->setAngularLowerLimit(btVector3(0,0,0));
+	// basePointConstraint->setAngularUpperLimit(btVector3(0,0,0));
 
-	m_dynamicsWorld->addConstraint(basePointConstraint,true);
-	basePointConstraint->setDbgDrawSize(btScalar(0.5f));
+	// m_dynamicsWorld->addConstraint(basePointConstraint,true);
+	// basePointConstraint->setDbgDrawSize(btScalar(0.5f));
 
     // WHISKER BASE
 	// =========================================================== 
-	basepointTransform = basepoint->getCenterOfMassTransform();
+	btTransform basepointTransform = basepoint->getCenterOfMassTransform();
 	btCollisionShape* baseShape = createSphereShape(radius_base*5);
 	m_collisionShapes->push_back(baseShape);
 	
-	base = createDynamicBody(btScalar(10),basepointTransform,baseShape,m_guiHelper,color);
+	base = createDynamicBody(btScalar(1),basepointTransform,baseShape,m_guiHelper,color);
 	m_dynamicsWorld->addRigidBody(base,COL_BASE,baseCollidesWith);
 	base->setActivationState(DISABLE_DEACTIVATION);
 
-	basepointFrame = createFrame();
+	btTransform basepointFrame = createFrame();
     btTransform baseFrame = createFrame();
 	motorConstraint = new btGeneric6DofConstraint(*basepoint, *base, basepointFrame, baseFrame,true);
-
-	btVector3 lowerLimit;
-	btVector3 upperLimit;
-	if(!config.side){ 
-		lowerLimit = btVector3(-PI/6,-PI/6,-PI/6);
-		upperLimit = btVector3(PI/3,PI/3,PI/3);
-	}
-	else{
-		lowerLimit = btVector3(-PI/3,-PI/3,-PI/3);
-		upperLimit = btVector3(PI/6,PI/6,PI/6);
-	}
 	
 	motorConstraint->setLinearLowerLimit(btVector3(0,0,0));
 	motorConstraint->setLinearUpperLimit(btVector3(0,0,0));
-	motorConstraint->setAngularLowerLimit(lowerLimit);
-	motorConstraint->setAngularUpperLimit(upperLimit);
+	motorConstraint->setAngularLowerLimit(btVector3(1,1,1));
+	motorConstraint->setAngularUpperLimit(btVector3(0,0,0));
 
 	m_dynamicsWorld->addConstraint(motorConstraint,true);
 	motorConstraint->setDbgDrawSize(btScalar(0.5f));
+
+	// enable feedback (mechanical response)
+    
 
 	// BUILD WHISKER
 	// ===========================================================
@@ -154,7 +146,7 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
              // initialize transforms and set frames at end of frostum
             btTransform frameInCurr = createFrame(btVector3(-(link_length/2.f),0,0));
             btTransform frameInPrev = rotZ(config.base_rot[0])*rotY(config.base_rot[1])*rotX(config.base_rot[2]);
-            baseConstraint = new btGeneric6DofConstraint(*link_prev, *link, frameInPrev, frameInCurr,true);
+            baseConstraint = new btGeneric6DofSpringConstraint(*link_prev, *link, frameInPrev, frameInCurr,true);
 			
             baseConstraint->setLinearLowerLimit(btVector3(0,0,0));
             baseConstraint->setLinearUpperLimit(btVector3(0,0,0));
@@ -163,8 +155,17 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
             
             m_dynamicsWorld->addConstraint(baseConstraint,true);
             baseConstraint->setDbgDrawSize(btScalar(0.5f));
-        
-            // enable feedback (mechanical response)
+			
+			baseConstraint->enableSpring(4,true);
+			baseConstraint->setStiffness(4,1.25);
+			baseConstraint->setDamping(4,0.2);
+			baseConstraint->setEquilibriumPoint(4,0);
+
+			baseConstraint->enableSpring(5,true);
+			baseConstraint->setStiffness(5,1.25);
+			baseConstraint->setDamping(5,0.2);
+			baseConstraint->setEquilibriumPoint(5,0);
+
             baseConstraint->setJointFeedback(&baseFeedback);
         }
         else{
@@ -216,12 +217,42 @@ void Whisker::whisk(btScalar dtheta){
 	btVector3 worldProtraction = (basepoint->getWorldTransform().getBasis()*btVector3(0,0,dtheta));
 	btVector3 worldElevation = (basepoint->getWorldTransform().getBasis()*btVector3(0,dphi,0));
 	btVector3 worldTorsion = (whisker[0]->getWorldTransform().getBasis()*btVector3(dzeta,0,0));
-	btVector3 headvelocity = origin->getAngularVelocity();
-	btVector3 totalVelocity = worldProtraction+worldElevation+worldTorsion + headvelocity;
+	btVector3 headLinVelocity = origin->getLinearVelocity();
+	btVector3 headAngVelocity = origin->getAngularVelocity();
+	btVector3 angularVelocity = worldProtraction+worldElevation+worldTorsion + headAngVelocity;
 
-	base->setAngularVelocity(totalVelocity);
+	base->setLinearVelocity(headLinVelocity);
+	base->setAngularVelocity(angularVelocity);
 	
 }
+
+void Whisker::updateVelocity(btScalar activeFlag){
+	
+	btTransform headTransform = origin->getCenterOfMassTransform();
+	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
+
+	btVector3 linVelocity = origin->getLinearVelocity();
+	btVector3 angVelocity = origin->getAngularVelocity();
+	
+	basepoint->setLinearVelocity(linVelocity);
+	basepoint->setAngularVelocity(angVelocity);
+
+	
+	if(!activeFlag){
+		base->setCenterOfMassTransform(headTransform*basepointTransform);
+		base->setLinearVelocity(linVelocity);
+		base->setAngularVelocity(angVelocity);
+	}
+
+}
+
+void Whisker::updateTransform(btScalar activeFlag){
+	
+	btTransform headTransform = origin->getCenterOfMassTransform();
+	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
+	
+}
+
 
 std::vector<int> Whisker::getCollision(){
 	std::vector<int> flags;
@@ -315,4 +346,6 @@ std::vector<btScalar> Whisker::getZ(){
 	return trajectories;
 }
 
-
+btVector3 Whisker::getPosition(int linknr){
+	return whisker[linknr]->getCenterOfMassPosition();
+}

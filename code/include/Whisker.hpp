@@ -35,15 +35,19 @@ private:
 	btRigidBody* base;
 	btRigidBody* basepoint;
 	btAlignedObjectArray<btRigidBody*> whisker;
+
+	btTransform basepointTransform;
 	
 	btGeneric6DofConstraint* basePointConstraint;
 	btGeneric6DofConstraint* motorConstraint;
-	btGeneric6DofConstraint* baseConstraint;
+	btGeneric6DofSpringConstraint* baseConstraint;
 	btJointFeedback baseFeedback;
 
 	whisker_config config;
 	Parameters* parameters;
 	std::vector<int> collide;
+	
+	
 
 public:
 
@@ -52,9 +56,13 @@ public:
 	
 	void whisk(btScalar dps);
 
+	void updateVelocity(btScalar activeFlag);
+	void updateTransform(btScalar activeFlag);
+
 	btVector3 getTorques();
 	btVector3 getForces();
-
+	btVector3 getPosition(int linknr);
+	
 	std::vector<float> getX();
 	std::vector<float> getY();
 	std::vector<float> getZ();

@@ -9,7 +9,7 @@ void set_default(Parameters* param){
 	param->TIME_STEP = 0.001;	// set time step
 	param->NUM_STEP_INT = 100;	// set internal time step
 	param->TIME_STOP = 1.;		// set simulation time
-    param->PRINT = 0;			// set print out of results (necessary for optimization)
+    param->PRINT = 0;			// set to PRINT=1 to print results, set to PRINT = 2 to print simulation time
 	param->SAVE = 0;			// save results to csv file
 	param->SAVE_VIDEO = 0;		// save video when running main_opengl.cpp
 

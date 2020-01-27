@@ -10,68 +10,60 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	init_pos = btVector3(parameters->POSITION[0],parameters->POSITION[1],parameters->POSITION[2]);
 	init_quat.setEulerZYX(parameters->YAW*PI/180.,parameters->ROLL*PI/180.,parameters->PITCH*PI/180.);
 	
-	// create reference body for rat (static): change mass to non-zero value if you want dynamic (but consider gravity!)
-	btTransform ratTransform = createFrame(init_pos);
-	ratTransform.setRotation(init_quat);
-	btSphereShape* ratShape = new btSphereShape(0.0001*SCALE);
-	shapes->push_back(ratShape);
-	rat = createDynamicBody(1,ratTransform,ratShape,helper,color);
-	world->addRigidBody(rat,COL_HEAD,headCollidesWith);
-	ratTransform = rat->getCenterOfMassTransform();
-
-	btTransform headTransform = createFrame();
-	btQuaternion headRotation = btQuaternion(0,0,0);
-	headTransform.setRotation(headRotation);
+	btScalar mass_head(1);
+	if (parameters->NO_MASS) mass_head = 0;
+	btScalar mass_origin(1);
+	if (parameters->NO_MASS) mass_origin = 0;
 
 	// define shape and body of head
-	rathead = new Object(helper,world,shapes,"../data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
-	btTransform trans = ratTransform*headTransform;
-	rathead->body->setCenterOfMassTransform(trans);
+	btTransform headTransform = createFrame(init_pos);
+	headTransform.setRotation(init_quat);
+	rathead = new Object(helper,world,shapes,"../data/NewRatHead.obj",color,SCALE/10,mass_head,COL_HEAD,headCollidesWith);
+	rathead->body->setCenterOfMassTransform(headTransform);
+	rathead->body->setActivationState(DISABLE_DEACTIVATION);
+	rat = rathead->body;
 
 	// define origin of the whisker array
-	btTransform originTransform = createFrame(originOffset*SCALE,originOrientation);
+	originTransform = createFrame(originOffset*SCALE,originOrientation);
+
 	btSphereShape* originShape = new btSphereShape(0.0001*SCALE);
 	shapes->push_back(originShape);
-	origin = createDynamicBody(1000.0,ratTransform*headTransform*originTransform,originShape,helper,color);
-	world->addRigidBody(origin,COL_HEAD,headCollidesWith);
-
-	// activate bodies
-	rathead->body->setActivationState(DISABLE_SIMULATION);
-	origin->setActivationState(DISABLE_SIMULATION);
-	rat->setActivationState(DISABLE_SIMULATION);
+	origin = createDynamicBody(mass_origin,headTransform*originTransform,originShape,helper,color);
+	world->addRigidBody(origin,COL_HEAD,headCollidesWith);	
+	origin->setActivationState(DISABLE_DEACTIVATION);
 
 	// define constraints for control
-	btTransform headFrame = headTransform.inverse();
-	btTransform controlFrame = createFrame();
-	controlConstraint = new btGeneric6DofConstraint (*rat, *rathead->body, controlFrame, headFrame,true);
+	// btTransform headFrame = headTransform.inverse();
+	// btTransform controlFrame = createFrame();
+	// controlConstraint = new btGeneric6DofConstraint (*rat, *rathead->body, controlFrame, headFrame,true);
 
-	controlConstraint->setLinearLowerLimit(btVector3(0.,0.,0));
-	controlConstraint->setLinearUpperLimit(btVector3(0.,0.,0));
-	controlConstraint->setAngularLowerLimit(btVector3(0,0.,0));
-	controlConstraint->setAngularUpperLimit(btVector3(0,0,0));
-
-	// add constraint to world
-	world->addConstraint(controlConstraint,true);
-	controlConstraint->setDbgDrawSize(btScalar(1.f));
-
-	// define constraints for array origin
-	headFrame = createFrame();
-	btTransform originFrame = createFrame();
-	originConstraint = new btGeneric6DofConstraint(*rathead->body, *origin, headFrame, originFrame,true);
-	
-	originConstraint->setLinearLowerLimit(originOffset*SCALE);
-	originConstraint->setLinearUpperLimit(originOffset*SCALE);
-	originConstraint->setAngularLowerLimit(btVector3(0.,0.,0.));
-	originConstraint->setAngularUpperLimit(btVector3(0.,0.,0.));
+	// controlConstraint->setLinearLowerLimit(btVector3(0.,0.,0));
+	// controlConstraint->setLinearUpperLimit(btVector3(0.,0.,0));
+	// controlConstraint->setAngularLowerLimit(btVector3(0,0.,0));
+	// controlConstraint->setAngularUpperLimit(btVector3(0,0,0));
 
 	// // add constraint to world
-	world->addConstraint(originConstraint,true);
-	originConstraint->setDbgDrawSize(btScalar(1.f));
+	// world->addConstraint(controlConstraint,true);
+	// controlConstraint->setDbgDrawSize(btScalar(1.f));
+
+	// // define constraints for array origin
+	// headFrame = createFrame();
+	// btTransform originFrame = createFrame();
+	// originConstraint = new btGeneric6DofConstraint(*rathead->body, *origin, headFrame, originFrame,true);
+	
+	// originConstraint->setLinearLowerLimit(originOffset*SCALE);
+	// originConstraint->setLinearUpperLimit(originOffset*SCALE);
+	// originConstraint->setAngularLowerLimit(btVector3(0.,0.,0.));
+	// originConstraint->setAngularUpperLimit(btVector3(0.,0.,0.));
+
+	// // // add constraint to world
+	// world->addConstraint(originConstraint,true);
+	// originConstraint->setDbgDrawSize(btScalar(1.f));
 
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
-			Whisker* whisker = new Whisker(world,helper, shapes,parameters, origin,parameters->WHISKER_NAMES[w]);
+			Whisker* whisker = new Whisker(world,helper, shapes,parameters, origin, parameters->WHISKER_NAMES[w]);
 			m_whiskerArray.push_back(whisker);
 	
 		}
@@ -79,43 +71,43 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 			
 }
 
+btAlignedObjectArray<Whisker*> Rat::getArray(){
+	return m_whiskerArray;
+}
+
 Whisker* Rat::get_whisker(int index){
 	return m_whiskerArray[index];
 }
 
-
 btVector3 Rat::get_position(){
 	btVector3 position = rat->getCenterOfMassPosition();
-	// std::cout << position[0] << ", " << position[1] << ", " << position[2] << std::endl;
 	return position;
 }
 
-void Rat::translateHead(btVector3 new_position){
+void Rat::setWorldTransform(btTransform trans, btScalar activeFlag){
 	
-	btTransform trans;
-	trans = rat->getCenterOfMassTransform();
-	btMotionState* motionState = rat->getMotionState();
-
-	btVector3 position = rat->getCenterOfMassPosition();
-	trans.setOrigin(new_position);
-
 	rat->setCenterOfMassTransform(trans);
-	motionState->setWorldTransform(trans);
-
+	origin->setCenterOfMassTransform(trans*originTransform);
+	
+	for (int i=0;i<m_whiskerArray.size();i++){
+		m_whiskerArray[i]->updateTransform(activeFlag);
+	}
 }
 
-void Rat::rotateHead(btQuaternion rotation){
+void Rat::setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar activeFlag){
 	
-	btTransform trans;
-	trans = rat->getCenterOfMassTransform();
-	btMotionState* motionState = rat->getMotionState();
+	btTransform trans = rat->getCenterOfMassTransform();
+	origin->setCenterOfMassTransform(trans*originTransform);
 
-	btQuaternion orientation = trans.getRotation();
-	trans.setRotation(orientation*rotation);
+	rat->setLinearVelocity(linearVelocity);
+	rat->setAngularVelocity(angularVelocity);
 
-	rat->setCenterOfMassTransform(trans);
-	motionState->setWorldTransform(trans);
-
+	origin->setLinearVelocity(linearVelocity);
+	origin->setAngularVelocity(angularVelocity);
+	
+	for (int i=0;i<m_whiskerArray.size();i++){
+		m_whiskerArray[i]->updateVelocity(activeFlag);
+	}
 }
 
 void Rat::moveArray(btScalar t, btScalar dt, btScalar freq, btScalar angle_fwd, btScalar angle_bwd){
@@ -145,9 +137,7 @@ void Rat::calc_offset(btScalar protraction,btScalar freq, btScalar angle_fwd, bt
 
 }
 
-btAlignedObjectArray<Whisker*> Rat::getArray(){
-	return m_whiskerArray;
-}
+
 
 
 // function to retrieve torques at base points

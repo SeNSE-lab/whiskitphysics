@@ -19,19 +19,32 @@ btVector4 ORANGE = btVector4(1.,0.647,0.0,1);
 void Simulation::stepSimulation(){
 	auto start = std::chrono::high_resolution_clock::now(); 
 	m_time += parameters->TIME_STEP; // increase time
-	m_step += 1; // increase steps
 	
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
 		
-		// moving object 2
+
+		// define headtransform
+		btTransform headTrans = createFrame();
+
+		// define head velocity (linear, angular)
+		btVector3 headLinearVelocity = btVector3(0,0,0);
+		btVector3 headAngularVelocity = btVector3(0,0,0);
+
+		// moving object 1
 		if(parameters->OBJECT==1){
 			peg->setLinearVelocity(vec*parameters->SPEED);
 		}
 
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
+			// scabbers->setWorldTransform(headTrans,1); // set active flag = 1 for velocity
+			scabbers->setVelocity(headLinearVelocity,headAngularVelocity,1); // set active flag = 1 for velocity
 			scabbers->moveArray(m_time, parameters->TIME_STEP, parameters->WHISK_FREQ, parameters->AMP_FWD, parameters->AMP_BWD); // move array with defined frequency and amplitude
+		}
+		else{
+			// scabbers->setWorldTransform(headTrans,0);
+			scabbers->setVelocity(headLinearVelocity,headAngularVelocity,0);
 		}
 
 		// step simulation
@@ -196,7 +209,6 @@ void Simulation::initPhysics()
 	// initialize time/step tracker
 	m_time_elapsed = 0;
 	m_time = 0;
-	m_step = 0;
 	
 	std::cout << "\n\nStart simulation..." << std::endl;
 	std::cout << "\n====================================================\n" << std::endl;
