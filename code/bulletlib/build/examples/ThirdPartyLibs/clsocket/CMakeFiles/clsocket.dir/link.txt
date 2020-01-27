@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libclsocket.a  CMakeFiles/clsocket.dir/src/SimpleSocket.o CMakeFiles/clsocket.dir/src/ActiveSocket.o CMakeFiles/clsocket.dir/src/PassiveSocket.o
+/usr/bin/ranlib ../../../../lib/libclsocket.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libHACD.a  CMakeFiles/HACD.dir/hacdGraph.o CMakeFiles/HACD.dir/hacdHACD.o CMakeFiles/HACD.dir/hacdICHull.o CMakeFiles/HACD.dir/hacdManifoldMesh.o
+/usr/bin/ranlib ../../../lib/libHACD.a
