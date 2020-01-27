@@ -63,11 +63,9 @@ public:
 	Whisker* get_whisker(int index);
 	btVector3 get_position();
 
-	void setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar activeFlag=0);
+	void setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar dtheta, int activeFlag);
 	void setWorldTransform(btTransform trans, btScalar activeFlag=0);
 
-	void moveArray(float time, float step, float freq, float angle_fwd, float angle_bwd);
-	void calc_offset(float protraction, float freq, float angle_fwd, float angle_bwd);
     btAlignedObjectArray<Whisker*> getArray();
 
 	void dump_M(output* data);

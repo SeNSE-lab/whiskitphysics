@@ -32,34 +32,6 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	world->addRigidBody(origin,COL_HEAD,headCollidesWith);	
 	origin->setActivationState(DISABLE_DEACTIVATION);
 
-	// define constraints for control
-	// btTransform headFrame = headTransform.inverse();
-	// btTransform controlFrame = createFrame();
-	// controlConstraint = new btGeneric6DofConstraint (*rat, *rathead->body, controlFrame, headFrame,true);
-
-	// controlConstraint->setLinearLowerLimit(btVector3(0.,0.,0));
-	// controlConstraint->setLinearUpperLimit(btVector3(0.,0.,0));
-	// controlConstraint->setAngularLowerLimit(btVector3(0,0.,0));
-	// controlConstraint->setAngularUpperLimit(btVector3(0,0,0));
-
-	// // add constraint to world
-	// world->addConstraint(controlConstraint,true);
-	// controlConstraint->setDbgDrawSize(btScalar(1.f));
-
-	// // define constraints for array origin
-	// headFrame = createFrame();
-	// btTransform originFrame = createFrame();
-	// originConstraint = new btGeneric6DofConstraint(*rathead->body, *origin, headFrame, originFrame,true);
-	
-	// originConstraint->setLinearLowerLimit(originOffset*SCALE);
-	// originConstraint->setLinearUpperLimit(originOffset*SCALE);
-	// originConstraint->setAngularLowerLimit(btVector3(0.,0.,0.));
-	// originConstraint->setAngularUpperLimit(btVector3(0.,0.,0.));
-
-	// // // add constraint to world
-	// world->addConstraint(originConstraint,true);
-	// originConstraint->setDbgDrawSize(btScalar(1.f));
-
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
@@ -94,7 +66,7 @@ void Rat::setWorldTransform(btTransform trans, btScalar activeFlag){
 	}
 }
 
-void Rat::setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar activeFlag){
+void Rat::setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar dtheta, int activeFlag){
 	
 	btTransform trans = rat->getCenterOfMassTransform();
 	origin->setCenterOfMassTransform(trans*originTransform);
@@ -106,38 +78,9 @@ void Rat::setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btSca
 	origin->setAngularVelocity(angularVelocity);
 	
 	for (int i=0;i<m_whiskerArray.size();i++){
-		m_whiskerArray[i]->updateVelocity(activeFlag);
+		m_whiskerArray[i]->updateVelocity(dtheta,activeFlag);
 	}
 }
-
-void Rat::moveArray(btScalar t, btScalar dt, btScalar freq, btScalar angle_fwd, btScalar angle_bwd){
-	
-	//calculate target velocity
-	btScalar amp = (angle_fwd + angle_bwd)/2*PI/180;
-	btScalar w = 2*PI*freq;
-	btScalar shift = (angle_fwd - angle_bwd)/2*PI/180;
-	btScalar phase = asin(shift/amp);
-	btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
-	btScalar theta = (amp*sin(w*t + phase)-sin(phase));
-	btScalar dtheta = (theta-prevtheta)/dt;
-
-	for (int i=0;i<m_whiskerArray.size();i++){
-		m_whiskerArray[i]->whisk(dtheta);
-	}
-
-}
-
-	
-void Rat::calc_offset(btScalar protraction,btScalar freq, btScalar angle_fwd, btScalar angle_bwd){
-
-	btScalar amp = (angle_fwd + angle_bwd)/2 * PI / 180;
-	btScalar shift = (angle_fwd - angle_bwd)/2 * PI / 180;
-	btScalar phase = asin(shift/amp);
-	btScalar t_offset = (asin((protraction*PI/180-sin(phase)/amp))+phase)/(2*PI*freq);
-
-}
-
-
 
 
 // function to retrieve torques at base points

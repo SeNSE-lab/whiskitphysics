@@ -36,16 +36,26 @@ void Simulation::stepSimulation(){
 			peg->setLinearVelocity(vec*parameters->SPEED);
 		}
 
+		btScalar dtheta = 0;
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-			// scabbers->setWorldTransform(headTrans,1); // set active flag = 1 for velocity
-			scabbers->setVelocity(headLinearVelocity,headAngularVelocity,1); // set active flag = 1 for velocity
-			scabbers->moveArray(m_time, parameters->TIME_STEP, parameters->WHISK_FREQ, parameters->AMP_FWD, parameters->AMP_BWD); // move array with defined frequency and amplitude
+
+			btScalar angle_fwd = parameters->AMP_FWD*PI/180;
+			btScalar angle_bwd = parameters->AMP_BWD*PI/180;
+			btScalar w = 2*PI*parameters->WHISK_FREQ;
+			btScalar t = m_time;
+			btScalar dt = parameters->TIME_STEP;
+
+			btScalar amp = (angle_fwd + angle_bwd)/2;
+			btScalar shift = (angle_fwd - angle_bwd)/2;
+			btScalar phase = asin(shift/amp);
+			btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
+			btScalar theta = (amp*sin(w*t + phase)-sin(phase));
+
+			dtheta = (theta-prevtheta)/dt;
 		}
-		else{
-			// scabbers->setWorldTransform(headTrans,0);
-			scabbers->setVelocity(headLinearVelocity,headAngularVelocity,0);
-		}
+		
+		scabbers->setVelocity(headLinearVelocity,headAngularVelocity,dtheta,parameters->ACTIVE); // set active flag = 1 for velocity
 
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);

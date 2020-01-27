@@ -54,9 +54,7 @@ public:
 	Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters, btRigidBody* refBody, std::string w_name);
 	~Whisker(){}
 	
-	void whisk(btScalar dps);
-
-	void updateVelocity(btScalar activeFlag);
+	void updateVelocity(btScalar dtheta, int activeFlag);
 	void updateTransform(btScalar activeFlag);
 
 	btVector3 getTorques();
