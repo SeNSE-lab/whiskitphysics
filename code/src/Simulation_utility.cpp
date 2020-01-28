@@ -13,7 +13,7 @@ btCollisionShape* createSphereShape(btScalar radius){
 }
 
 // function to create dynamic body
-btRigidBody* createDynamicBody(float mass, const btTransform& bodyTransform, btCollisionShape* shape,GUIHelperInterface* m_guiHelper,  btVector4 color)
+btRigidBody* createDynamicBody(float mass, const btTransform& bodyTransform, btCollisionShape* shape,GUIHelperInterface* m_guiHelper,  btVector4 color, btScalar restitution)
 {
 	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
 
@@ -32,7 +32,8 @@ btRigidBody* createDynamicBody(float mass, const btTransform& bodyTransform, btC
 	btDefaultMotionState* myMotionState = new btDefaultMotionState(bodyTransform);
 
 	btRigidBody::btRigidBodyConstructionInfo cInfo(mass, myMotionState, shape, localInertia);
-
+	cInfo.m_restitution = restitution;
+	cInfo.m_friction = 0.5;
 	btRigidBody* body = new btRigidBody(cInfo);
 	body->setUserIndex(-1);
 		
