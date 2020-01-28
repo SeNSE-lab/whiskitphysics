@@ -39,23 +39,24 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base,radius_base,radius_base));
 	m_collisionShapes->push_back(basepointShape);
 	
-	basepoint = createDynamicBody(btScalar(1),originTransform*basepointTransform,basepointShape,m_guiHelper,color);
+	basepoint = createDynamicBody(btScalar(10),originTransform*basepointTransform,basepointShape,m_guiHelper,color);
 	m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
 	basepoint->setActivationState(DISABLE_DEACTIVATION);
 
     // WHISKER BASE
 	// =========================================================== 
-	btTransform basepointTransform = basepoint->getCenterOfMassTransform();
+	btTransform basepointWorldTransform = basepoint->getCenterOfMassTransform();
 	btCollisionShape* baseShape = createSphereShape(radius_base*5);
 	m_collisionShapes->push_back(baseShape);
 	
-	base = createDynamicBody(btScalar(1),basepointTransform,baseShape,m_guiHelper,color);
+	baseTransform = rotZ(config.base_rot[0])*rotY(config.base_rot[1])*rotX(config.base_rot[2]);
+	base = createDynamicBody(btScalar(1),basepointWorldTransform*baseTransform,baseShape,m_guiHelper,color);
 	m_dynamicsWorld->addRigidBody(base,COL_BASE,baseCollidesWith);
 	base->setActivationState(DISABLE_DEACTIVATION);
 
+	btTransform baseFrame =(rotZ(config.base_rot[0])*rotY(config.base_rot[1])*rotX(config.base_rot[2]));
 	btTransform basepointFrame = createFrame();
-    btTransform baseFrame = createFrame();
-	motorConstraint = new btGeneric6DofConstraint(*basepoint, *base, basepointFrame, baseFrame,true);
+	motorConstraint = new btGeneric6DofConstraint(*basepoint, *base, basepointFrame, baseFrame.inverse(),true);
 	
 	motorConstraint->setLinearLowerLimit(btVector3(0,0,0));
 	motorConstraint->setLinearUpperLimit(btVector3(0,0,0));
@@ -101,9 +102,8 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
         
         btTransform totalTransform;
         if(i==0){
-            btTransform rotTransform = rotZ(config.base_rot[0])*rotY(config.base_rot[1])*rotX(config.base_rot[2]);
             btTransform transTransform = createFrame(btVector3(link_length/2.f,0,0));
-            totalTransform = prevTransform*rotTransform*transTransform;
+            totalTransform = prevTransform*transTransform;
         }
         else{
             btTransform linkTransform1 = createFrame(btVector3(link_length/2.f,0,0));
@@ -129,7 +129,7 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
         if(i==0){
              // initialize transforms and set frames at end of frostum
             btTransform frameInCurr = createFrame(btVector3(-(link_length/2.f),0,0));
-            btTransform frameInPrev = rotZ(config.base_rot[0])*rotY(config.base_rot[1])*rotX(config.base_rot[2]);
+			btTransform  frameInPrev = createFrame();
             baseConstraint = new btGeneric6DofSpringConstraint(*link_prev, *link, frameInPrev, frameInCurr,true);
 			
             baseConstraint->setLinearLowerLimit(btVector3(0,0,0));
@@ -190,33 +190,34 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 
 void Whisker::updateVelocity(btScalar dtheta, int activeFlag){
 	
-	btTransform headTransform = origin->getCenterOfMassTransform();
-	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
+	
 
 	btVector3 linVelocity = origin->getLinearVelocity();
 	btVector3 angVelocity = origin->getAngularVelocity();
 	
-	basepoint->setLinearVelocity(linVelocity);
-	basepoint->setAngularVelocity(angVelocity);
+	btTransform headTransform = origin->getCenterOfMassTransform();
+	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
+	// basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
 	
+	basepoint->setLinearVelocity(angVelocity);
+	basepoint->setAngularVelocity(angVelocity);
 	if(!activeFlag){
-		base->setCenterOfMassTransform(headTransform*basepointTransform);
 		base->setLinearVelocity(linVelocity);
 		base->setAngularVelocity(angVelocity);
 	}
 	else{
 		btScalar dphi = -dtheta * get_dphi(config.row-1);
-		btScalar dzeta = dtheta * get_dzeta(config.row-1);
+		btScalar dzeta = -dtheta * get_dzeta(config.row-1);
 		
 		if(config.side){ // right side
 			dtheta = -dtheta;
-			dphi = -dphi;
-			dzeta = -dzeta;
+			dphi = dphi;
+			dzeta = dzeta;
 		}
 
 		btVector3 worldProtraction = (basepoint->getWorldTransform().getBasis()*btVector3(0,0,dtheta));
 		btVector3 worldElevation = (basepoint->getWorldTransform().getBasis()*btVector3(0,dphi,0));
-		btVector3 worldTorsion = (whisker[0]->getWorldTransform().getBasis()*btVector3(dzeta,0,0));
+		btVector3 worldTorsion = (basepoint->getWorldTransform().getBasis()*btVector3(dzeta,0,0));
 		btVector3 headLinVelocity = origin->getLinearVelocity();
 		btVector3 headAngVelocity = origin->getAngularVelocity();
 		btVector3 angularVelocity = worldProtraction+worldElevation+worldTorsion + headAngVelocity;
@@ -227,10 +228,11 @@ void Whisker::updateVelocity(btScalar dtheta, int activeFlag){
 
 }
 
-void Whisker::updateTransform(btScalar activeFlag){
+void Whisker::updateTransform(){
 	
 	btTransform headTransform = origin->getCenterOfMassTransform();
 	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
+	base->setCenterOfMassTransform(headTransform*basepointTransform*baseTransform);
 	
 }
 

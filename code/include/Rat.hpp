@@ -64,7 +64,7 @@ public:
 	btVector3 get_position();
 
 	void setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar dtheta, int activeFlag);
-	void setWorldTransform(btTransform trans, btScalar activeFlag=0);
+	void setWorldTransform(btTransform trans);
 
     btAlignedObjectArray<Whisker*> getArray();
 

@@ -56,13 +56,13 @@ btVector3 Rat::get_position(){
 	return position;
 }
 
-void Rat::setWorldTransform(btTransform trans, btScalar activeFlag){
+void Rat::setWorldTransform(btTransform trans){
 	
 	rat->setCenterOfMassTransform(trans);
 	origin->setCenterOfMassTransform(trans*originTransform);
 	
 	for (int i=0;i<m_whiskerArray.size();i++){
-		m_whiskerArray[i]->updateTransform(activeFlag);
+		m_whiskerArray[i]->updateTransform();
 	}
 }
 

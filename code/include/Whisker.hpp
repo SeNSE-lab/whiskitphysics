@@ -37,6 +37,7 @@ private:
 	btAlignedObjectArray<btRigidBody*> whisker;
 
 	btTransform basepointTransform;
+	btTransform baseTransform;
 	
 	btGeneric6DofConstraint* basePointConstraint;
 	btGeneric6DofConstraint* motorConstraint;
@@ -55,7 +56,7 @@ public:
 	~Whisker(){}
 	
 	void updateVelocity(btScalar dtheta, int activeFlag);
-	void updateTransform(btScalar activeFlag);
+	void updateTransform();
 
 	btVector3 getTorques();
 	btVector3 getForces();
