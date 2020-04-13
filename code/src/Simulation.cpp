@@ -33,7 +33,7 @@ void Simulation::stepSimulation(){
 
 		// moving object 1
 		if(parameters->OBJECT==1){
-			peg->setLinearVelocity(vec*parameters->SPEED);
+			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
 		}
 
 		btScalar dtheta = 0;
@@ -168,7 +168,6 @@ void Simulation::initPhysics()
 
 	// add rat to world
 	scabbers = new Rat(m_guiHelper,m_dynamicsWorld, &m_collisionShapes, parameters);
-	btVector3 pos = scabbers->get_position();
 	
 	// create object to collide with
 	// peg
@@ -208,8 +207,9 @@ void Simulation::initPhysics()
 	m_guiHelper->autogenerateGraphicsObjects(m_dynamicsWorld);
 
 	// set camera position to rat head
+	btVector3 pos = scabbers->get_position();
 	targetPos[0] = pos[0];
-	targetPos[1] = pos[1]+3.;
+	targetPos[1] = pos[1]+20.;
 	targetPos[2] = pos[2];
 	dist = parameters->DIST*SCALE;
 	pitch = parameters->CPITCH;

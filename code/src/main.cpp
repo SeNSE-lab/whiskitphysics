@@ -54,7 +54,6 @@ int main(int argc, char* argv[])
 {
 	signal(SIGINT, exit_function);
 	Parameters* param = new Parameters();
-	set_default(param);
 
   	try 
   	{ /** Define and parse the program options  */ 
@@ -91,7 +90,7 @@ int main(int argc, char* argv[])
 		("CPITCH", po::value<std::string>(), "head pitch")
 		("CYAW", po::value<std::string>(), "head yaw")
 		
-		("SPEED", po::value<float>(&param->SPEED), "peg speed")
+		("SPEED", po::value<float>(&param->PEG_SPEED), "peg speed")
 
 		("dir_out", po::value<std::string>(&param->dir_out), "foldername for output file")
 		("file_video", po::value<std::string>(&param->file_video), "filename of video")

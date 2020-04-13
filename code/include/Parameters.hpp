@@ -30,6 +30,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "LinearMath/btVector3.h"
 
 struct Parameters{
+	Parameters();
+	~Parameters();
 	
 
 	// integration parameters
@@ -48,6 +50,7 @@ struct Parameters{
 
 	// whisker model parameters
     std::vector<std::string> WHISKER_NAMES;
+	std::vector<int> WHISKER_INDEX;
     float BLOW; // scale whisker diameter for visibility - ATTENTION: will affect dynamics!!!
 	int NO_CURVATURE; // remove curvature for debugging
 	int NO_MASS; 	  // set mass to zero for debugging
@@ -70,12 +73,18 @@ struct Parameters{
 	float AMP_BWD; // in degrees
 	float AMP_FWD; // in degrees
 	float WHISK_FREQ; // in hertz
-	float SPEED; // in mm/second
+	
+	btVector3 PEG_LOC;
+	float PEG_SPEED; // in mm/second
 	
 	// camera configuration
 	float DIST;
 	float CPITCH;
 	float CYAW;
+
+	int EXPLORING;
+	std::vector<std::vector<float>> HEAD_LOC_VEL;
+	std::vector<std::vector<float>> WHISKER_LOC_VEL;
 
 	// directories/paths
 	std::string dir_out;
@@ -83,7 +92,6 @@ struct Parameters{
 	std::string file_env;
 };
 
-void set_default(Parameters* param);
 std::vector<float> get_vector(int N, float value);
 std::vector<float> stringToFloatVect(std::vector<std::string> vect_string);
 

@@ -2,12 +2,12 @@
 
 btVector4 color = btVector4(0,1,0,1);
 
-Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* params, btRigidBody* refbody, std::string w_name){
+Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters, btRigidBody* refbody, std::string w_name){
+	color = btVector4(0.1, 0.1, 0.1, 1);
 	// save parameters and global variables to whisker object
 	m_collisionShapes = shapes;	// shape vector pointer
 	m_dynamicsWorld = world;	// simulation world pointer
 	m_guiHelper = helper;		// gui helper pointer
-	parameters = params;			// whisker parameters
 	origin = refbody; 				// reference body for base point position
 
     btScalar dt =parameters->TIME_STEP;
