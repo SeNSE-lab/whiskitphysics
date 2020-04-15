@@ -256,12 +256,10 @@ int main(int argc, char** argv)
 			OpenGLGuiHelper gui(app,false);
 			CommonExampleOptions options(&gui);
 			
-
-			simulation = SimulationCreateFunc(options);
+			simulation = new Simulation(options.m_guiHelper);
 			simulation->processCommandLineArgs(argc, argv);
 
-			simulation->parameters = param; // save parameters in simulation object
-
+			simulation->initParameter(param);
 			simulation->initPhysics();
 			simulation->resetCamera();
 

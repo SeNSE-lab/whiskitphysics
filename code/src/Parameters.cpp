@@ -8,31 +8,32 @@ Parameters::Parameters(){
 	DEBUG = 0;			// enable debug mode
 	TIME_STEP = 0.0033333;	// set time step
 	NUM_STEP_INT = 100;	// set internal time step
-	TIME_STOP = 2.;		// set simulation time
-    PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
-	SAVE = 0;			// save results to csv file
-	SAVE_VIDEO = 0;		// save video when running main_opengl.cpp
+	TIME_STOP = 7/3;		// set simulation time
+    PRINT = 0;			// set print out of results (necessary for optimization)
+	SAVE = 1;			// save results to csv file
+	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
+	OBJECT = 0;			// 0: nothing
+						// 1: peg
+						// 2: wall
+						// 3: create object from 3D scan
 
-	// collision object type
-	OBJECT = 1;			// 0: nothing
-								// 1: peg
-								// 2: wall
-								// 3: create object from 3D scan
-
-	// whisker configuration parameters
+	// whisker related input arguments
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
-	WHISKER_INDEX = {30, 0, 41, 11};	// indices for these whiskers based on a 30-whisker indexing plan
+	WHISKER_INDEX = {30, 0, 41, 11};			  // indices for these whiskers based on a 30-whisker indexing plan
     BLOW = 3;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;				// disable mass of bodies
-	NO_WHISKERS = 0;			// disable whiskers
-	NUM_LINKS = 20;			// set number of links
-	ROH_BASE = 1260.0;		// set densidy at whisker base
-	ROH_TIP = 1690.0;		// set density at whisker tip
-	E = 5.0;					// set young's modulus at whisker base
-	ZETA = 0.32;				// set damping coefficient zeta at whisker base
+	NO_WHISKERS = 0;			
+	NUM_UNITS = 20;			// set number of units
+	NUM_LINKS = 19;			// set number of links
+	RHO_BASE = 1260.0;		// set densidy at whisker base
+	RHO_TIP = 1690.0;		// set density at whisker tip
+	E_BASE = 3.5;			// set young's modulus at whisker base
+	E_TIP = 3.5;				// set young's modulus at whisker tip
+	ZETA_BASE = 0.31;		// set damping coefficient zeta at whisker base
+	ZETA_TIP = 0.31;			// set damping coefficient zeta at whisker tip
 
-	// whisking parameters
+	// whisking
 	ACTIVE = 1;				// enable active whisking mode
 	AMP_BWD = 20;			// set whisking retraction in degrees
 	AMP_FWD = 40;			// set whisking protraction in degrees
@@ -40,12 +41,12 @@ Parameters::Parameters(){
 
 	// exploring
 	EXPLORING = 0;
-
+	
 	// speed for moving object
-	PEG_LOC = btVector3();
-	PEG_SPEED = 10.;		
+	PEG_LOC = btVector3(10, 10, 0);
+	PEG_SPEED = 100.;	
 
-	// rat position/orientation parameters
+	// rat position/orientation arguments
 	POSITION = {0,0,0}; 		// set position of rathead
 	ORIENTATION = {-PI/6,0,0}; 	// set initial heading of rathead
 	PITCH=0;					// set pitch of rathead (degrees)
@@ -56,6 +57,8 @@ Parameters::Parameters(){
 	DIST=0.05;				// set camera distance
 	CPITCH=-89;				// set camera pitch
 	CYAW=0;					// set camera yaw
+	// CPITCH=-45;				// set camera pitch
+	// CYAW=-120;					// set camera yaw
 
 	// input/output file paths
 	dir_out = "../output/test";

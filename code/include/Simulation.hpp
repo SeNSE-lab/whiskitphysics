@@ -59,6 +59,7 @@ private:
 	Object* object;
 	Object* env;
 	output* data_dump = new output();
+	std::vector<float> this_loc_vel;
 
 
 
@@ -66,26 +67,24 @@ private:
 	
 
 public:
-
-	
-
+	// Declare constructor and deconstructor
 	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){}
-	virtual ~Simulation(){}
+	virtual ~Simulation(){delete data_dump;}
+	void initParameter(Parameters* para);
 	virtual void initPhysics();
-	virtual void exitPhysics();
 	virtual void stepSimulation();
-	virtual void renderScene();
 	
 	output* get_results();
 	
-	btScalar dist = 0.1*SCALE;
-	btScalar pitch = -30;
-	btScalar yaw = 50;
-	btScalar targetPos[3]={0,0,0};
+	// cam parameter
+	float camDist;
+	float camPitch;
+	float camYaw;
+	float camPos[3];
 
 	void resetCamera()
 	{		
-		m_guiHelper->resetCamera(dist,yaw,pitch,targetPos[0],targetPos[1],targetPos[2]);
+		m_guiHelper->resetCamera(camDist,camYaw,camPitch,camPos[0],camPos[1],camPos[2]);
 	}
 	// xz plane
 	// btScalar dist = 0.06*SCALE;

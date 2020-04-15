@@ -1,0 +1,1 @@
+This was example data that Admir gave to Yifu.  The goal is to see if Yifu can put the RatMap model over the head (in 3D) and then put as many whiskers in place as possible (in 3D) and then make predictions for where the rest of the (untracked) whiskers are.

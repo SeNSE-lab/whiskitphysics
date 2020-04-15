@@ -1,8 +1,8 @@
 
 #include "Object.hpp"
 
-Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, std::string filename,
-	btVector4 color, float scaling, float mass, int colGroup, int colMask){
+Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, btTransform trans,
+	std::string filename, btVector4 color, float scaling, float mass, int colGroup, int colMask){
 
 	dynamicsWorld = world;
 	guiHelper = helper;
@@ -10,13 +10,14 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 	collisionMask = colMask;
 
     // add object to world
-	btQuaternion obj_orient = btQuaternion(btVector3(0,0,1),0);
+	btVector3 obj_trans = trans.getOrigin();
+	btQuaternion obj_orient = trans.getRotation();
 	if(filename.compare("")!=0){
 		if(mass==0.){
-			body = obj2StaticBody(filename,color,btVector3(0,0,0),obj_orient,mass,scaling,helper,shapes,world);
+			body = obj2StaticBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
 		}
 		else{
-			body = obj2DynamicBody(filename,color,btVector3(0,0,0),obj_orient,mass,scaling,helper,shapes,world);
+			body = obj2DynamicBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
 		}
 		shape = body->getCollisionShape();
 		
@@ -26,8 +27,8 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 		noShape = true;
 		btTransform someTransform = createFrame();
 		btSphereShape* sphere = new btSphereShape(0.5);
-		shapes->push_back(sphere);
-		body = createDynamicBody(0,someTransform,sphere,helper,color);
+		shapes->push_back(sphere); 
+		body = createDynamicBody(0,0.5,someTransform,sphere,helper,color);
 		shape = body->getCollisionShape();
 		
 	}
@@ -137,7 +138,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
 	btCollisionShape* shape_compound = LoadShapeFromObj(fileName.c_str(), "", btVector3(scaling[0], scaling[1],scaling[2]));
 	hull->setMargin(0.0001);
-	btRigidBody* body = createDynamicBody(mass,trans, shape_compound,m_guiHelper,color);
+	btRigidBody* body = createDynamicBody(mass,0.5, trans, shape_compound,m_guiHelper,color);
 	
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
                                                                     glmesh->m_numvertices, 
@@ -200,7 +201,7 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
        meshInterface->addTriangle(hull->getScaledPoint(i*3), hull->getScaledPoint(i*3+1), hull->getScaledPoint(i*3+2));
     btBvhTriangleMeshShape* trimesh = new btBvhTriangleMeshShape(meshInterface,true,true);
 	trimesh->setMargin(0.0001);
-	btRigidBody* body = createDynamicBody(0,trans,trimesh,m_guiHelper,color);
+	btRigidBody* body = createDynamicBody(0, 0.5, trans,trimesh,m_guiHelper,color);
 	
 		
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 

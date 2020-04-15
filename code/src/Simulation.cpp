@@ -19,18 +19,11 @@ btVector4 ORANGE = btVector4(1.,0.647,0.0,1);
 void Simulation::stepSimulation(){
 	auto start = std::chrono::high_resolution_clock::now(); 
 	m_time += parameters->TIME_STEP; // increase time
+	m_step += 1;
 	
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
 		
-
-		// define headtransform
-		btTransform headTrans = createFrame();
-
-		// define head velocity (linear, angular)
-		btVector3 headLinearVelocity = btVector3(0,0,0);
-		btVector3 headAngularVelocity = btVector3(0,0,0);
-
 		// moving object 1
 		if(parameters->OBJECT==1){
 			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
@@ -39,23 +32,23 @@ void Simulation::stepSimulation(){
 		btScalar dtheta = 0;
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-
-			btScalar angle_fwd = parameters->AMP_FWD*PI/180;
-			btScalar angle_bwd = parameters->AMP_BWD*PI/180;
-			btScalar w = 2*PI*parameters->WHISK_FREQ;
-			btScalar t = m_time;
-			btScalar dt = parameters->TIME_STEP;
-
-			btScalar amp = (angle_fwd + angle_bwd)/2;
-			btScalar shift = (angle_fwd - angle_bwd)/2;
-			btScalar phase = asin(shift/amp);
-			btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
-			btScalar theta = (amp*sin(w*t + phase)-sin(phase));
-
-			dtheta = (theta-prevtheta)/dt;
+			// move array with defined frequency and amplitude
+			// scabbers->moveArray(m_time, parameters->TIME_STEP, parameters->WHISK_FREQ, parameters->AMP_FWD, parameters->AMP_BWD); 
+			scabbers->whisk(m_step, parameters->WHISKER_LOC_VEL);
 		}
 		
-		scabbers->setVelocity(headLinearVelocity,headAngularVelocity,dtheta,parameters->ACTIVE); // set active flag = 1 for velocity
+		if(parameters->EXPLORING){
+		// Note:
+		// setAngularVelocity unit: rad/s
+		// the rotation is about a body-fixed coordinate system
+
+		// for demo purpose
+		this_loc_vel = parameters->HEAD_LOC_VEL[m_step-1];
+		scabbers->setLinearVelocity(btVector3(this_loc_vel[3], this_loc_vel[4], this_loc_vel[5]/10));
+		// scabbers->setLinearVelocity(btVector3(0, 0, 0));
+		scabbers->setAngularVelocity(btVector3(this_loc_vel[6], this_loc_vel[7], this_loc_vel[8]));
+		// scabbers->setAngularVelocity(btVector3(0, 0, 0));
+		}
 
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);
@@ -91,6 +84,11 @@ void Simulation::stepSimulation(){
 		std::cout << "\rCompleted: " << std::setprecision(2) << m_time/parameters->TIME_STOP*100 << " %\tTime remaining: " << std::setprecision(4) << time_remaining/60 << " min " << std::setprecision(4) << (time_remaining % 60) << " s\n" << std::flush;
 	}
     
+}
+
+void Simulation::initParameter(Parameters* para){
+	parameters = para;
+	vec = btVector3(1,1,1);
 }
 
 void Simulation::initPhysics()
@@ -180,7 +178,7 @@ void Simulation::initPhysics()
 		pegShape->setMargin(0.0001);
 		m_collisionShapes.push_back(pegShape);
 		btTransform trans = createFrame(peg_init,btVector3(PI/4,0,PI/12));
-		peg = createDynamicBody(1,trans, pegShape, m_guiHelper,  BLUE);
+		peg = createDynamicBody(1, 0.5, trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
 		
@@ -191,7 +189,7 @@ void Simulation::initPhysics()
 		wallShape->setMargin(0.0001);
 		m_collisionShapes.push_back(wallShape);
 		btTransform trans = createFrame(btVector3(45,0,0),btVector3(0,0,0));
-		wall = createDynamicBody(0, trans, wallShape, m_guiHelper,  BLUE);
+		wall = createDynamicBody(0, 0.5, trans, wallShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	// create object from 3D scan
@@ -199,113 +197,45 @@ void Simulation::initPhysics()
 
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
-		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
-
+		env = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
+	
+	} else if(parameters->OBJECT==0){
+		// do nothing
 	}
 	
 	// generate graphics
 	m_guiHelper->autogenerateGraphicsObjects(m_dynamicsWorld);
 
 	// set camera position to rat head
-	btVector3 pos = scabbers->get_position();
-	targetPos[0] = pos[0];
-	targetPos[1] = pos[1]+20.;
-	targetPos[2] = pos[2];
-	dist = parameters->DIST*SCALE;
-	pitch = parameters->CPITCH;
-	yaw = parameters->CYAW;
+	btVector3 pos = scabbers->getPosition();
+	camPos[0] = pos[0];
+	camPos[1] = pos[1]+20.;
+	camPos[2] = pos[2];
+	camDist = parameters->DIST*SCALE;
+	camPitch = parameters->CPITCH;
+	camYaw = parameters->CYAW;
 	resetCamera();
+
+	// if exploring
+	if (parameters->EXPLORING){
+		read_csv_float("../matlab/for_demo/loc_vel_admir.csv", parameters->HEAD_LOC_VEL);
+	}
+	// if active whisking
+	if (parameters->ACTIVE){
+		read_csv_float("../matlab/Whisking_Knutsen/whisker_vel.csv", parameters->WHISKER_LOC_VEL);
+	}
 
 	// initialize time/step tracker
 	m_time_elapsed = 0;
 	m_time = 0;
+	m_step = 0;
 	
 	std::cout << "\n\nStart simulation..." << std::endl;
 	std::cout << "\n====================================================\n" << std::endl;
 }
 
-
-void Simulation::exitPhysics(){
-
-	removePickingConstraint();
-	std::cout << "- Picking constraints removed." << std::endl;
-
-	//remove the rigidbodies from the dynamics world and delete them	
-	if (m_dynamicsWorld)
-	{
-
-        for (int i = m_dynamicsWorld->getNumConstraints() - 1; i >= 0; i--)
-        {
-            m_dynamicsWorld->removeConstraint(m_dynamicsWorld->getConstraint(i));
-            
-        }
-        std::cout << "- Constraints removed." << std::endl;
-
-		for (int i = m_dynamicsWorld->getNumCollisionObjects() - 1; i >= 0; i--)
-		{
-			btCollisionObject* obj = m_dynamicsWorld->getCollisionObjectArray()[i];
-			btRigidBody* body = btRigidBody::upcast(obj);
-			if (body && body->getMotionState())
-			{
-				delete body->getMotionState();
-			}
-			m_dynamicsWorld->removeCollisionObject(obj);
-			delete obj;
-		}
-		std::cout << "- Bodies and motion states removed." << std::endl;
-	}
-
-	//delete collision shapes
-	for (int j = 0; j<m_collisionShapes.size(); j++)
-	{
-		btCollisionShape* shape = m_collisionShapes[j];
-		delete shape;
-	}
-	m_collisionShapes.clear();
-	std::cout << "- Collision shapes removed." << std::endl;
-
-	delete m_dynamicsWorld;
-	m_dynamicsWorld=0;
-	std::cout << "- Dynamic World removed." << std::endl;
-
-	delete m_solver;
-	m_solver=0;
-	std::cout << "- Solver removed." << std::endl;
-
-	delete m_broadphase;
-	m_broadphase=0;
-	std::cout << "- Broadphase removed." << std::endl;
-
-	delete m_dispatcher;
-	m_dispatcher=0;
-	std::cout << "- Dispatcher removed." << std::endl;
-
-	delete m_collisionConfiguration;
-	m_collisionConfiguration=0;
-	std::cout << "- Collision Configuration removed." << std::endl;
-
-	std::cout << "- Done." << std::endl;
-}
-
 output* Simulation::get_results(){
 	return data_dump;
 }
-
-void Simulation::renderScene()
-{
-	CommonRigidBodyBase::renderScene();
-	
-}
-
-
-Simulation* SimulationCreateFunc(CommonExampleOptions& options)
-{
-	return new Simulation(options.m_guiHelper);
-
-}
-
-
-B3_STANDALONE_EXAMPLE(SimulationCreateFunc)
-
 
 
