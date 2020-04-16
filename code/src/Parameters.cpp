@@ -33,7 +33,7 @@ Parameters::Parameters(){
 	ZETA = 0.32;				// set damping coefficient zeta at whisker base
 
 	// whisking parameters
-	ACTIVE = 0;				// enable active whisking mode
+	ACTIVE = 1;				// enable active whisking mode
 	AMP_BWD = 20;			// set whisking retraction in degrees
 	AMP_FWD = 40;			// set whisking protraction in degrees
 	WHISK_FREQ = 8.;			// set whisking frequency (Hz)

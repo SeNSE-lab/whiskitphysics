@@ -170,7 +170,7 @@ int main(int argc, char* argv[])
 		  	DummyGUIHelper noGfx;
 
 			CommonExampleOptions options(&noGfx);
-			Simulation* simulation = SimulationCreateFunc(options);
+			Simulation* simulation = new Simulation(options.m_guiHelper);
 
 			 // save parameters in simulation object
 			simulation->parameters = param;

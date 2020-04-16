@@ -257,7 +257,7 @@ int main(int argc, char** argv)
 			CommonExampleOptions options(&gui);
 			
 
-			simulation = SimulationCreateFunc(options);
+			simulation = new Simulation(options.m_guiHelper);
 			simulation->processCommandLineArgs(argc, argv);
 
 			simulation->parameters = param; // save parameters in simulation object
