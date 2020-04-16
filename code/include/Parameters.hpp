@@ -29,9 +29,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 #include "LinearMath/btVector3.h"
 
-struct Parameters{
+class Parameters{
+public:
+	Parameters();
+	~Parameters();
 	
-
 	// integration parameters
 	float TIME_STEP;
 	int NUM_STEP_INT;
@@ -48,13 +50,14 @@ struct Parameters{
 
 	// whisker model parameters
     std::vector<std::string> WHISKER_NAMES;
+	std::vector<int> WHISKER_INDEX;
     float BLOW; // scale whisker diameter for visibility - ATTENTION: will affect dynamics!!!
 	int NO_CURVATURE; // remove curvature for debugging
 	int NO_MASS; 	  // set mass to zero for debugging
 	int NO_WHISKERS;  // remove whiskers for debugging
 	int NUM_LINKS;
-	float ROH_BASE;
-	float ROH_TIP;
+	float RHO_BASE;
+	float RHO_TIP;
 	float E;
 	float ZETA;
 	
@@ -70,7 +73,8 @@ struct Parameters{
 	float AMP_BWD; // in degrees
 	float AMP_FWD; // in degrees
 	float WHISK_FREQ; // in hertz
-	float SPEED; // in mm/second
+	btVector3 PEG_LOC;
+	float PEG_SPEED; // in mm/second
 	
 	// camera configuration
 	float DIST;

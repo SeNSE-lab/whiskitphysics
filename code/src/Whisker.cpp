@@ -26,8 +26,8 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 
 	std::vector<btScalar> link_angles = config.link_angles;
 
-    btScalar rho = parameters->ROH_BASE/pow(SCALE,3);
-    btScalar rho_slope = ((parameters->ROH_TIP-parameters->ROH_BASE)/pow(SCALE,3)) / length;
+    btScalar rho = parameters->RHO_BASE/pow(SCALE,3);
+    btScalar rho_slope = ((parameters->RHO_TIP-parameters->RHO_BASE)/pow(SCALE,3)) / length;
     btScalar zeta = parameters->ZETA;
     btScalar E = parameters->E*1e9/SCALE;
 

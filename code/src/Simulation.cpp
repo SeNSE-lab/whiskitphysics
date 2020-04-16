@@ -33,7 +33,7 @@ void Simulation::stepSimulation(){
 
 		// moving object 1
 		if(parameters->OBJECT==1){
-			peg->setLinearVelocity(vec*parameters->SPEED);
+			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
 		}
 
 		btScalar dtheta = 0;
