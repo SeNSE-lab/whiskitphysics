@@ -55,8 +55,9 @@ void Simulation::stepSimulation(){
 			dtheta = (theta-prevtheta)/dt;
 		}
 		
-		scabbers->setVelocity(headLinearVelocity,headAngularVelocity,dtheta,parameters->ACTIVE); // set active flag = 1 for velocity
-
+		if(parameters->EXPLORING){
+			scabbers->setLinearVelocity(btVector3(0, 10, 0));
+		}
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);
 
@@ -168,7 +169,7 @@ void Simulation::initPhysics()
 
 	// add rat to world
 	scabbers = new Rat(m_guiHelper,m_dynamicsWorld, &m_collisionShapes, parameters);
-	btVector3 pos = scabbers->get_position();
+	btVector3 pos = scabbers->getPosition();
 	
 	// create object to collide with
 	// peg
@@ -181,7 +182,7 @@ void Simulation::initPhysics()
 		pegShape->setMargin(0.0001);
 		m_collisionShapes.push_back(pegShape);
 		btTransform trans = createFrame(peg_init,btVector3(PI/4,0,PI/12));
-		peg = createDynamicBody(1,trans, pegShape, m_guiHelper,  BLUE);
+		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
 		
@@ -192,7 +193,7 @@ void Simulation::initPhysics()
 		wallShape->setMargin(0.0001);
 		m_collisionShapes.push_back(wallShape);
 		btTransform trans = createFrame(btVector3(45,0,0),btVector3(0,0,0));
-		wall = createDynamicBody(0, trans, wallShape, m_guiHelper,  BLUE);
+		wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	// create object from 3D scan
@@ -200,7 +201,7 @@ void Simulation::initPhysics()
 
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
-		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
+		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
 
 	}
 	

@@ -75,6 +75,8 @@ public:
 	float WHISK_FREQ; // in hertz
 	btVector3 PEG_LOC;
 	float PEG_SPEED; // in mm/second
+
+	int EXPLORING;
 	
 	// camera configuration
 	float DIST;

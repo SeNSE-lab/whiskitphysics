@@ -42,8 +42,8 @@ private:
 
 public:
 
-	Object(GUIHelperInterface* helper, btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, std::string filename,
-		btVector4 color, float scaling, float mass, int collisionGroup, int collisionMask);
+	Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, btTransform trans,
+	std::string filename, btVector4 color, float scaling, float mass, int colGroup, int colMask);
 	~Object(){}
 
 	btRigidBody* body;

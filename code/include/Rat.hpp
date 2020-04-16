@@ -30,41 +30,34 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 class Rat
 {
 private:
-
-	btGeneric6DofConstraint* ratConstraint;
-	btGeneric6DofConstraint* controlConstraint;
-	btGeneric6DofConstraint* originConstraint;
-
-	btAlignedObjectArray<Whisker*> m_whiskerArray;
-
-	std::vector<std::string> whisker_names;
-
+	// Rigid Bodies
 	Object* rathead;
 	btRigidBody* origin;
-	btRigidBody* rat;
-
-	int collisionGroup;
-	int collisionMask;
-
-	btVector3 init_pos = btVector3(0,0,0);
-	btQuaternion init_quat = btQuaternion(btVector3(0,0,1),0);
+	// Constraints
+	btGeneric6DofConstraint* originConstraint; 
+	// Whiskers
+	btAlignedObjectArray<Whisker*> m_whiskerArray;
+	std::vector<std::string> whisker_names;
 	
-	btTransform originTransform;
 	btVector3 originOffset = btVector3(0,0.027,0.004);
 	btVector3 originOrientation = btVector3(0,0,0);
 
-	btScalar dtheta, angle_fwd, angle_bwd;
+	// btScalar dtheta, angle_fwd, angle_bwd;
 
 public:
 
 	Rat(GUIHelperInterface* helper, btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters);
 	~Rat(){}
 
-	Whisker* get_whisker(int index);
-	btVector3 get_position();
+	Whisker* getWhisker(int index);
 
-	void setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar dtheta, int activeFlag);
-	void setWorldTransform(btTransform trans);
+	void setLinearVelocity(btVector3 position);
+	void setAngularVelocity(btVector3 rotation);
+	void setTransform(btTransform tr);
+	const btVector3 getPosition();
+	const btTransform getTransform();
+	const btVector3 getLinearVelocity();
+	const btVector3 getAngularVelocity();
 
     btAlignedObjectArray<Whisker*> getArray();
 

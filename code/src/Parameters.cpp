@@ -38,13 +38,16 @@ Parameters::Parameters(){
 	AMP_FWD = 40;			// set whisking protraction in degrees
 	WHISK_FREQ = 8.;			// set whisking frequency (Hz)
 
+	// exploring
+	EXPLORING = 0;
+
 	// speed for moving object
 	PEG_LOC = btVector3(10, 10, 0);
 	PEG_SPEED = 10;	
 
 	// rat position/orientation parameters
 	POSITION = {0,0,0}; 		// set position of rathead
-	ORIENTATION = {0,1,0}; 	// set initial heading of rathead
+	ORIENTATION = {0,0,0}; 	// set initial heading of rathead
 	PITCH=0;					// set pitch of rathead (degrees)
 	YAW=0; 					// set yaw of rathead (degrees)
 	ROLL=0;					// set roll of rathead (degrees)

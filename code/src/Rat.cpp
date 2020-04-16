@@ -2,42 +2,34 @@
 #include "Rat.hpp"
 
 Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters){
-	
-	whisker_names = parameters->WHISKER_NAMES;
 	btVector4 color = btVector4(0.5,0.5,0.5,1);
 
+	// START TO CREATE RAT HEAD OBJECT//////////////////////////////////////////
+	// supposed to be kinematic object following scripted path ///////////////// 
 	// set initial position and orientation of rat head
-	init_pos = btVector3(parameters->POSITION[0],parameters->POSITION[1],parameters->POSITION[2]);
-	init_quat.setEulerZYX(parameters->YAW*PI/180.,parameters->ROLL*PI/180.,parameters->PITCH*PI/180.);
-	
-	btScalar mass_head(1);
-	if (parameters->NO_MASS) mass_head = 0;
-	btScalar mass_origin(1);
-	if (parameters->NO_MASS) mass_origin = 0;
+	btVector3 position = btVector3(parameters->POSITION[0],parameters->POSITION[1],parameters->POSITION[2]);
+	btVector3 orientation = btVector3(parameters->ORIENTATION[0],parameters->ORIENTATION[1],parameters->ORIENTATION[2]);
+	// init_quat.setEulerZYX(parameters->YAW*PI/180.,parameters->ROLL*PI/180.,parameters->PITCH*PI/180.);
+	// create transform for ratHead
+	btTransform headTransform = createFrame(position, orientation);
+	// define shape and body of head (mass=100)
+	// rathead->body is added to the world in Object.cpp, also pushed back into shapes
+	rathead = new Object(helper,world,shapes,headTransform,"../data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
+	// END OF CREATING RAT HEAD OBJECT /////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
 
-	// define shape and body of head
-	btTransform headTransform = createFrame(init_pos);
-	headTransform.setRotation(init_quat);
-	rathead = new Object(helper,world,shapes,"../data/NewRatHead.obj",color,SCALE/10,mass_head,COL_HEAD,headCollidesWith);
-	rathead->body->setCenterOfMassTransform(headTransform);
+	// set rathead->body to active state
 	rathead->body->setActivationState(DISABLE_DEACTIVATION);
-	rat = rathead->body;
 
-	// define origin of the whisker array
-	originTransform = createFrame(originOffset*SCALE,originOrientation);
-
-	btSphereShape* originShape = new btSphereShape(0.0001*SCALE);
-	shapes->push_back(originShape);
-	origin = createDynamicBody(mass_origin,headTransform*originTransform,originShape,helper,color);
-	world->addRigidBody(origin,COL_HEAD,headCollidesWith);	
-	origin->setActivationState(DISABLE_DEACTIVATION);
+	// create new Whiskers for this rat head
+	btTransform head2origin = createFrame(originOffset*SCALE,originOrientation);
 
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
-			Whisker* whisker = new Whisker(world,helper, shapes,parameters, origin, parameters->WHISKER_NAMES[w]);
+			Whisker* whisker = new Whisker(world, helper, shapes, parameters->WHISKER_NAMES[w], parameters->WHISKER_INDEX[w], parameters);
+			whisker->buildWhisker(rathead->body, head2origin);
 			m_whiskerArray.push_back(whisker);
-	
 		}
 	}
 			
@@ -47,39 +39,34 @@ btAlignedObjectArray<Whisker*> Rat::getArray(){
 	return m_whiskerArray;
 }
 
-Whisker* Rat::get_whisker(int index){
+Whisker* Rat::getWhisker(int index){
 	return m_whiskerArray[index];
 }
 
-btVector3 Rat::get_position(){
-	btVector3 position = rat->getCenterOfMassPosition();
-	return position;
+const btVector3 Rat::getPosition(){
+	return rathead->body->getCenterOfMassPosition();
 }
 
-void Rat::setWorldTransform(btTransform trans){
-	
-	rat->setCenterOfMassTransform(trans);
-	origin->setCenterOfMassTransform(trans*originTransform);
-	
-	for (int i=0;i<m_whiskerArray.size();i++){
-		m_whiskerArray[i]->updateTransform();
-	}
+const btTransform Rat::getTransform(){
+	return rathead->body->getCenterOfMassTransform();
 }
 
-void Rat::setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar dtheta, int activeFlag){
-	
-	btTransform trans = rat->getCenterOfMassTransform();
-	origin->setCenterOfMassTransform(trans*originTransform);
+void Rat::setTransform(btTransform tr){
+	rathead->body->setCenterOfMassTransform(tr);
+}
 
-	rat->setLinearVelocity(linearVelocity);
-	rat->setAngularVelocity(angularVelocity);
-
-	origin->setLinearVelocity(linearVelocity);
-	origin->setAngularVelocity(angularVelocity);
-	
-	for (int i=0;i<m_whiskerArray.size();i++){
-		m_whiskerArray[i]->updateVelocity(dtheta,activeFlag);
-	}
+// set/get the linear/angular velocity
+void Rat::setLinearVelocity(btVector3 shift){
+	rathead->body->setLinearVelocity(shift);
+}
+void Rat::setAngularVelocity(btVector3 rotation){
+	rathead->body->setAngularVelocity(rotation);
+}
+const btVector3 Rat::getLinearVelocity(){
+	return rathead->body->getLinearVelocity();
+}
+const btVector3 Rat::getAngularVelocity(){
+	return rathead->body->getAngularVelocity();
 }
 
 
