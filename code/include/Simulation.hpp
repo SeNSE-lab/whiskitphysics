@@ -72,9 +72,7 @@ public:
 	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){}
 	virtual ~Simulation(){}
 	virtual void initPhysics();
-	virtual void exitPhysics();
 	virtual void stepSimulation();
-	virtual void renderScene();
 	
 	output* get_results();
 	

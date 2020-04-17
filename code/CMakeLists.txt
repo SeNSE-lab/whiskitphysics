@@ -102,7 +102,6 @@ SET(SOURCES
     src/Parameters.cpp
     src/Simulation_utility.cpp
     src/Simulation_IO.cpp
-    src/Whisker_utility.cpp
     src/Whisker.cpp
     src/Rat.cpp
     src/Simulation.cpp
