@@ -6,15 +6,15 @@ Parameters::Parameters(){
 
 	// input arguments for simulator
 	DEBUG = 0;			// enable debug mode
-	TIME_STEP = 0.001;	// set time step
+	TIME_STEP = 0.00333;	// set time step
 	NUM_STEP_INT = 100;	// set internal time step
-	TIME_STOP = 1.;		// set simulation time
+	TIME_STOP = 2.;		// set simulation time
     PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
-	SAVE = 0;			// save results to csv file
-	SAVE_VIDEO = 0;		// save video when running main_opengl.cpp
+	SAVE = 1;			// save results to csv file
+	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
 
 	// collision object type
-	OBJECT = 1;			// 0: nothing
+	OBJECT = 0;			// 0: nothing
 						// 1: peg
 						// 2: wall
 						// 3: create object from 3D scan
@@ -22,7 +22,7 @@ Parameters::Parameters(){
 	// whisker configuration parameters
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
     WHISKER_INDEX = {30, 0, 41, 11};			  // indices for these whiskers based on a 30-whisker indexing plan
-	BLOW = 1;				// increase whisker diameter for better visualization (will affect dynamics!!)
+	BLOW = 3;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;				// disable mass of bodies
 	NO_WHISKERS = 0;			// disable whiskers
@@ -39,7 +39,7 @@ Parameters::Parameters(){
 	WHISK_FREQ = 8.;			// set whisking frequency (Hz)
 
 	// exploring
-	EXPLORING = 0;
+	EXPLORING = 1;
 
 	// speed for moving object
 	PEG_LOC = btVector3(10, 10, 0);

@@ -135,6 +135,7 @@ public:
 	void buildWhisker(btRigidBody* refBody, btTransform offset);
 	// void updateVelocity(btScalar dtheta, int activeFlag);
 	// void updateTransform();
+	void whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity);
 
 	btRigidBody* get_unit(int idx) const;
 	btRigidBody* get_base() const;

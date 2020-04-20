@@ -59,7 +59,8 @@ public:
 	const btVector3 getLinearVelocity();
 	const btVector3 getAngularVelocity();
 
-    btAlignedObjectArray<Whisker*> getArray();
+	void whisk(int step, std::vector<std::vector<float>> whisker_loc_vel);
+	btAlignedObjectArray<Whisker*> getArray();
 
 	void dump_M(output* data);
 	void dump_F(output* data);

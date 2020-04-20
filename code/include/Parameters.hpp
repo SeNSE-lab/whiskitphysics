@@ -77,6 +77,8 @@ public:
 	float PEG_SPEED; // in mm/second
 
 	int EXPLORING;
+	std::vector<std::vector<float>> HEAD_LOC_VEL;
+	std::vector<std::vector<float>> WHISKER_LOC_VEL;
 	
 	// camera configuration
 	float DIST;

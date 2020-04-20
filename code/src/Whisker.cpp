@@ -297,52 +297,17 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	
 }
 
-// void Whisker::updateVelocity(btScalar dtheta, int activeFlag){
-	
+void Whisker::whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity){
+	// OK. need to solve the problem that, this velocity is in correct frame from initialization, 
+	// soon after the head rotates, the whisker itself won't rotate with the head.
+	// OK. finished. Then clean up the testing mess.
+	// 2020/02/20: now modify this code to incorporate just changing the angular velovity of "base"
+	//			   but first, get modify matlab script to just generate angular velocity
 
-// 	btVector3 linVelocity = origin->getLinearVelocity();
-// 	btVector3 angVelocity = origin->getAngularVelocity();
+	btVector3 localAngularVelocity = btVector3(a_vel_0, a_vel_1, a_vel_2);
+	base->setAngularVelocity(localAngularVelocity + headAngularVelocity);
 	
-// 	btTransform headTransform = origin->getCenterOfMassTransform();
-// 	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
-// 	// basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
-	
-// 	basepoint->setLinearVelocity(angVelocity);
-// 	basepoint->setAngularVelocity(angVelocity);
-// 	if(!activeFlag){
-// 		base->setLinearVelocity(linVelocity);
-// 		base->setAngularVelocity(angVelocity);
-// 	}
-// 	else{
-// 		btScalar dphi = -dtheta * get_dphi(row-1);
-// 		btScalar dzeta = -dtheta * get_dzeta(row-1);
-		
-// 		if(side){ // right side
-// 			dtheta = -dtheta;
-// 			dphi = dphi;
-// 			dzeta = dzeta;
-// 		}
-
-// 		btVector3 worldProtraction = (basepoint->getWorldTransform().getBasis()*btVector3(0,0,dtheta));
-// 		btVector3 worldElevation = (basepoint->getWorldTransform().getBasis()*btVector3(0,dphi,0));
-// 		btVector3 worldTorsion = (basepoint->getWorldTransform().getBasis()*btVector3(dzeta,0,0));
-// 		btVector3 headLinVelocity = origin->getLinearVelocity();
-// 		btVector3 headAngVelocity = origin->getAngularVelocity();
-// 		btVector3 angularVelocity = worldProtraction+worldElevation+worldTorsion + headAngVelocity;
-
-// 		base->setLinearVelocity(headLinVelocity);
-// 		base->setAngularVelocity(angularVelocity);
-// 	}
-
-// }
-
-// void Whisker::updateTransform(){
-	
-// 	btTransform headTransform = origin->getCenterOfMassTransform();
-// 	basepoint->setCenterOfMassTransform(headTransform*basepointTransform);
-// 	base->setCenterOfMassTransform(headTransform*basepointTransform*baseTransform);
-	
-// }
+}
 
 btRigidBody* Whisker::get_unit(int idx) const{
 	return whisker[idx];

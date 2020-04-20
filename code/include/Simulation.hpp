@@ -59,7 +59,7 @@ private:
 	Object* object;
 	Object* env;
 	output* data_dump = new output();
-
+	std::vector<float> this_loc_vel;
 
 
 	

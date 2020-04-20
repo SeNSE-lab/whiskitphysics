@@ -19,6 +19,7 @@ btVector4 ORANGE = btVector4(1.,0.647,0.0,1);
 void Simulation::stepSimulation(){
 	auto start = std::chrono::high_resolution_clock::now(); 
 	m_time += parameters->TIME_STEP; // increase time
+	m_step += 1;
 	
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
@@ -36,27 +37,17 @@ void Simulation::stepSimulation(){
 			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
 		}
 
-		btScalar dtheta = 0;
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-
-			btScalar angle_fwd = parameters->AMP_FWD*PI/180;
-			btScalar angle_bwd = parameters->AMP_BWD*PI/180;
-			btScalar w = 2*PI*parameters->WHISK_FREQ;
-			btScalar t = m_time;
-			btScalar dt = parameters->TIME_STEP;
-
-			btScalar amp = (angle_fwd + angle_bwd)/2;
-			btScalar shift = (angle_fwd - angle_bwd)/2;
-			btScalar phase = asin(shift/amp);
-			btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
-			btScalar theta = (amp*sin(w*t + phase)-sin(phase));
-
-			dtheta = (theta-prevtheta)/dt;
+			scabbers->whisk(m_step, parameters->WHISKER_LOC_VEL);
 		}
 		
 		if(parameters->EXPLORING){
-			scabbers->setLinearVelocity(btVector3(0, 10, 0));
+			this_loc_vel = parameters->HEAD_LOC_VEL[m_step-1];
+			scabbers->setLinearVelocity(btVector3(this_loc_vel[3], this_loc_vel[4], this_loc_vel[5]/10));
+			// scabbers->setLinearVelocity(btVector3(0, 0, 0));
+			scabbers->setAngularVelocity(btVector3(this_loc_vel[6], this_loc_vel[7], this_loc_vel[8]));
+			// scabbers->setAngularVelocity(btVector3(0, 0, 0));
 		}
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);
@@ -210,16 +201,26 @@ void Simulation::initPhysics()
 
 	// set camera position to rat head
 	targetPos[0] = pos[0];
-	targetPos[1] = pos[1]+3.;
-	targetPos[2] = pos[2];
+	targetPos[1] = pos[1]+120.;
+	targetPos[2] = pos[2]+120;
 	dist = parameters->DIST*SCALE;
 	pitch = parameters->CPITCH;
 	yaw = parameters->CYAW;
 	resetCamera();
 
+	// if exploring
+	if (parameters->EXPLORING){
+		read_csv_float("../data/loc_vel_admir.csv", parameters->HEAD_LOC_VEL);
+	}
+	// if active whisking
+	if (parameters->ACTIVE){
+		read_csv_float("../data/whisker_vel.csv", parameters->WHISKER_LOC_VEL);
+	}
+
 	// initialize time/step tracker
 	m_time_elapsed = 0;
 	m_time = 0;
+	m_step = 0;
 	
 	std::cout << "\n\nStart simulation..." << std::endl;
 	std::cout << "\n====================================================\n" << std::endl;
