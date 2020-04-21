@@ -62,24 +62,21 @@ public:
 	float ZETA;
 	
 	// configuration parameters of rat head
-	std::vector<float> POSITION;
-	std::vector<float> ORIENTATION;
-	float PITCH;
-	float YAW;
-	float ROLL;
+	std::vector<float> RATHEAD_LOC;
+	std::vector<float> RATHEAD_ORIENT;
 
 	// whisking parameters
 	int ACTIVE;
-	float AMP_BWD; // in degrees
-	float AMP_FWD; // in degrees
-	float WHISK_FREQ; // in hertz
-	btVector3 PEG_LOC;
-	float PEG_SPEED; // in mm/second
 
+	// exploring
 	int EXPLORING;
 	std::vector<std::vector<float>> HEAD_LOC_VEL;
 	std::vector<std::vector<float>> WHISKER_LOC_VEL;
-	
+
+	// peg parameters
+	btVector3 PEG_LOC;
+	float PEG_SPEED; // in mm/second
+
 	// camera configuration
 	float DIST;
 	float CPITCH;
@@ -92,7 +89,7 @@ public:
 };
 
 void set_default(Parameters* param);
-std::vector<float> get_vector(int N, float value);
+std::vector<float> get_vector(float value, int N);
 std::vector<float> stringToFloatVect(std::vector<std::string> vect_string);
 
 #endif //PARAMETERS_HPP

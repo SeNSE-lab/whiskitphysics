@@ -85,21 +85,7 @@ public:
 	{		
 		m_guiHelper->resetCamera(dist,yaw,pitch,targetPos[0],targetPos[1],targetPos[2]);
 	}
-	// xz plane
-	// btScalar dist = 0.06*SCALE;
-	// btScalar pitch = 0;
-	// btScalar yaw = 0;
-
-	// yz plane
-	// btScalar dist = 0.06*SCALE;
-	// btScalar pitch = 0;
-	// btScalar yaw = 90;
-
-	// xy plane
-	// btScalar dist = 0.05*SCALE;
-	// btScalar pitch = -89;
-	// btScalar yaw = 180;
-
+	
 	// other
 	bool exitSim;
 	Parameters* parameters;

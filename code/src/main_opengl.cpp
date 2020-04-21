@@ -140,14 +140,8 @@ int main(int argc, char** argv)
 		("NO_WHISKERS", po::value<int>(&param->NO_WHISKERS), "whisker on/off")
 
 		("ACTIVE", po::value<int>(&param->ACTIVE), "active on/off")
-		("AMP_BWD", po::value<float>(&param->AMP_BWD), "whisk amplitude retraction angle")
-		("AMP_FWD", po::value<float>(&param->AMP_FWD), "whisk amplitude protraction angle")
-		("WHISK_FREQ", po::value<float>(&param->WHISK_FREQ), "whisk frequency")
 		
 		("POSITION", po::value<std::vector<std::string> >()->multitoken(), "initial position of rat")
-		("PITCH", po::value<std::string>(), "head pitch")
-		("YAW", po::value<std::string>(), "head yaw")
-		("ROLL", po::value<std::string>(), "head roll")
 		
 		("DIST", po::value<float>(&param->DIST), "distance of camera")
 		("CPITCH", po::value<std::string>(), "head pitch")
@@ -207,27 +201,10 @@ int main(int argc, char** argv)
 
 			std::vector<std::string> coordinates;
 			if (!vm["POSITION"].empty() && (coordinates = vm["POSITION"].as<std::vector<std::string> >()).size() == 3) {
-				param->POSITION[0] = lexical_cast<float>(coordinates[0]);
-				param->POSITION[1] = lexical_cast<float>(coordinates[1]);
-				param->POSITION[2] = lexical_cast<float>(coordinates[2]);
+				param->RATHEAD_LOC[0] = lexical_cast<float>(coordinates[0]);
+				param->RATHEAD_LOC[1] = lexical_cast<float>(coordinates[1]);
+				param->RATHEAD_LOC[2] = lexical_cast<float>(coordinates[2]);
 			}	
-					
-			if (vm.count("PITCH")){
-				std::string pitch;
-				pitch = vm["PITCH"].as<std::string>();
-				param->PITCH = lexical_cast<float>(pitch);
-			}
-			if (vm.count("YAW")){
-				std::string yaw;
-				yaw = vm["YAW"].as<std::string>();
-				param->YAW = lexical_cast<float>(yaw);
-			}
-			
-		    if (vm.count("ROLL")){
-				std::string roll;
-				roll = vm["ROLL"].as<std::string>();
-				param->ROLL = lexical_cast<float>(roll);
-			}
 
 			if (vm.count("CPITCH")){
 				std::string cpitch;

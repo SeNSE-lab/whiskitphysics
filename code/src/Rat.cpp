@@ -7,8 +7,8 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	// START TO CREATE RAT HEAD OBJECT//////////////////////////////////////////
 	// supposed to be kinematic object following scripted path ///////////////// 
 	// set initial position and orientation of rat head
-	btVector3 position = btVector3(parameters->POSITION[0],parameters->POSITION[1],parameters->POSITION[2]);
-	btVector3 orientation = btVector3(parameters->ORIENTATION[0],parameters->ORIENTATION[1],parameters->ORIENTATION[2]);
+	btVector3 position = btVector3(parameters->RATHEAD_LOC[0],parameters->RATHEAD_LOC[1],parameters->RATHEAD_LOC[2]);
+	btVector3 orientation = btVector3(parameters->RATHEAD_ORIENT[0],parameters->RATHEAD_ORIENT[1],parameters->RATHEAD_ORIENT[2]);
 	// init_quat.setEulerZYX(parameters->YAW*PI/180.,parameters->ROLL*PI/180.,parameters->PITCH*PI/180.);
 	// create transform for ratHead
 	btTransform headTransform = createFrame(position, orientation);

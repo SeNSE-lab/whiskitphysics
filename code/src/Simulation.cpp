@@ -154,8 +154,8 @@ void Simulation::initPhysics()
 
 	if(parameters->OBJECT==3){
 		// set rat initial position
-		parameters->POSITION = {-70,-30,0};
-		parameters->ORIENTATION = {1.,1,1};
+		parameters->RATHEAD_LOC = {-70,-30,0};
+		parameters->RATHEAD_ORIENT = {1.,1,1};
 	}
 
 	// add rat to world
