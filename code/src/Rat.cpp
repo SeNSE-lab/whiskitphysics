@@ -2,28 +2,23 @@
 #include "Rat.hpp"
 
 Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters){
-	btVector4 color = btVector4(0.5,0.5,0.5,1);
-
-	// START TO CREATE RAT HEAD OBJECT//////////////////////////////////////////
-	// supposed to be kinematic object following scripted path ///////////////// 
 	// set initial position and orientation of rat head
 	btVector3 position = btVector3(parameters->RATHEAD_LOC[0],parameters->RATHEAD_LOC[1],parameters->RATHEAD_LOC[2]);
 	btVector3 orientation = btVector3(parameters->RATHEAD_ORIENT[0],parameters->RATHEAD_ORIENT[1],parameters->RATHEAD_ORIENT[2]);
-	// init_quat.setEulerZYX(parameters->YAW*PI/180.,parameters->ROLL*PI/180.,parameters->PITCH*PI/180.);
+	
 	// create transform for ratHead
 	btTransform headTransform = createFrame(position, orientation);
+	
 	// define shape and body of head (mass=100)
-	// rathead->body is added to the world in Object.cpp, also pushed back into shapes
+	btVector4 color = btVector4(0.5,0.5,0.5,1);
 	rathead = new Object(helper,world,shapes,headTransform,"../data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
-	// END OF CREATING RAT HEAD OBJECT /////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////
-
+	
 	// set rathead->body to active state
 	rathead->body->setActivationState(DISABLE_DEACTIVATION);
 
 	// create new Whiskers for this rat head
+	// origin: mean possition of all beasepoints
 	btTransform head2origin = createFrame(originOffset*SCALE,originOrientation);
-
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
@@ -55,7 +50,6 @@ void Rat::setTransform(btTransform tr){
 	rathead->body->setCenterOfMassTransform(tr);
 }
 
-// set/get the linear/angular velocity
 void Rat::setLinearVelocity(btVector3 shift){
 	rathead->body->setLinearVelocity(shift);
 }

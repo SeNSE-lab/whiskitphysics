@@ -48,58 +48,16 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 
 
 void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
-	// /// CREATE BASE POINT
-	// /// ====================================
-	// // originTransform is the mean location of the whisker array
-	// btTransform originTransform = head->getCenterOfMassTransform()*head2origin;
-	// // basepointTransform is the location of the basepoints
-	// btTransform basepointTransform = originTransform*createFrame(base_pos);
-
-	// btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base,radius_base,radius_base));
-	// m_collisionShapes->push_back(basepointShape);
-	
-	// basepoint = createDynamicBody(btScalar(10),originTransform*basepointTransform,basepointShape,m_guiHelper,color,0);
-	// m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
-	// basepoint->setActivationState(DISABLE_DEACTIVATION);
-
-    // // WHISKER BASE
-	// // =========================================================== 
-	// btTransform basepointWorldTransform = basepoint->getCenterOfMassTransform();
-	// btCollisionShape* baseShape = createSphereShape(radius_base*5);
-	// m_collisionShapes->push_back(baseShape);
-	
-	// baseTransform = rotZ(base_rot[0])*rotY(base_rot[1])*rotX(base_rot[2]);
-	// base = createDynamicBody(btScalar(1),basepointWorldTransform*baseTransform,baseShape,m_guiHelper,color,0);
-	// m_dynamicsWorld->addRigidBody(base,COL_BASE,baseCollidesWith);
-	// base->setActivationState(DISABLE_DEACTIVATION);
-
-	// btTransform baseFrame =(rotZ(base_rot[0])*rotY(base_rot[1])*rotX(base_rot[2]));
-	// btTransform basepointFrame = createFrame();
-	// motorConstraint = new btGeneric6DofConstraint(*basepoint, *base, basepointFrame, baseFrame.inverse(),true);
-	
-	// motorConstraint->setLinearLowerLimit(btVector3(0,0,0));
-	// motorConstraint->setLinearUpperLimit(btVector3(0,0,0));
-	// motorConstraint->setAngularLowerLimit(btVector3(1,1,1));
-	// motorConstraint->setAngularUpperLimit(btVector3(0,0,0));
-
-	// m_dynamicsWorld->addConstraint(motorConstraint,true);
-	// motorConstraint->setDbgDrawSize(btScalar(0.5f));    
-
-
-
 	/// CREATE BASE POINT
 	/// This is a box shape that is only translated from origin to basepoint location.
-	/// It's body frame is axis-aligned.
-	/// ====================================
+	/// It's body frame is global axis-aligned.
+
 	// originTransform is the mean location of the whisker array
 	btTransform originTransform = head->getCenterOfMassTransform()*head2origin;
 	// basepointTransform is the location of the basepoints
 	btTransform basepointTransform = originTransform*createFrame(base_pos);
 
-	// Notice: the collision shape for the basepoint is btBoxShape (arbitrary choice)
-	//    	   4*radius is for visual/debugging purpose
-	// New question: basepoint and whisker base are overlapping, won't this collision
-	// affect the simualtion process?
+	// create shape for base point
 	btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base, radius_base, radius_base));
 	m_collisionShapes->push_back(basepointShape);
 	basepoint = createDynamicBody(btScalar(100), friction, basepointTransform, basepointShape, m_guiHelper, color);
@@ -107,7 +65,6 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
 	basepoint->setActivationState(DISABLE_DEACTIVATION);
 
-	// why create new transform for both, and set linear limit to 0?
 	btVector3 head2basepoint = head2origin.getOrigin() + base_pos;
 	btTransform inFrameA = createFrame();
     btTransform inFrameB = createFrame();
@@ -124,12 +81,11 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	/// This is a sphere shape that has exactly the same transform as the basepoint (box).
 	/// In non-whisking mode, it's body frame is axis-aligned. In whisking mode, this node
 	/// serves as a moving node that receives angular velocity parameter from Knutsen.
-	/// =========================================================== 
+
 	// Now, basepointTransform become the absolute transform of the basepoint
 	btTransform baseTransform = basepoint->getCenterOfMassTransform();
-	// Notice: the collision shape for the whisker base is btSphereShape (arbitrary choice)
-	//    	   5*radius is for visual/debugging purpose
-	// btCollisionShape* baseShape = createSphereShape(radius_base*5);
+
+	// create shape for whisker base
 	btCollisionShape* baseShape = new btSphereShape(radius_base*5);
 	m_collisionShapes->push_back(baseShape);
 	base = createDynamicBody(btScalar(10),friction,baseTransform,baseShape,m_guiHelper,color);
@@ -175,7 +131,6 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 
 
 	// BUILD WHISKER
-	// ===========================================================
 	btScalar radius;
     btScalar radius_next = radius_base;
     btRigidBody* link_prev = base; 
@@ -298,15 +253,10 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 }
 
 void Whisker::whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity){
-	// OK. need to solve the problem that, this velocity is in correct frame from initialization, 
-	// soon after the head rotates, the whisker itself won't rotate with the head.
-	// OK. finished. Then clean up the testing mess.
-	// 2020/02/20: now modify this code to incorporate just changing the angular velovity of "base"
-	//			   but first, get modify matlab script to just generate angular velocity
-
+	// localAngularVelocity is the velocity relative to the rat head
 	btVector3 localAngularVelocity = btVector3(a_vel_0, a_vel_1, a_vel_2);
-	base->setAngularVelocity(localAngularVelocity + headAngularVelocity);
-	
+	btVector3 globalAngularVelocity = localAngularVelocity + headAngularVelocity;
+	base->setAngularVelocity(globalAngularVelocity);	
 }
 
 btRigidBody* Whisker::get_unit(int idx) const{

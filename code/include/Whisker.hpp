@@ -90,7 +90,7 @@ private:
 	Parameters* parameters;
 	std::vector<int> collide;
 	
-		// Whisker general configuration parameters
+	// Whisker general configuration parameters
 	float friction;
 	btScalar mass;
 	btScalar dt;

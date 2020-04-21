@@ -32,7 +32,6 @@ class Rat
 private:
 	// Rigid Bodies
 	Object* rathead;
-	btRigidBody* origin;
 	// Constraints
 	btGeneric6DofConstraint* originConstraint; 
 	// Whiskers
@@ -68,8 +67,5 @@ public:
 
 	void detect_collision(btDiscreteDynamicsWorld* world);
 };
-
-
-
 
 #endif //RAT_HPP
