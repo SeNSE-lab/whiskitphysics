@@ -44,13 +44,14 @@ Parameters::Parameters(){
 	PEG_SPEED = 10;	
 
 	// rat position/orientation parameters
-	RATHEAD_LOC = {0,0,0}; 		// set position of rathead
-	RATHEAD_ORIENT = {0,0,0}; 	// set initial heading of rathead
+	RATHEAD_LOC = {0,0,0}; 			// set position of rathead
+	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	DIST=0.05;				// set camera distance
-	CPITCH=-89;				// set camera pitch
-	CYAW=0;					// set camera yaw
+	CPOS = btVector3(0, 120, 120);	// set camera pos relative to rathead
+	CDIST=0.05;						// set camera distance
+	CPITCH=-89;						// set camera pitch
+	CYAW=0;							// set camera yaw
 
 	// input/output file paths
 	dir_out = "../output/test";

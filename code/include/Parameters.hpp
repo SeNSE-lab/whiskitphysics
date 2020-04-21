@@ -78,7 +78,8 @@ public:
 	float PEG_SPEED; // in mm/second
 
 	// camera configuration
-	float DIST;
+	btVector3 CPOS;
+	float CDIST;
 	float CPITCH;
 	float CYAW;
 

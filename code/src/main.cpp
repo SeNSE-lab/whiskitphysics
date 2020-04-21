@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 		
 		("POSITION", po::value<std::vector<std::string> >()->multitoken(), "initial position of rat")
 		
-		("DIST", po::value<float>(&param->DIST), "distance of camera")
+		("CDIST", po::value<float>(&param->CDIST), "distance of camera")
 		("CPITCH", po::value<std::string>(), "head pitch")
 		("CYAW", po::value<std::string>(), "head yaw")
 		
@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
 			CommonExampleOptions options(&noGfx);
 			Simulation* simulation = new Simulation(options.m_guiHelper);
 
-			 // save parameters in simulation object
+			// save parameters in simulation object
 			simulation->parameters = param;
 			simulation->initPhysics();
 			std::cout.precision(17);
