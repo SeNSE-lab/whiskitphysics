@@ -32,11 +32,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "LinearMath/btAlignedObjectArray.h"
 #include "LinearMath/btQuaternion.h"
 
-
-
 class Simulation* SimulationCreateFunc(struct CommonExampleOptions& options);
-
-
 
 class Simulation : public CommonRigidBodyBase
 {
@@ -46,7 +42,6 @@ private:
 	btScalar m_time_elapsed;
 	btScalar m_time;
 	int m_step;
-
 
 	btVector3 gravity = btVector3(0,0,-9.8*SCALE);
 	btAlignedObjectArray<btVector3> m_objcenter; // store center position calculated from bounding box for all objs, before start trans
@@ -59,16 +54,10 @@ private:
 	Object* object;
 	Object* env;
 	output* data_dump = new output();
+	std::vector<float> this_loc_vel;
 
-
-
-	
-	
 
 public:
-
-	
-
 	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){}
 	virtual ~Simulation(){}
 	virtual void initPhysics();
@@ -76,29 +65,12 @@ public:
 	
 	output* get_results();
 	
-	btScalar dist = 0.1*SCALE;
-	btScalar pitch = -30;
-	btScalar yaw = 50;
-	btScalar targetPos[3]={0,0,0};
-
-	void resetCamera()
-	{		
-		m_guiHelper->resetCamera(dist,yaw,pitch,targetPos[0],targetPos[1],targetPos[2]);
-	}
-	// xz plane
-	// btScalar dist = 0.06*SCALE;
-	// btScalar pitch = 0;
-	// btScalar yaw = 0;
-
-	// yz plane
-	// btScalar dist = 0.06*SCALE;
-	// btScalar pitch = 0;
-	// btScalar yaw = 90;
-
-	// xy plane
-	// btScalar dist = 0.05*SCALE;
-	// btScalar pitch = -89;
-	// btScalar yaw = 180;
+	
+	btScalar camPos[3]={0,0,0};
+	btScalar camDist = 0.1*SCALE;
+	btScalar camPitch = -30;
+	btScalar camYaw = 50;
+	void resetCamera();
 
 	// other
 	bool exitSim;

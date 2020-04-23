@@ -18,46 +18,31 @@ btVector4 ORANGE = btVector4(1.,0.647,0.0,1);
 
 void Simulation::stepSimulation(){
 	auto start = std::chrono::high_resolution_clock::now(); 
-	m_time += parameters->TIME_STEP; // increase time
+	m_time += parameters->TIME_STEP; 								// increase time
+	m_step += 1;													// increase step
 	
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
-		
-
-		// define headtransform
-		btTransform headTrans = createFrame();
-
-		// define head velocity (linear, angular)
-		btVector3 headLinearVelocity = btVector3(0,0,0);
-		btVector3 headAngularVelocity = btVector3(0,0,0);
 
 		// moving object 1
 		if(parameters->OBJECT==1){
 			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
 		}
 
-		btScalar dtheta = 0;
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-
-			btScalar angle_fwd = parameters->AMP_FWD*PI/180;
-			btScalar angle_bwd = parameters->AMP_BWD*PI/180;
-			btScalar w = 2*PI*parameters->WHISK_FREQ;
-			btScalar t = m_time;
-			btScalar dt = parameters->TIME_STEP;
-
-			btScalar amp = (angle_fwd + angle_bwd)/2;
-			btScalar shift = (angle_fwd - angle_bwd)/2;
-			btScalar phase = asin(shift/amp);
-			btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
-			btScalar theta = (amp*sin(w*t + phase)-sin(phase));
-
-			dtheta = (theta-prevtheta)/dt;
+			scabbers->whisk(m_step, parameters->WHISKER_LOC_VEL);
 		}
 		
+		// move rat head if in EXPLORING mode
 		if(parameters->EXPLORING){
-			scabbers->setLinearVelocity(btVector3(0, 10, 0));
+			this_loc_vel = parameters->HEAD_LOC_VEL[m_step-1];
+			scabbers->setLinearVelocity(btVector3(this_loc_vel[3], this_loc_vel[4], this_loc_vel[5]/10));
+			// scabbers->setLinearVelocity(btVector3(0, 0, 0));
+			scabbers->setAngularVelocity(btVector3(this_loc_vel[6], this_loc_vel[7], this_loc_vel[8]));
+			// scabbers->setAngularVelocity(btVector3(0, 0, 0));
 		}
+
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);
 
@@ -70,6 +55,7 @@ void Simulation::stepSimulation(){
 			scabbers->dump_F(data_dump);
 			scabbers->dump_Q(data_dump);
 		}
+
 		// draw debug if enabled
 	    if(parameters->DEBUG){
 	    	m_dynamicsWorld->debugDrawWorld();
@@ -96,6 +82,7 @@ void Simulation::stepSimulation(){
 
 void Simulation::initPhysics()
 {	
+	vec = btVector3(1,1,1);
 	data_dump->init(parameters->WHISKER_NAMES);
 
 	// set visual axis
@@ -163,25 +150,21 @@ void Simulation::initPhysics()
 
 	if(parameters->OBJECT==3){
 		// set rat initial position
-		parameters->POSITION = {-70,-30,0};
-		parameters->ORIENTATION = {1.,1,1};
+		parameters->RATHEAD_LOC = {-70,-30,0};
+		parameters->RATHEAD_ORIENT = {1.,1,1};
 	}
 
 	// add rat to world
 	scabbers = new Rat(m_guiHelper,m_dynamicsWorld, &m_collisionShapes, parameters);
-	btVector3 pos = scabbers->getPosition();
+	btVector3 rathead_pos = scabbers->getPosition();
 	
 	// create object to collide with
 	// peg
 	if(parameters->OBJECT==1){
-		btVector3 nose = btVector3(0.,30,0);
-		vec = btVector3(15,-30,-30);
-		vec = vec.normalized();
-		btVector3 peg_init = btVector3(nose[0]+7,nose[1]+20,nose[2]); // placing peg rostral from array
 		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(0.5,0.5,80));
 		pegShape->setMargin(0.0001);
 		m_collisionShapes.push_back(pegShape);
-		btTransform trans = createFrame(peg_init,btVector3(PI/4,0,PI/12));
+		btTransform trans = createFrame(btVector3(25, 25, 0),btVector3(0, 0, 0));
 		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
@@ -209,17 +192,28 @@ void Simulation::initPhysics()
 	m_guiHelper->autogenerateGraphicsObjects(m_dynamicsWorld);
 
 	// set camera position to rat head
-	targetPos[0] = pos[0];
-	targetPos[1] = pos[1]+3.;
-	targetPos[2] = pos[2];
-	dist = parameters->DIST*SCALE;
-	pitch = parameters->CPITCH;
-	yaw = parameters->CYAW;
+	camPos[0] = rathead_pos[0]+parameters->CPOS[0];
+	camPos[1] = rathead_pos[1]+parameters->CPOS[1];
+	camPos[2] = rathead_pos[2]+parameters->CPOS[2];
+	camDist = parameters->CDIST*SCALE;
+	camPitch = parameters->CPITCH;
+	camYaw = parameters->CYAW;
 	resetCamera();
+
+	// if active whisking, load whisking protraction angle trajectory
+	if (parameters->ACTIVE){
+		read_csv_float("../data/whisking_trajectory_sample.csv", parameters->WHISKER_LOC_VEL);
+	}
+
+	// if exploring, load data for rat head trajectory
+	if (parameters->EXPLORING){
+		read_csv_float("../data/rathead_trajectory_sample.csv", parameters->HEAD_LOC_VEL);
+	}
 
 	// initialize time/step tracker
 	m_time_elapsed = 0;
 	m_time = 0;
+	m_step = 0;
 	
 	std::cout << "\n\nStart simulation..." << std::endl;
 	std::cout << "\n====================================================\n" << std::endl;
@@ -227,4 +221,8 @@ void Simulation::initPhysics()
 
 output* Simulation::get_results(){
 	return data_dump;
+}
+
+void Simulation::resetCamera(){	
+	m_guiHelper->resetCamera(camDist,camYaw,camPitch,camPos[0],camPos[1],camPos[2]);
 }

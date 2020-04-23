@@ -2,28 +2,23 @@
 #include "Rat.hpp"
 
 Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters){
-	btVector4 color = btVector4(0.5,0.5,0.5,1);
-
-	// START TO CREATE RAT HEAD OBJECT//////////////////////////////////////////
-	// supposed to be kinematic object following scripted path ///////////////// 
 	// set initial position and orientation of rat head
-	btVector3 position = btVector3(parameters->POSITION[0],parameters->POSITION[1],parameters->POSITION[2]);
-	btVector3 orientation = btVector3(parameters->ORIENTATION[0],parameters->ORIENTATION[1],parameters->ORIENTATION[2]);
-	// init_quat.setEulerZYX(parameters->YAW*PI/180.,parameters->ROLL*PI/180.,parameters->PITCH*PI/180.);
+	btVector3 position = btVector3(parameters->RATHEAD_LOC[0],parameters->RATHEAD_LOC[1],parameters->RATHEAD_LOC[2]);
+	btVector3 orientation = btVector3(parameters->RATHEAD_ORIENT[0],parameters->RATHEAD_ORIENT[1],parameters->RATHEAD_ORIENT[2]);
+	
 	// create transform for ratHead
 	btTransform headTransform = createFrame(position, orientation);
+	
 	// define shape and body of head (mass=100)
-	// rathead->body is added to the world in Object.cpp, also pushed back into shapes
+	btVector4 color = btVector4(0.5,0.5,0.5,1);
 	rathead = new Object(helper,world,shapes,headTransform,"../data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
-	// END OF CREATING RAT HEAD OBJECT /////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////
-
+	
 	// set rathead->body to active state
 	rathead->body->setActivationState(DISABLE_DEACTIVATION);
 
 	// create new Whiskers for this rat head
+	// origin: mean possition of all beasepoints
 	btTransform head2origin = createFrame(originOffset*SCALE,originOrientation);
-
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
@@ -55,7 +50,6 @@ void Rat::setTransform(btTransform tr){
 	rathead->body->setCenterOfMassTransform(tr);
 }
 
-// set/get the linear/angular velocity
 void Rat::setLinearVelocity(btVector3 shift){
 	rathead->body->setLinearVelocity(shift);
 }
@@ -69,6 +63,18 @@ const btVector3 Rat::getAngularVelocity(){
 	return rathead->body->getAngularVelocity();
 }
 
+void Rat::whisk(int step, std::vector<std::vector<float>> whisker_loc_vel){
+	// total number of steps in one cycle of whisking phase
+	int totalStep = whisker_loc_vel[0].size()/3;
+	// for every whisker, read its angular velocity at this step
+	for (int i=0;i<m_whiskerArray.size();i++){
+		int idx = m_whiskerArray[i]->m_index;
+		btScalar a_vel_0 = whisker_loc_vel[idx][(step%totalStep)*3];
+		btScalar a_vel_1 = whisker_loc_vel[idx][(step%totalStep)*3+1];
+		btScalar a_vel_2 = whisker_loc_vel[idx][(step%totalStep)*3+2];
+		m_whiskerArray[i]->whisk(a_vel_0, a_vel_1, a_vel_2, getAngularVelocity());
+	}
+}
 
 // function to retrieve torques at base points
 void Rat::dump_M(output* data){
