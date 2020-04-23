@@ -1,2 +1,0 @@
-whisker_top:
-columns:
