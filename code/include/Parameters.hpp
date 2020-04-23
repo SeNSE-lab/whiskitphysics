@@ -67,11 +67,12 @@ public:
 
 	// whisking parameters
 	int ACTIVE;
+	std::string dir_param_bp_angles;
 
 	// exploring
 	int EXPLORING;
 	std::vector<std::vector<float>> HEAD_LOC_VEL;
-	std::vector<std::vector<float>> WHISKER_LOC_VEL;
+	std::vector<std::vector<float>> WHISKER_VEL;
 
 	// peg parameters
 	btVector3 PEG_LOC;

@@ -31,7 +31,7 @@ void Simulation::stepSimulation(){
 
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-			scabbers->whisk(m_step, parameters->WHISKER_LOC_VEL);
+			scabbers->whisk(m_step, parameters->WHISKER_VEL);
 		}
 		
 		// move rat head if in EXPLORING mode
@@ -202,7 +202,7 @@ void Simulation::initPhysics()
 
 	// if active whisking, load whisking protraction angle trajectory
 	if (parameters->ACTIVE){
-		read_csv_float("../data/whisking_trajectory_sample.csv", parameters->WHISKER_LOC_VEL);
+		read_csv_float("../data/whisking_trajectory_sample.csv", parameters->WHISKER_VEL);
 	}
 
 	// if exploring, load data for rat head trajectory

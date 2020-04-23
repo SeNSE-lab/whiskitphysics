@@ -5,9 +5,9 @@
 Parameters::Parameters(){
 	// input arguments for simulator
 	DEBUG = 0;			// enable debug mode
-	TIME_STEP = 0.00333;// set time step, this is related to output video's FPS
+	TIME_STEP = 0.01;// set time step, this is related to output video's FPS
 	NUM_STEP_INT = 100;	// set internal time step
-	TIME_STOP = 2.;		// set overall simulation time
+	TIME_STOP = 5.;		// set overall simulation time
     PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
 	SAVE = 1;			// save results to csv file
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
@@ -20,7 +20,7 @@ Parameters::Parameters(){
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
-    WHISKER_INDEX = {30, 0, 41, 11};			  // indices for these whiskers based on a 30-whisker indexing plan
+    WHISKER_INDEX = {31, 0, 42, 11};			  // indices for these whiskers based on a 30-whisker indexing plan
 	BLOW = 1;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;			// disable mass of bodies
@@ -34,10 +34,12 @@ Parameters::Parameters(){
 	// enable/disable whisking mode for added whiskers
 	// Note: the whisking trajectory is pre-specified by user.
 	ACTIVE = 1;				
+	dir_param_bp_angles = ACTIVE?"../data/whisking_init_angle_sample.csv":"../data/param_bp_angles.csv";
+	// dir_param_bp_angles = ACTIVE?"../data/param_angles.csv":"../data/param_angles.csv";
 
 	// enable/disable exploring mode for rat head
 	// Note: the head trajectory is 
-	EXPLORING = 1;
+	EXPLORING = 0;
 
 	// parameters for peg (OBJECT = 1)
 	PEG_LOC = btVector3(10, 10, 0);
@@ -48,7 +50,7 @@ Parameters::Parameters(){
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 120, 120);	// set camera pos relative to rathead
+	CPOS = btVector3(0, 20, 20);	// set camera pos relative to rathead
 	CDIST=0.05;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw
