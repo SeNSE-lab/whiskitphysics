@@ -156,7 +156,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
         btScalar damping = calc_damping(stiffness, mass_distal, com_distal, zeta, dt);
 
         // generate shape for unit
-        btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*BLOW, radius_next*BLOW, link_length,0);
+        btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*BLOW, radius_next*BLOW, link_length, 0);
         linkShape->setMargin(0.0001);
         m_collisionShapes->push_back(linkShape);
 

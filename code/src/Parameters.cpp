@@ -47,11 +47,11 @@ Parameters::Parameters(){
 	PEG_SPEED = 10;	
 
 	// rat position/orientation parameters
-	RATHEAD_LOC = {50,0,0}; 			// set position of rathead
+	RATHEAD_LOC = {0,0,0}; 			// set position of rathead
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 0, 20);	// set camera pos relative to rathead
+	CPOS = btVector3(0, 20, 20);	// set camera pos relative to rathead
 	CDIST=50;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw
@@ -60,7 +60,7 @@ Parameters::Parameters(){
 	dir_out = "../output/test";
 	file_video = "../output/video_test.mp4";
 	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";
-	file_prism = "../../../cube100mm.obj";
+	file_prism = "../../../cube1mm.obj";
 
 }
 

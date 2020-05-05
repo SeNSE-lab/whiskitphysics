@@ -109,26 +109,26 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
     
 	// hull->optimizeConvexHull();
     int num_point = hull->getNumPoints();
-	btVector3* all_point_list = hull->getUnscaledPoints();
-	btVector3 min_vec, max_vec;
-
-	for (int i=0;i<num_point;i++){
-		btVector3 curr_point = all_point_list[i];
-
-		for (int j=0;j<3;j++){
-			if ((i==0) || (curr_point[j] < min_vec[j]))
-				min_vec[j] = curr_point[j];
-			if ((i==0) || (curr_point[j] > max_vec[j]))
-				max_vec[j] = curr_point[j];
+	float s;
+	if (scaling_factor != 1.){
+		btVector3* all_point_list = hull->getUnscaledPoints();
+		btVector3 min_vec, max_vec;
+		for (int i=0;i<num_point;i++){
+			btVector3 curr_point = all_point_list[i];
+			for (int j=0;j<3;j++){
+				if ((i==0) || (curr_point[j] < min_vec[j]))
+					min_vec[j] = curr_point[j];
+				if ((i==0) || (curr_point[j] > max_vec[j]))
+					max_vec[j] = curr_point[j];
+			}
 		}
+		float scale_new = scaling_factor/(max_vec - min_vec).norm();
+		s = scale_new;
+	} else {
+		s = 1;
 	}
-	
-	
-	// std::cout << "debug here." << std::endl;
 
-	float scale_new = scaling_factor/(max_vec - min_vec).norm();
-	btVector3 scaling(scale_new,scale_new,scale_new);
-
+	float scaling[4] = {s, s, s, 1};
     btVector3 localScaling(scaling[0],scaling[1],scaling[2]);
     hull->setLocalScaling(localScaling);
 
@@ -173,23 +173,27 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
     //shape->optimizeConvexHull();
 
     int num_point = hull->getNumPoints();
-	btVector3* all_point_list = hull->getUnscaledPoints();
-	btVector3 min_vec, max_vec;
 
-	for (int i=0;i<num_point;i++){
-		btVector3 curr_point = all_point_list[i];
-
-		for (int j=0;j<3;j++){
-			if ((i==0) || (curr_point[j] < min_vec[j]))
-				min_vec[j] = curr_point[j];
-			if ((i==0) || (curr_point[j] > max_vec[j]))
-				max_vec[j] = curr_point[j];
+	float s;
+	if (scaling_factor != 1.){
+		btVector3* all_point_list = hull->getUnscaledPoints();
+		btVector3 min_vec, max_vec;
+		for (int i=0;i<num_point;i++){
+			btVector3 curr_point = all_point_list[i];
+			for (int j=0;j<3;j++){
+				if ((i==0) || (curr_point[j] < min_vec[j]))
+					min_vec[j] = curr_point[j];
+				if ((i==0) || (curr_point[j] > max_vec[j]))
+					max_vec[j] = curr_point[j];
+			}
 		}
+		float scale_new = scaling_factor/(max_vec - min_vec).norm();
+		s = scale_new;
+	} else {
+		s = 1;
 	}
 
-	float scale_new = scaling_factor/(max_vec - min_vec).norm();
-	btVector3 scaling(scale_new,scale_new,scale_new);
-
+	float scaling[4] = {s, s, s, 1};
     btVector3 localScaling(scaling[0],scaling[1],scaling[2]);
     hull->setLocalScaling(localScaling);
 

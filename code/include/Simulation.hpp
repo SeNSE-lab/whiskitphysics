@@ -48,6 +48,7 @@ private:
     btAlignedObjectArray<btVector3> m_objboundingbox; // store bounding box for all objs, before start trans
 
 	btRigidBody* peg;
+	btRigidBody* stick;
 	btRigidBody* wall;
 	btVector3 vec;
 	Rat* scabbers;

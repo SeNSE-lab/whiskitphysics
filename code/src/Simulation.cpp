@@ -187,8 +187,17 @@ void Simulation::initPhysics()
 	}
 	else if(parameters->OBJECT==4){
 		btVector4 prismColor = btVector4(0.6,0.6,0.6,1);
-		btTransform prismTransform = createFrame(btVector3(-0, 0, 0), btVector3(0, 0, 0));
-		prism = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,prismTransform,parameters->file_prism,prismColor,btScalar(10.),btScalar(0),COL_ENV,envCollidesWith);
+		btTransform prismTransform = createFrame(btVector3(0, 5, 0), btVector3(0, 0, 0));
+		prism = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,prismTransform,parameters->file_prism,prismColor,btScalar(1.),btScalar(0),COL_ENV,envCollidesWith);
+		
+		
+		btCollisionShape* stickShape = new btCylinderShapeZ(btVector3(1,1,1));		// 10 mm?
+		stickShape->setMargin(0.0001);
+		m_collisionShapes.push_back(stickShape);
+		btTransform trans = createFrame(btVector3(1, 0, 0),btVector3(0, PI/2, 0));
+		stick = createDynamicBody(1, 0.5, trans, stickShape, m_guiHelper, BLUE);
+		m_dynamicsWorld->addRigidBody(stick,COL_ENV,envCollidesWith);
+		stick->setActivationState(DISABLE_DEACTIVATION);
 	}
 	
 	// generate graphics
