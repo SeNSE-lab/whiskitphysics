@@ -14,10 +14,10 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 	btQuaternion obj_orient = trans.getRotation();
 	if(filename.compare("")!=0){
 		if(mass==0.){
-			body = obj2StaticBody(filename,color,btVector3(0,0,0),obj_orient,mass,scaling,helper,shapes,world);
+			body = obj2StaticBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
 		}
 		else{
-			body = obj2DynamicBody(filename,color,btVector3(0,0,0),obj_orient,mass,scaling,helper,shapes,world);
+			body = obj2DynamicBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
 		}
 		shape = body->getCollisionShape();
 		

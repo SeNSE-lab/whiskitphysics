@@ -53,6 +53,7 @@ private:
 	Rat* scabbers;
 	Object* object;
 	Object* env;
+	Object* prism;
 	output* data_dump = new output();
 	std::vector<float> this_loc_vel;
 

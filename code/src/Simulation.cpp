@@ -49,7 +49,7 @@ void Simulation::stepSimulation(){
 		// register collisions
 		scabbers->detect_collision(m_dynamicsWorld);
 
-		// save simulation output
+		// push back data into data_dump
 		if(!parameters->NO_WHISKERS && parameters->SAVE){
 			scabbers->dump_M(data_dump);
 			scabbers->dump_F(data_dump);
@@ -175,17 +175,20 @@ void Simulation::initPhysics()
 		btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
 		wallShape->setMargin(0.0001);
 		m_collisionShapes.push_back(wallShape);
-		btTransform trans = createFrame(btVector3(45,0,0),btVector3(0,0,0));
+		btTransform trans = createFrame(btVector3(5,0,0),btVector3(0,0,PI/6));
 		wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	// create object from 3D scan
 	else if(parameters->OBJECT==3){
-
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
 		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
-
+	}
+	else if(parameters->OBJECT==4){
+		btVector4 prismColor = btVector4(0.6,0.6,0.6,1);
+		btTransform prismTransform = createFrame(btVector3(-20, 0, 0), btVector3(0, 0, 0));
+		prism = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,prismTransform,parameters->file_prism,prismColor,btScalar(10.),btScalar(0),COL_ENV,envCollidesWith);
 	}
 	
 	// generate graphics

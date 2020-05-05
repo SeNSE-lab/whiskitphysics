@@ -13,10 +13,11 @@ Parameters::Parameters(){
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
 
 	// collision object type
-	OBJECT = 0;			// 0: nothing
+	OBJECT = 4;			// 0: nothing
 						// 1: peg
 						// 2: wall
 						// 3: create object from 3D scan
+						// 4: a prism
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
@@ -59,6 +60,7 @@ Parameters::Parameters(){
 	dir_out = "../output/test";
 	file_video = "../output/video_test.mp4";
 	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";
+	file_prism = "../../../cube100mm.obj";
 
 }
 

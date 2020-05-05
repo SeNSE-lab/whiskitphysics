@@ -88,6 +88,7 @@ public:
 	std::string dir_out;
 	std::string file_video;
 	std::string file_env;
+	std::string file_prism;
 };
 
 void set_default(Parameters* param);
