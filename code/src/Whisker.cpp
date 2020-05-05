@@ -451,7 +451,7 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     read_csv_float("../data/param_s_a.csv",whisker_geom);
     read_csv_float("../data/param_angles.csv",whisker_angles);
     read_csv_float("../data/param_bp_pos.csv",whisker_bp_coor);
-    read_csv_float(parameters->dir_param_bp_angles,whisker_bp_angles);
+    read_csv_float(parameters->dir_whisking_init_angle,whisker_bp_angles);
     whisker_config wc;
     for(int i=0;i<whisker_names.size();i++){
         if(!wname.compare(whisker_names[i])){

@@ -110,7 +110,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 	// hull->optimizeConvexHull();
     int num_point = hull->getNumPoints();
 	float s;
-	if (scaling_factor != 1.){
+	if (scaling_factor != 0.){
 		btVector3* all_point_list = hull->getUnscaledPoints();
 		btVector3 min_vec, max_vec;
 		for (int i=0;i<num_point;i++){
@@ -175,7 +175,7 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
     int num_point = hull->getNumPoints();
 
 	float s;
-	if (scaling_factor != 1.){
+	if (scaling_factor != 0.){
 		btVector3* all_point_list = hull->getUnscaledPoints();
 		btVector3 min_vec, max_vec;
 		for (int i=0;i<num_point;i++){

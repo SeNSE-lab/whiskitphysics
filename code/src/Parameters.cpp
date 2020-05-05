@@ -13,11 +13,11 @@ Parameters::Parameters(){
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
 
 	// collision object type
-	OBJECT = 4;			// 0: nothing
+	OBJECT = 0;			// 0: nothing
 						// 1: peg
 						// 2: wall
 						// 3: create object from 3D scan
-						// 4: a prism
+						// 4: a wall with specified curvature
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
@@ -35,12 +35,13 @@ Parameters::Parameters(){
 	// enable/disable whisking mode for added whiskers
 	// Note: the whisking trajectory is pre-specified by user.
 	ACTIVE = 1;				
-	dir_param_bp_angles = ACTIVE?"../data/whisking_init_angle_sample.csv":"../data/param_bp_angles.csv";
-	// dir_param_bp_angles = ACTIVE?"../data/param_angles.csv":"../data/param_angles.csv";
+	dir_whisking_init_angle = ACTIVE?"../data/whisking_init_angle_sample.csv":"../data/param_bp_angles.csv";
+	dir_whisking_angle = "../data/whisking_trajectory_sample.csv";
 
 	// enable/disable exploring mode for rat head
 	// Note: the head trajectory is 
 	EXPLORING = 0;
+	dir_rathead_trajectory = "../data/rathead_trajectory_sample.csv";
 
 	// parameters for peg (OBJECT = 1)
 	PEG_LOC = btVector3(10, 10, 0);
@@ -51,7 +52,7 @@ Parameters::Parameters(){
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 20, 20);	// set camera pos relative to rathead
+	CPOS = btVector3(0, 20, 100);	// set camera pos relative to rathead
 	CDIST=50;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw
@@ -60,7 +61,7 @@ Parameters::Parameters(){
 	dir_out = "../output/test";
 	file_video = "../output/video_test.mp4";
 	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";
-	file_prism = "../../../cube1mm.obj";
+	file_curvWall = "../../../curvature250mm.obj";
 
 }
 

@@ -186,9 +186,9 @@ void Simulation::initPhysics()
 		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
 	}
 	else if(parameters->OBJECT==4){
-		btVector4 prismColor = btVector4(0.6,0.6,0.6,1);
-		btTransform prismTransform = createFrame(btVector3(0, 5, 0), btVector3(0, 0, 0));
-		prism = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,prismTransform,parameters->file_prism,prismColor,btScalar(1.),btScalar(0),COL_ENV,envCollidesWith);
+		btVector4 curvWallColor = btVector4(0.6,0.6,0.6,1);
+		btTransform curvWallTransform = createFrame(btVector3(0, 50, 0), btVector3(0, 0, 0));
+		curvWall = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,curvWallTransform,parameters->file_curvWall,curvWallColor,btScalar(0.),btScalar(0),COL_ENV,envCollidesWith);
 		
 		
 		btCollisionShape* stickShape = new btCylinderShapeZ(btVector3(1,1,1));		// 10 mm?
@@ -214,12 +214,12 @@ void Simulation::initPhysics()
 
 	// if active whisking, load whisking protraction angle trajectory
 	if (parameters->ACTIVE){
-		read_csv_float("../data/whisking_trajectory_sample.csv", parameters->WHISKER_VEL);
+		read_csv_float(parameters->dir_whisking_angle, parameters->WHISKER_VEL);
 	}
 
 	// if exploring, load data for rat head trajectory
 	if (parameters->EXPLORING){
-		read_csv_float("../data/rathead_trajectory_sample.csv", parameters->HEAD_LOC_VEL);
+		read_csv_float(parameters->dir_rathead_trajectory, parameters->HEAD_LOC_VEL);
 	}
 
 	// initialize time/step tracker

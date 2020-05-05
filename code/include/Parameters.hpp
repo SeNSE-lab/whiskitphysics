@@ -67,12 +67,14 @@ public:
 
 	// whisking parameters
 	int ACTIVE;
-	std::string dir_param_bp_angles;
+	std::string dir_whisking_init_angle;
+	std::string dir_whisking_angle;
 
 	// exploring
 	int EXPLORING;
 	std::vector<std::vector<float>> HEAD_LOC_VEL;
 	std::vector<std::vector<float>> WHISKER_VEL;
+	std::string dir_rathead_trajectory;
 
 	// peg parameters
 	btVector3 PEG_LOC;
@@ -88,7 +90,7 @@ public:
 	std::string dir_out;
 	std::string file_video;
 	std::string file_env;
-	std::string file_prism;
+	std::string file_curvWall;
 };
 
 void set_default(Parameters* param);
