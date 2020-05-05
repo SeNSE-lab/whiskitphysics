@@ -24,6 +24,13 @@ void Simulation::stepSimulation(){
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
 
+		// first, push back data into data_dump 
+		if(!parameters->NO_WHISKERS && parameters->SAVE){
+			scabbers->dump_M(data_dump);
+			scabbers->dump_F(data_dump);
+			scabbers->dump_Q(data_dump);
+		}
+
 		// moving object 1
 		if(parameters->OBJECT==1){
 			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
@@ -48,13 +55,6 @@ void Simulation::stepSimulation(){
 
 		// register collisions
 		scabbers->detect_collision(m_dynamicsWorld);
-
-		// push back data into data_dump
-		if(!parameters->NO_WHISKERS && parameters->SAVE){
-			scabbers->dump_M(data_dump);
-			scabbers->dump_F(data_dump);
-			scabbers->dump_Q(data_dump);
-		}
 
 		// draw debug if enabled
 	    if(parameters->DEBUG){
