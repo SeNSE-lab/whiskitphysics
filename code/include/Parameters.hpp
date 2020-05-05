@@ -47,6 +47,12 @@ public:
 	
 	// collision object type
 	int OBJECT;
+	// peg parameters
+	btVector3 PEG_LOC;
+	float PEG_SPEED; // in mm/second
+	// curvWall parameters
+	btVector3 curvWall_LOC;
+	btVector3 curvWall_ORIENT;
 
 	// whisker model parameters
     std::vector<std::string> WHISKER_NAMES;
@@ -76,9 +82,6 @@ public:
 	std::vector<std::vector<float>> WHISKER_VEL;
 	std::string dir_rathead_trajectory;
 
-	// peg parameters
-	btVector3 PEG_LOC;
-	float PEG_SPEED; // in mm/second
 
 	// camera configuration
 	btVector3 CPOS;

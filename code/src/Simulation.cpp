@@ -164,7 +164,7 @@ void Simulation::initPhysics()
 		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(0.5,0.5,80));
 		pegShape->setMargin(0.0001);
 		m_collisionShapes.push_back(pegShape);
-		btTransform trans = createFrame(btVector3(25, 25, 0),btVector3(0, 0, 0));
+		btTransform trans = createFrame(parameters->PEG_LOC,btVector3(0, 0, 0));
 		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
@@ -185,19 +185,18 @@ void Simulation::initPhysics()
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
 		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
 	}
+	// create wall with different curvature
 	else if(parameters->OBJECT==4){
 		btVector4 curvWallColor = btVector4(0.6,0.6,0.6,1);
-		btTransform curvWallTransform = createFrame(btVector3(0, 50, 0), btVector3(0, 0, 0));
+		btTransform curvWallTransform = createFrame(parameters->curvWall_LOC, parameters->curvWall_ORIENT);
 		curvWall = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,curvWallTransform,parameters->file_curvWall,curvWallColor,btScalar(0.),btScalar(0),COL_ENV,envCollidesWith);
-		
-		
-		btCollisionShape* stickShape = new btCylinderShapeZ(btVector3(1,1,1));		// 10 mm?
-		stickShape->setMargin(0.0001);
-		m_collisionShapes.push_back(stickShape);
-		btTransform trans = createFrame(btVector3(1, 0, 0),btVector3(0, PI/2, 0));
-		stick = createDynamicBody(1, 0.5, trans, stickShape, m_guiHelper, BLUE);
-		m_dynamicsWorld->addRigidBody(stick,COL_ENV,envCollidesWith);
-		stick->setActivationState(DISABLE_DEACTIVATION);
+	
+		// btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
+		// wallShape->setMargin(0.0001);
+		// m_collisionShapes.push_back(wallShape);
+		// btTransform trans = createFrame(btVector3(30,30,0),btVector3(0,0,-PI/4));
+		// wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
+		// m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	
 	// generate graphics
