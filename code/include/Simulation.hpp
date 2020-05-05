@@ -67,10 +67,10 @@ public:
 	output* get_results();
 	
 	
-	btScalar camPos[3]={0,0,0};
-	btScalar camDist = 0.1*SCALE;
-	btScalar camPitch = -30;
-	btScalar camYaw = 50;
+	btScalar camPos[3];
+	btScalar camDist;
+	btScalar camPitch;
+	btScalar camYaw;
 	void resetCamera();
 
 	// other

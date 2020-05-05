@@ -187,7 +187,7 @@ void Simulation::initPhysics()
 	}
 	else if(parameters->OBJECT==4){
 		btVector4 prismColor = btVector4(0.6,0.6,0.6,1);
-		btTransform prismTransform = createFrame(btVector3(-20, 0, 0), btVector3(0, 0, 0));
+		btTransform prismTransform = createFrame(btVector3(-0, 0, 0), btVector3(0, 0, 0));
 		prism = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,prismTransform,parameters->file_prism,prismColor,btScalar(10.),btScalar(0),COL_ENV,envCollidesWith);
 	}
 	
@@ -198,7 +198,7 @@ void Simulation::initPhysics()
 	camPos[0] = rathead_pos[0]+parameters->CPOS[0];
 	camPos[1] = rathead_pos[1]+parameters->CPOS[1];
 	camPos[2] = rathead_pos[2]+parameters->CPOS[2];
-	camDist = parameters->CDIST*SCALE;
+	camDist = parameters->CDIST;
 	camPitch = parameters->CPITCH;
 	camYaw = parameters->CYAW;
 	resetCamera();

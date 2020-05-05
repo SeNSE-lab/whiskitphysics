@@ -29,7 +29,7 @@ Parameters::Parameters(){
 	NUM_LINKS = 20;			// set number of links
 	RHO_BASE = 1260.0;		// set densidy at whisker base
 	RHO_TIP = 1690.0;		// set density at whisker tip
-	E = 5.0;				// set young's modulus at whisker base
+	E = 5e9;				// set young's modulus (GPa) at whisker base
 	ZETA = 0.32;			// set damping coefficient zeta at whisker base
 
 	// enable/disable whisking mode for added whiskers
@@ -47,12 +47,12 @@ Parameters::Parameters(){
 	PEG_SPEED = 10;	
 
 	// rat position/orientation parameters
-	RATHEAD_LOC = {0,0,0}; 			// set position of rathead
+	RATHEAD_LOC = {50,0,0}; 			// set position of rathead
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 20, 20);	// set camera pos relative to rathead
-	CDIST=0.05;						// set camera distance
+	CPOS = btVector3(0, 0, 20);	// set camera pos relative to rathead
+	CDIST=50;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw
 
