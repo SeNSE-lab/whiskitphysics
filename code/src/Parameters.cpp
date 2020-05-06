@@ -24,10 +24,11 @@ Parameters::Parameters(){
 	// parameters for curved wall (OBJECT = 4)
 	curvWall_LOC = btVector3(30, 30, 0);
 	curvWall_ORIENT = btVector3(0, 0, -PI/4);
+	file_curvWall = "../data/object/curvWall250mm.obj";
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
-    WHISKER_INDEX = {31, 0, 42, 11};			  // indices for these whiskers based on a 30-whisker indexing plan
+    WHISKER_INDEX = {31, 0, 43, 12};			  // indices for these whiskers based on a 30-whisker indexing plan
 	BLOW = 3;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;			// disable mass of bodies
@@ -47,6 +48,7 @@ Parameters::Parameters(){
 	// enable/disable exploring mode for rat head
 	// Note: the head trajectory is 
 	EXPLORING = 0;
+	dir_rathead = "../data/object/NewRatHead.obj";
 	dir_rathead_trajectory = "../data/rathead_trajectory_sample.csv";
 
 
@@ -63,8 +65,7 @@ Parameters::Parameters(){
 	// input/output file paths
 	dir_out = "../output/test";
 	file_video = "../output/video_test.mp4";
-	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";
-	file_curvWall = "../../../curvWall250mm.obj";
+	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";	
 
 }
 

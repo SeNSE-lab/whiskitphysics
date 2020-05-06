@@ -80,6 +80,7 @@ public:
 	int EXPLORING;
 	std::vector<std::vector<float>> HEAD_LOC_VEL;
 	std::vector<std::vector<float>> WHISKER_VEL;
+	std::string dir_rathead;
 	std::string dir_rathead_trajectory;
 
 
