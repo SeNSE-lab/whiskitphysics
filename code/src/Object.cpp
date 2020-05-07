@@ -14,10 +14,10 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 	btQuaternion obj_orient = trans.getRotation();
 	if(filename.compare("")!=0){
 		if(mass==0.){
-			body = obj2StaticBody(filename,color,btVector3(0,0,0),obj_orient,mass,scaling,helper,shapes,world);
+			body = obj2StaticBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
 		}
 		else{
-			body = obj2DynamicBody(filename,color,btVector3(0,0,0),obj_orient,mass,scaling,helper,shapes,world);
+			body = obj2DynamicBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
 		}
 		shape = body->getCollisionShape();
 		
@@ -103,32 +103,31 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
+	hull->setMargin(0.0001);
+	// m_collisionShapes->push_back(hull);
 	
-	m_collisionShapes->push_back(hull);
-	
-    
 	// hull->optimizeConvexHull();
     int num_point = hull->getNumPoints();
-	btVector3* all_point_list = hull->getUnscaledPoints();
-	btVector3 min_vec, max_vec;
-
-	for (int i=0;i<num_point;i++){
-		btVector3 curr_point = all_point_list[i];
-
-		for (int j=0;j<3;j++){
-			if ((i==0) || (curr_point[j] < min_vec[j]))
-				min_vec[j] = curr_point[j];
-			if ((i==0) || (curr_point[j] > max_vec[j]))
-				max_vec[j] = curr_point[j];
+	float s;
+	if (scaling_factor != 0.){
+		btVector3* all_point_list = hull->getUnscaledPoints();
+		btVector3 min_vec, max_vec;
+		for (int i=0;i<num_point;i++){
+			btVector3 curr_point = all_point_list[i];
+			for (int j=0;j<3;j++){
+				if ((i==0) || (curr_point[j] < min_vec[j]))
+					min_vec[j] = curr_point[j];
+				if ((i==0) || (curr_point[j] > max_vec[j]))
+					max_vec[j] = curr_point[j];
+			}
 		}
+		float scale_new = scaling_factor/(max_vec - min_vec).norm();
+		s = scale_new;
+	} else {
+		s = 1;
 	}
-	
-	
-	// std::cout << "debug here." << std::endl;
 
-	float scale_new = scaling_factor/(max_vec - min_vec).norm();
-	btVector3 scaling(scale_new,scale_new,scale_new);
-
+	float scaling[4] = {s, s, s, 1};
     btVector3 localScaling(scaling[0],scaling[1],scaling[2]);
     hull->setLocalScaling(localScaling);
 
@@ -137,7 +136,8 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
 
 	btCollisionShape* shape_compound = LoadShapeFromObj(fileName.c_str(), "", btVector3(scaling[0], scaling[1],scaling[2]));
-	hull->setMargin(0.0001);
+	shape_compound->setMargin(0.5);
+	m_collisionShapes->push_back(shape_compound);
 	btRigidBody* body = createDynamicBody(mass,0.5,trans, shape_compound,m_guiHelper,color);
 	
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
@@ -167,29 +167,33 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
-	hull->setMargin(0.0);
-	m_collisionShapes->push_back(hull);
+	hull->setMargin(0.0001);
+	// m_collisionShapes->push_back(hull);
 	
     //shape->optimizeConvexHull();
 
     int num_point = hull->getNumPoints();
-	btVector3* all_point_list = hull->getUnscaledPoints();
-	btVector3 min_vec, max_vec;
 
-	for (int i=0;i<num_point;i++){
-		btVector3 curr_point = all_point_list[i];
-
-		for (int j=0;j<3;j++){
-			if ((i==0) || (curr_point[j] < min_vec[j]))
-				min_vec[j] = curr_point[j];
-			if ((i==0) || (curr_point[j] > max_vec[j]))
-				max_vec[j] = curr_point[j];
+	float s;
+	if (scaling_factor != 0.){
+		btVector3* all_point_list = hull->getUnscaledPoints();
+		btVector3 min_vec, max_vec;
+		for (int i=0;i<num_point;i++){
+			btVector3 curr_point = all_point_list[i];
+			for (int j=0;j<3;j++){
+				if ((i==0) || (curr_point[j] < min_vec[j]))
+					min_vec[j] = curr_point[j];
+				if ((i==0) || (curr_point[j] > max_vec[j]))
+					max_vec[j] = curr_point[j];
+			}
 		}
+		float scale_new = scaling_factor/(max_vec - min_vec).norm();
+		s = scale_new;
+	} else {
+		s = 1;
 	}
 
-	float scale_new = scaling_factor/(max_vec - min_vec).norm();
-	btVector3 scaling(scale_new,scale_new,scale_new);
-
+	float scaling[4] = {s, s, s, 1};
     btVector3 localScaling(scaling[0],scaling[1],scaling[2]);
     hull->setLocalScaling(localScaling);
 
@@ -200,7 +204,8 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
     for (int i=0;i<num_point/3;i++)
        meshInterface->addTriangle(hull->getScaledPoint(i*3), hull->getScaledPoint(i*3+1), hull->getScaledPoint(i*3+2));
     btBvhTriangleMeshShape* trimesh = new btBvhTriangleMeshShape(meshInterface,true,true);
-	trimesh->setMargin(0.0001);
+	trimesh->setMargin(0.5);
+	m_collisionShapes->push_back(trimesh);
 	btRigidBody* body = createDynamicBody(0,0.5,trans,trimesh,m_guiHelper,color);
 	
 		

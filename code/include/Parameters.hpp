@@ -47,6 +47,12 @@ public:
 	
 	// collision object type
 	int OBJECT;
+	// peg parameters
+	btVector3 PEG_LOC;
+	float PEG_SPEED; // in mm/second
+	// curvWall parameters
+	btVector3 curvWall_LOC;
+	btVector3 curvWall_ORIENT;
 
 	// whisker model parameters
     std::vector<std::string> WHISKER_NAMES;
@@ -67,15 +73,16 @@ public:
 
 	// whisking parameters
 	int ACTIVE;
+	std::string dir_whisking_init_angle;
+	std::string dir_whisking_angle;
 
 	// exploring
 	int EXPLORING;
 	std::vector<std::vector<float>> HEAD_LOC_VEL;
-	std::vector<std::vector<float>> WHISKER_LOC_VEL;
+	std::vector<std::vector<float>> WHISKER_VEL;
+	std::string dir_rathead;
+	std::string dir_rathead_trajectory;
 
-	// peg parameters
-	btVector3 PEG_LOC;
-	float PEG_SPEED; // in mm/second
 
 	// camera configuration
 	btVector3 CPOS;
@@ -87,6 +94,7 @@ public:
 	std::string dir_out;
 	std::string file_video;
 	std::string file_env;
+	std::string file_curvWall;
 };
 
 void set_default(Parameters* param);

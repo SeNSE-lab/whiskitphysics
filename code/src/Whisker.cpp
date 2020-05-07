@@ -25,25 +25,25 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	dphi = {0.398f,0.591f,0.578f,0.393f,0.217f};
 	dzeta = {-0.9f,-0.284f,0.243f,0.449f, 0.744f};
 
-	//Whisker specific configuration parameters
+	//Whisker specific configuration parameters					// unit:
 	whisker_config config = get_config(w_name, parameters);
-	side = config.side;
-	row = config.row;
-	col = config.col;
-	length = config.L*SCALE;
-	link_length = length/btScalar(NUM_LINKS);
-	radius_base = calc_base_radius(row, col, length); // base radius
-	radius_slope = calc_slope(length, radius_base, row, col);
-	radius_tip = radius_base - length*radius_slope;
-	link_angles = config.link_angles;
-	base_pos = config.base_pos;
-	base_rot = config.base_rot;
+	side = config.side;											// -
+	row = config.row;											// -
+	col = config.col;											// -
+	length = config.L;											// mm
+	link_length = length/btScalar(NUM_LINKS);					// mm
+	radius_base = calc_base_radius(row, col, length); 			// mm
+	radius_slope = calc_slope(length, radius_base, row, col);	// -
+	radius_tip = radius_base - length*radius_slope;				// mm
+	link_angles = config.link_angles;							// -
+	base_pos = config.base_pos;									// mm
+	base_rot = config.base_rot;									// -
 
 	//Whisker universal configuration parameters
-	rho = parameters->RHO_BASE/pow(SCALE,3);	// rho: density
-	rho_slope = ((parameters->RHO_TIP-parameters->RHO_BASE)/pow(SCALE,3)) / length;
+	rho = parameters->RHO_BASE/pow(SCALE,3);	// rho: density, SCALE: convert kg/m3 to kg/mm3
+	rho_slope = ((parameters->RHO_TIP-parameters->RHO_BASE)/length /pow(SCALE,3)) ;
 	zeta = parameters->ZETA;				// zeta: damping ratio
-	E = parameters->E*1e9/SCALE;			// E: Young's modulus
+	E = parameters->E/SCALE;			// E: Young's modulus, SCALE: convert kg/m/s2 to kg/mm/s2 
 }
 
 
@@ -156,7 +156,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
         btScalar damping = calc_damping(stiffness, mass_distal, com_distal, zeta, dt);
 
         // generate shape for unit
-        btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*BLOW, radius_next*BLOW, link_length,0);
+        btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*BLOW, radius_next*BLOW, link_length, 0);
         linkShape->setMargin(0.0001);
         m_collisionShapes->push_back(linkShape);
 
@@ -377,23 +377,22 @@ float Whisker::get_dphi(int index) const{
 
 
 btScalar Whisker::calc_base_radius(int row, int col, btScalar S) const{  
-
+	// unit: mm
     btScalar dBase = 0.041 + 0.002*S + 0.011*row - 0.0039*col;
-    return (dBase/2.*1e-3) * SCALE;
+    return dBase/2;
 }
 
-btScalar Whisker::calc_slope(btScalar L, btScalar rbase, int row, int col) const{
-
-    btScalar S = L/SCALE*1e3;
-    btScalar rb = rbase/SCALE*1e3;
-    btScalar slope = 0.0012 + 0.00017*row - 0.000066*col + 0.00011*pow(col,2);
-    btScalar rtip = (rb - slope*S)/2.;
+btScalar Whisker::calc_slope(btScalar S, btScalar rbase, int row, int col) const{
+	// unit: -
+    btScalar slope = 0.0012 + 0.00017*row - 0.000066*col + 0.00011*col*col;
+    btScalar rtip = (rbase - slope*S)/2.;
+	// btScalar rtip = (rbase - slope*S);
 
     if(rtip <= 0.0015){
         rtip = 0.0015;
     }
 
-    slope = (rb-rtip)/S;    
+    slope = (rbase-rtip)/S;    
     return slope;
 }
 
@@ -447,13 +446,12 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     std::vector<std::vector<float>> whisker_bp_coor;
     std::vector<std::vector<float>> whisker_bp_angles;
 
-    std::string file_angles = "../data/param_angles.csv";
     read_csv_string("../data/param_name.csv",whisker_names);
     read_csv_int("../data/param_side_row_col.csv",whisker_pos);
     read_csv_float("../data/param_s_a.csv",whisker_geom);
-    read_csv_float(file_angles,whisker_angles);
+    read_csv_float("../data/param_angles.csv",whisker_angles);
     read_csv_float("../data/param_bp_pos.csv",whisker_bp_coor);
-    read_csv_float("../data/param_bp_angles.csv",whisker_bp_angles);
+    read_csv_float(parameters->dir_whisking_init_angle,whisker_bp_angles);
     whisker_config wc;
     for(int i=0;i<whisker_names.size();i++){
         if(!wname.compare(whisker_names[i])){
@@ -462,10 +460,9 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
             wc.side = whisker_pos[i][0];
             wc.row = whisker_pos[i][1];
             wc.col = whisker_pos[i][2];
-            wc.L = whisker_geom[i][0]/1000.;
-            wc.a = whisker_geom[i][1]*1000.;
+			wc.L = whisker_geom[i][0]; 			// unit: mm
             wc.link_angles = whisker_angles[i];
-            wc.base_pos = btVector3(whisker_bp_coor[i][0],whisker_bp_coor[i][1],whisker_bp_coor[i][2])/1000.*SCALE;
+            wc.base_pos = btVector3(whisker_bp_coor[i][0],whisker_bp_coor[i][1],whisker_bp_coor[i][2]);		// unit: mm
             wc.base_rot = btVector3(whisker_bp_angles[i][0]-PI/2,-whisker_bp_angles[i][1],whisker_bp_angles[i][2]+PI/2);
             break;
         }

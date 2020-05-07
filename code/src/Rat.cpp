@@ -11,14 +11,14 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	
 	// define shape and body of head (mass=100)
 	btVector4 color = btVector4(0.5,0.5,0.5,1);
-	rathead = new Object(helper,world,shapes,headTransform,"../data/NewRatHead.obj",color,SCALE/10,100.,COL_HEAD,headCollidesWith);
+	rathead = new Object(helper,world,shapes,headTransform,parameters->dir_rathead,color,SCALE/10,100.,COL_HEAD,headCollidesWith);
 	
 	// set rathead->body to active state
 	rathead->body->setActivationState(DISABLE_DEACTIVATION);
 
 	// create new Whiskers for this rat head
 	// origin: mean possition of all beasepoints
-	btTransform head2origin = createFrame(originOffset*SCALE,originOrientation);
+	btTransform head2origin = createFrame(originOffset,originOrientation);
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
@@ -63,15 +63,15 @@ const btVector3 Rat::getAngularVelocity(){
 	return rathead->body->getAngularVelocity();
 }
 
-void Rat::whisk(int step, std::vector<std::vector<float>> whisker_loc_vel){
+void Rat::whisk(int step, std::vector<std::vector<float>> whisker_vel){
 	// total number of steps in one cycle of whisking phase
-	int totalStep = whisker_loc_vel[0].size()/3;
+	int totalStep = whisker_vel[0].size()/3;
 	// for every whisker, read its angular velocity at this step
 	for (int i=0;i<m_whiskerArray.size();i++){
 		int idx = m_whiskerArray[i]->m_index;
-		btScalar a_vel_0 = whisker_loc_vel[idx][(step%totalStep)*3];
-		btScalar a_vel_1 = whisker_loc_vel[idx][(step%totalStep)*3+1];
-		btScalar a_vel_2 = whisker_loc_vel[idx][(step%totalStep)*3+2];
+		btScalar a_vel_0 = whisker_vel[idx][(step%totalStep)*3-3];
+		btScalar a_vel_1 = whisker_vel[idx][(step%totalStep)*3-2];
+		btScalar a_vel_2 = whisker_vel[idx][(step%totalStep)*3-1];
 		m_whiskerArray[i]->whisk(a_vel_0, a_vel_1, a_vel_2, getAngularVelocity());
 	}
 }

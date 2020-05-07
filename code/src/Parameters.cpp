@@ -5,7 +5,7 @@
 Parameters::Parameters(){
 	// input arguments for simulator
 	DEBUG = 0;			// enable debug mode
-	TIME_STEP = 0.00333;// set time step, this is related to output video's FPS
+	TIME_STEP = 0.01;	// set time step, this is related to output video's FPS
 	NUM_STEP_INT = 100;	// set internal time step
 	TIME_STOP = 2.;		// set overall simulation time
     PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
@@ -13,50 +13,59 @@ Parameters::Parameters(){
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
 
 	// collision object type
-	OBJECT = 0;			// 0: nothing
+	OBJECT = 4;			// 0: nothing
 						// 1: peg
 						// 2: wall
 						// 3: create object from 3D scan
+						// 4: a wall with specified curvature
+	// parameters for peg (OBJECT = 1)
+	PEG_LOC = btVector3(10, 10, 0);
+	PEG_SPEED = 10;	
+	// parameters for curved wall (OBJECT = 4)
+	curvWall_LOC = btVector3(30, 30, 0);
+	curvWall_ORIENT = btVector3(0, 0, -PI/4);
+	file_curvWall = "../data/object/curvWall250mm.obj";
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
-    WHISKER_INDEX = {30, 0, 41, 11};			  // indices for these whiskers based on a 30-whisker indexing plan
-	BLOW = 1;				// increase whisker diameter for better visualization (will affect dynamics!!)
+    WHISKER_INDEX = {31, 0, 43, 12};			  // indices for these whiskers based on a 30-whisker indexing plan
+	BLOW = 3;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;			// disable mass of bodies
 	NO_WHISKERS = 0;		// disable whiskers
 	NUM_LINKS = 20;			// set number of links
 	RHO_BASE = 1260.0;		// set densidy at whisker base
 	RHO_TIP = 1690.0;		// set density at whisker tip
-	E = 5.0;				// set young's modulus at whisker base
+	E = 5e9;				// set young's modulus (GPa) at whisker base
 	ZETA = 0.32;			// set damping coefficient zeta at whisker base
 
 	// enable/disable whisking mode for added whiskers
 	// Note: the whisking trajectory is pre-specified by user.
 	ACTIVE = 1;				
+	dir_whisking_init_angle = ACTIVE?"../data/whisking_init_angle_sample.csv":"../data/param_bp_angles.csv";
+	dir_whisking_angle = "../data/whisking_trajectory_sample.csv";
 
 	// enable/disable exploring mode for rat head
 	// Note: the head trajectory is 
-	EXPLORING = 1;
+	EXPLORING = 0;
+	dir_rathead = "../data/object/NewRatHead.obj";
+	dir_rathead_trajectory = "../data/rathead_trajectory_sample.csv";
 
-	// parameters for peg (OBJECT = 1)
-	PEG_LOC = btVector3(10, 10, 0);
-	PEG_SPEED = 10;	
 
 	// rat position/orientation parameters
 	RATHEAD_LOC = {0,0,0}; 			// set position of rathead
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 120, 120);	// set camera pos relative to rathead
-	CDIST=0.05;						// set camera distance
+	CPOS = btVector3(0, 20, 20);	// set camera pos relative to rathead
+	CDIST=50;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw
 
 	// input/output file paths
 	dir_out = "../output/test";
 	file_video = "../output/video_test.mp4";
-	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";
+	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";	
 
 }
 

@@ -24,6 +24,13 @@ void Simulation::stepSimulation(){
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
 
+		// first, push back data into data_dump 
+		if(!parameters->NO_WHISKERS && parameters->SAVE){
+			scabbers->dump_M(data_dump);
+			scabbers->dump_F(data_dump);
+			scabbers->dump_Q(data_dump);
+		}
+
 		// moving object 1
 		if(parameters->OBJECT==1){
 			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
@@ -31,7 +38,7 @@ void Simulation::stepSimulation(){
 
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-			scabbers->whisk(m_step, parameters->WHISKER_LOC_VEL);
+			scabbers->whisk(m_step, parameters->WHISKER_VEL);
 		}
 		
 		// move rat head if in EXPLORING mode
@@ -48,13 +55,6 @@ void Simulation::stepSimulation(){
 
 		// register collisions
 		scabbers->detect_collision(m_dynamicsWorld);
-
-		// save simulation output
-		if(!parameters->NO_WHISKERS && parameters->SAVE){
-			scabbers->dump_M(data_dump);
-			scabbers->dump_F(data_dump);
-			scabbers->dump_Q(data_dump);
-		}
 
 		// draw debug if enabled
 	    if(parameters->DEBUG){
@@ -164,7 +164,7 @@ void Simulation::initPhysics()
 		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(0.5,0.5,80));
 		pegShape->setMargin(0.0001);
 		m_collisionShapes.push_back(pegShape);
-		btTransform trans = createFrame(btVector3(25, 25, 0),btVector3(0, 0, 0));
+		btTransform trans = createFrame(parameters->PEG_LOC,btVector3(0, 0, 0));
 		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
@@ -175,17 +175,28 @@ void Simulation::initPhysics()
 		btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
 		wallShape->setMargin(0.0001);
 		m_collisionShapes.push_back(wallShape);
-		btTransform trans = createFrame(btVector3(45,0,0),btVector3(0,0,0));
+		btTransform trans = createFrame(btVector3(5,0,0),btVector3(0,0,PI/6));
 		wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	// create object from 3D scan
 	else if(parameters->OBJECT==3){
-
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
 		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
-
+	}
+	// create wall with different curvature
+	else if(parameters->OBJECT==4){
+		btVector4 curvWallColor = btVector4(0.6,0.6,0.6,1);
+		btTransform curvWallTransform = createFrame(parameters->curvWall_LOC, parameters->curvWall_ORIENT);
+		curvWall = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,curvWallTransform,parameters->file_curvWall,curvWallColor,btScalar(0.),btScalar(0),COL_ENV,envCollidesWith);
+	
+		// btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
+		// wallShape->setMargin(0.0001);
+		// m_collisionShapes.push_back(wallShape);
+		// btTransform trans = createFrame(btVector3(30,30,0),btVector3(0,0,-PI/4));
+		// wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
+		// m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	
 	// generate graphics
@@ -195,19 +206,19 @@ void Simulation::initPhysics()
 	camPos[0] = rathead_pos[0]+parameters->CPOS[0];
 	camPos[1] = rathead_pos[1]+parameters->CPOS[1];
 	camPos[2] = rathead_pos[2]+parameters->CPOS[2];
-	camDist = parameters->CDIST*SCALE;
+	camDist = parameters->CDIST;
 	camPitch = parameters->CPITCH;
 	camYaw = parameters->CYAW;
 	resetCamera();
 
 	// if active whisking, load whisking protraction angle trajectory
 	if (parameters->ACTIVE){
-		read_csv_float("../data/whisking_trajectory_sample.csv", parameters->WHISKER_LOC_VEL);
+		read_csv_float(parameters->dir_whisking_angle, parameters->WHISKER_VEL);
 	}
 
 	// if exploring, load data for rat head trajectory
 	if (parameters->EXPLORING){
-		read_csv_float("../data/rathead_trajectory_sample.csv", parameters->HEAD_LOC_VEL);
+		read_csv_float(parameters->dir_rathead_trajectory, parameters->HEAD_LOC_VEL);
 	}
 
 	// initialize time/step tracker

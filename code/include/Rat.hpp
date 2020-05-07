@@ -38,7 +38,7 @@ private:
 	btAlignedObjectArray<Whisker*> m_whiskerArray;
 	std::vector<std::string> whisker_names;
 	
-	btVector3 originOffset = btVector3(0,0.027,0.004);
+	btVector3 originOffset = btVector3(0,26,4);		//unit: mm
 	btVector3 originOrientation = btVector3(0,0,0);
 
 	// btScalar dtheta, angle_fwd, angle_bwd;
