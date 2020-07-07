@@ -249,7 +249,6 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
         link_prev = link;
 
 	} 
-	
 }
 
 void Whisker::whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity){
@@ -392,7 +391,7 @@ btScalar Whisker::calc_slope(btScalar S, btScalar rbase, int row, int col) const
         rtip = 0.0015;
     }
 
-    slope = (rbase-rtip)/S;    
+    slope = (rbase-rtip)/S;
     return slope;
 }
 
@@ -445,7 +444,7 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     std::vector<std::vector<float>> whisker_angles;
     std::vector<std::vector<float>> whisker_bp_coor;
     std::vector<std::vector<float>> whisker_bp_angles;
-
+	
     read_csv_string("../data/param_name.csv",whisker_names);
     read_csv_int("../data/param_side_row_col.csv",whisker_pos);
     read_csv_float("../data/param_s_a.csv",whisker_geom);
@@ -457,11 +456,13 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
 	whisker_config wc;
     for(int i=0;i<whisker_names.size();i++){
         if(!wname.compare(whisker_names[i])){
+
             wc.id = wname;
             wc.side = whisker_pos[i][0];
             wc.row = whisker_pos[i][1];
             wc.col = whisker_pos[i][2];
 			wc.L = whisker_geom[i][0]; 			// unit: mm
+			std::cout<<"test:"<<wc.L<<std::endl;
             wc.link_angles = whisker_angles[i];
             wc.base_pos = btVector3(whisker_bp_coor[i][0],whisker_bp_coor[i][1],whisker_bp_coor[i][2]);		// unit: mm
             wc.base_rot = btVector3(whisker_bp_angles[i][0]-PI/2,-whisker_bp_angles[i][1],whisker_bp_angles[i][2]+PI/2);
