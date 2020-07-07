@@ -86,7 +86,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	btTransform baseTransform = basepoint->getCenterOfMassTransform();
 
 	// create shape for whisker base
-	btCollisionShape* baseShape = new btSphereShape(radius_base*5);
+	btCollisionShape* baseShape = new btSphereShape(radius_base*5.f);
 	m_collisionShapes->push_back(baseShape);
 	base = createDynamicBody(btScalar(10),friction,baseTransform,baseShape,m_guiHelper,color);
 	// add whisker base rigid body to the world
@@ -103,12 +103,12 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	// if in ACTIVE mode, use dynamic range
 	if (ACTIVE) {	
 		if(!side){ 
-			lowerLimit = btVector3(-PI/6,-PI/6,-PI/6);
-			upperLimit = btVector3(PI/3,PI/3,PI/3);
+			lowerLimit = btVector3(-PI/6.f,-PI/6.f,-PI/6.f);
+			upperLimit = btVector3(PI/3.f,PI/3.f,PI/3.f);
 		}
 		else{
-			lowerLimit = btVector3(-PI/3,-PI/3,-PI/3);
-			upperLimit = btVector3(PI/6,PI/6,PI/6);
+			lowerLimit = btVector3(-PI/3.f,-PI/3.f,-PI/3.f);
+			upperLimit = btVector3(PI/6.f,PI/6.f,PI/6.f);
 		}
 	// if not in ACTIVE mode, use static range
 	} else {
@@ -452,10 +452,11 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     read_csv_float("../data/param_angles.csv",whisker_angles);
     read_csv_float("../data/param_bp_pos.csv",whisker_bp_coor);
     read_csv_float(parameters->dir_whisking_init_angle,whisker_bp_angles);
-    whisker_config wc;
+    
+	// find parameters for specific whiskers from "data"
+	whisker_config wc;
     for(int i=0;i<whisker_names.size();i++){
         if(!wname.compare(whisker_names[i])){
-            
             wc.id = wname;
             wc.side = whisker_pos[i][0];
             wc.row = whisker_pos[i][1];

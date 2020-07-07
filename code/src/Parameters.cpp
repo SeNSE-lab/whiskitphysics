@@ -5,7 +5,7 @@
 Parameters::Parameters(){
 	// input arguments for simulator
 	DEBUG = 0;			// enable debug mode
-	TIME_STEP = 0.01;	// set time step, this is related to output video's FPS
+	TIME_STEP = 0.001;	// set time step, this is related to output video's FPS
 	NUM_STEP_INT = 100;	// set internal time step
 	TIME_STOP = 2.;		// set overall simulation time
     PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
@@ -34,7 +34,7 @@ Parameters::Parameters(){
 	NO_MASS = 0;			// disable mass of bodies
 	NO_WHISKERS = 0;		// disable whiskers
 	NUM_LINKS = 20;			// set number of links
-	RHO_BASE = 1260.0;		// set densidy at whisker base
+	RHO_BASE = 1260.0;		// set density at whisker base
 	RHO_TIP = 1690.0;		// set density at whisker tip
 	E = 5e9;				// set young's modulus (GPa) at whisker base
 	ZETA = 0.32;			// set damping coefficient zeta at whisker base

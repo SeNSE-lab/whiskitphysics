@@ -39,6 +39,8 @@ void Simulation::stepSimulation(){
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
 			scabbers->whisk(m_step, parameters->WHISKER_VEL);
+			std::cout << "whisked" << std::endl;
+			
 		}
 		
 		// move rat head if in EXPLORING mode
@@ -175,7 +177,7 @@ void Simulation::initPhysics()
 		btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
 		wallShape->setMargin(0.0001);
 		m_collisionShapes.push_back(wallShape);
-		btTransform trans = createFrame(btVector3(5,0,0),btVector3(0,0,PI/6));
+		btTransform trans = createFrame(btVector3(50,0,0),btVector3(0,0,PI/6));
 		wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
