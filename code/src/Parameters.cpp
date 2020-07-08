@@ -7,7 +7,7 @@ Parameters::Parameters(){
 	DEBUG = 0;			// enable debug mode
 	TIME_STEP = 0.001;	// set time step, this is related to output video's FPS
 	NUM_STEP_INT = 100;	// set internal time step
-	TIME_STOP = 2.;		// set overall simulation time
+	TIME_STOP = 1.5;		// set overall simulation time
     PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
 	SAVE = 1;			// save results to csv file
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
@@ -22,14 +22,22 @@ Parameters::Parameters(){
 	PEG_LOC = btVector3(10, 10, 0);
 	PEG_SPEED = 10;	
 	// parameters for curved wall (OBJECT = 4)
-	curvWall_LOC = btVector3(30, 30, 0);
-	curvWall_ORIENT = btVector3(0, 0, -PI/4);
-	file_curvWall = "../data/object/curvWall250mm.obj";
+	curvWall_LOC = btVector3(28, 17, 0);
+	curvWall_ORIENT = btVector3(0, 0, -PI/6);
+	file_curvWall = "../data/object/curvWall100mm.obj";
 
 	// specify whisker configuration parameters
-	WHISKER_NAMES = {"LA0", "RA0", "LC1", "RC1"}; // select whiskers to simulate
-    WHISKER_INDEX = {31, 0, 43, 12};			  // indices for these whiskers based on a 30-whisker indexing plan
-	BLOW = 3;				// increase whisker diameter for better visualization (will affect dynamics!!)
+	WHISKER_NAMES = {"RC0", "RC1", "RB1", "RD1", "LC0", "LC1", "LB1", "LD1"}; // select whiskers to simulate
+    WHISKER_INDEX = {12, 13, 6, 19, 43, 44, 37, 50};			  // indices for these whiskers based on a 30-whisker indexing plan
+	// WHISKER_NAMES = {"RA0", "RA1", "RA2", "RA3", "RA4", "RB0", "RB1", "RB2", "RB3", "RB4",
+	// 				 "RC0", "RC1", "RC2", "RC3", "RC4", "RC5", "RC6", 
+	// 				 "RD0", "RD1", "RD2", "RD3", "RD4", "RD5", "RD6", 
+	// 				 "RE1", "RE2", "RE3", "RE4", "RE5", "RE6"};
+    // WHISKER_INDEX = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+	// 				 11, 12, 13, 14, 15, 16, 17,
+	// 				 18, 19, 20, 21, 22, 23, 24,
+	// 				 25, 26, 27, 28, 29, 30};		
+	BLOW = 1;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;			// disable mass of bodies
 	NO_WHISKERS = 0;		// disable whiskers
@@ -57,7 +65,7 @@ Parameters::Parameters(){
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 20, 20);	// set camera pos relative to rathead
+	CPOS = btVector3(0, 26, 20);	// set camera pos relative to rathead
 	CDIST=50;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw
