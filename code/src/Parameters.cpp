@@ -13,18 +13,14 @@ Parameters::Parameters(){
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
 
 	// collision object type
-	OBJECT = 4;			// 0: nothing
+	OBJECT = 0;			// 0: nothing
 						// 1: peg
 						// 2: wall
 						// 3: create object from 3D scan
-						// 4: a wall with specified curvature
+				
 	// parameters for peg (OBJECT = 1)
 	PEG_LOC = btVector3(10, 50, 0);
 	PEG_SPEED = 10;	
-	// parameters for curved wall (OBJECT = 4)
-	curvWall_LOC = btVector3(28, 17, 0);
-	curvWall_ORIENT = btVector3(0, 0, -PI/6);
-	file_curvWall = "../data/object/curvWall100mm.obj";
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"RC0", "RC1", "RB1", "RD1", "LC0", "LC1", "LB1", "LD1"}; // select whiskers to simulate

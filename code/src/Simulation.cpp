@@ -186,19 +186,6 @@ void Simulation::initPhysics()
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
 		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
 	}
-	// create wall with different curvature
-	else if(parameters->OBJECT==4){
-		btVector4 curvWallColor = btVector4(0.6,0.6,0.6,1);
-		btTransform curvWallTransform = createFrame(parameters->curvWall_LOC, parameters->curvWall_ORIENT);
-		curvWall = new Object(m_guiHelper,m_dynamicsWorld,&m_collisionShapes,curvWallTransform,parameters->file_curvWall,curvWallColor,btScalar(0.),btScalar(0),COL_ENV,envCollidesWith);
-	
-		// btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
-		// wallShape->setMargin(0.0001);
-		// m_collisionShapes.push_back(wallShape);
-		// btTransform trans = createFrame(btVector3(30,30,0),btVector3(0,0,-PI/4));
-		// wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
-		// m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
-	}
 	
 	// generate graphics
 	m_guiHelper->autogenerateGraphicsObjects(m_dynamicsWorld);
