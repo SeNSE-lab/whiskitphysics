@@ -107,12 +107,12 @@ int main(int argc, char* argv[])
 			if (param->WHISKER_NAMES[0] == "ALL"){
 	    		param->WHISKER_NAMES = {
 	    			"LA0","LA1","LA2","LA3","LA4",
-	    			"LB0","LB1","LB2","LB3","LB4","LB5",
+	    			"LB0","LB1","LB2","LB3","LB4",
 	    			"LC0","LC1","LC2","LC3","LC4","LC5",
 	    			"LD0","LD1","LD2","LD3","LD4","LD5",
 	    			"LE1","LE2","LE3","LE4","LE5",
 	    			"RA0","RA1","RA2","RA3","RA4",
-	    			"RB0","RB1","RB2","RB3","RB4","RB5",
+	    			"RB0","RB1","RB2","RB3","RB4",
 	    			"RC0","RC1","RC2","RC3","RC4","RC5",
 	    			"RD0","RD1","RD2","RD3","RD4","RD5",
 	    			"RE1","RE2","RE3","RE4","RE5"};
@@ -122,7 +122,7 @@ int main(int argc, char* argv[])
 	    		param->WHISKER_NAMES = {
 	    			
 	    			"RA0","RA1","RA2","RA3","RA4",
-	    			"RB0","RB1","RB2","RB3","RB4","RB5",
+	    			"RB0","RB1","RB2","RB3","RB4",
 	    			"RC0","RC1","RC2","RC3","RC4","RC5",
 	    			"RD0","RD1","RD2","RD3","RD4","RD5",
 	    			"RE1","RE2","RE3","RE4","RE5"};
@@ -130,7 +130,7 @@ int main(int argc, char* argv[])
 			else if (param->WHISKER_NAMES[0] == "L"){
 	    		param->WHISKER_NAMES = {
 	    			"LA0","LA1","LA2","LA3","LA4",
-	    			"LB0","LB1","LB2","LB3","LB4","LB5",
+	    			"LB0","LB1","LB2","LB3","LB4",
 	    			"LC0","LC1","LC2","LC3","LC4","LC5",
 	    			"LD0","LD1","LD2","LD3","LD4","LD5",
 	    			"LE1","LE2","LE3","LE4","LE5"};
