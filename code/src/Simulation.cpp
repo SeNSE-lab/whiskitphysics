@@ -84,7 +84,7 @@ void Simulation::stepSimulation(){
 
 void Simulation::initPhysics()
 {	
-	vec = btVector3(1,1,1);
+	vec = btVector3(0.5,-1,0).normalized();
 	data_dump->init(parameters->WHISKER_NAMES);
 
 	// set visual axis

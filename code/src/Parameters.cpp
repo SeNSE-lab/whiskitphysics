@@ -19,7 +19,7 @@ Parameters::Parameters(){
 						// 3: create object from 3D scan
 						// 4: a wall with specified curvature
 	// parameters for peg (OBJECT = 1)
-	PEG_LOC = btVector3(10, 10, 0);
+	PEG_LOC = btVector3(10, 50, 0);
 	PEG_SPEED = 10;	
 	// parameters for curved wall (OBJECT = 4)
 	curvWall_LOC = btVector3(28, 17, 0);
