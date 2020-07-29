@@ -243,72 +243,89 @@ void write_1D_string_csv(std::string filename, std::vector<std::string> data){
 void read_csv_string(std::string fileName, std::vector<std::string> &dataList){
     
     std::ifstream file(fileName);
-
     std::string line = "";
     std::string delimeter = ",";
 
-    // Iterate through each line and split the content using delimeter
-    while (getline(file, line))
-    {
-        
-        dataList.push_back(line);
+    if (file.good()){
+        // Iterate through each line and split the content using delimeter
+        while (getline(file, line))
+        {
+            
+            dataList.push_back(line);
+        }
+        // Close the File
+        file.close();
     }
-    // Close the File
-    file.close();
-
+    else{
+        std::cout << "\n======== ABORT SIMULATION ========" << std::endl;
+        std::cout << "Failure in loading file " << fileName << "\n" << std::endl;
+        exit (EXIT_FAILURE);
+    }
 }
 
 void read_csv_int(std::string fileName, std::vector<std::vector<int> > &dataList){
     
     std::ifstream file(fileName);
-
     std::string line = "";
     std::string delimeter = ",";
 
-    
-    // Iterate through each line and split the content using delimeter
-    while (getline(file, line))
-    {
-        std::vector<std::string> vec_string;
-        std::vector<int> vec_num;
-        boost::algorithm::split(vec_string, line, boost::is_any_of(delimeter));
+    if (file.good()){
+        // Iterate through each line and split the content using delimeter
+        while (getline(file, line))
+        {
+            std::vector<std::string> vec_string;
+            std::vector<int> vec_num;
+            boost::algorithm::split(vec_string, line, boost::is_any_of(delimeter));
 
-        // convert to float
-        for(int i=0;i<vec_string.size();i++){
-            vec_num.push_back(boost::lexical_cast<int>(vec_string[i]));
+            // convert to float
+            for(int i=0;i<vec_string.size();i++){
+                vec_num.push_back(boost::lexical_cast<int>(vec_string[i]));
+            }
+            
+            dataList.push_back(vec_num);
         }
-        
-        dataList.push_back(vec_num);
+        // Close the File
+        file.close();
     }
-    // Close the File
-    file.close();
+    else{
+        std::cout << "\n======== ABORT SIMULATION ========" << std::endl;
+        std::cout << "Failure in loading file " << fileName << "\n" << std::endl;
+        exit (EXIT_FAILURE);
+    }
 
 }
 
 void read_csv_float(std::string fileName, std::vector<std::vector<float> > &dataList){
     
-    std::ifstream file(fileName);
+    
 
+    std::ifstream file(fileName);
     std::string line = "";
     std::string delimeter = ",";
 
-
+    if (file.good()){
     // Iterate through each line and split the content using delimeter
-    while (getline(file, line))
-    {
-        std::vector<std::string> vec_string;
-        std::vector<float> vec_num;
-        boost::algorithm::split(vec_string, line, boost::is_any_of(delimeter));
+        while (getline(file, line))
+        {
+            std::vector<std::string> vec_string;
+            std::vector<float> vec_num;
+            boost::algorithm::split(vec_string, line, boost::is_any_of(delimeter));
 
-        // convert to float
-        for(int i=0;i<vec_string.size();i++){
-            vec_num.push_back(boost::lexical_cast<float>(vec_string[i]));
+            // convert to float
+            for(int i=0;i<vec_string.size();i++){
+                vec_num.push_back(boost::lexical_cast<float>(vec_string[i]));
+            }
+            
+            dataList.push_back(vec_num);
         }
-        
-        dataList.push_back(vec_num);
+        // Close the File
+        file.close();
     }
-    // Close the File
-    file.close();
+    else{
+        std::cout << "\n======== ABORT SIMULATION ========" << std::endl;
+        std::cout << "Failure in loading file " << fileName << "\n" << std::endl;
+        exit (EXIT_FAILURE);
+    }
 
 }
 

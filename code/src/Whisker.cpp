@@ -467,6 +467,11 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
             wc.base_rot = btVector3(whisker_bp_angles[i][0]-PI/2,-whisker_bp_angles[i][1],whisker_bp_angles[i][2]+PI/2);
             break;
         }
+		else{
+			std::cout << "\n======== ABORT SIMULATION ========" << std::endl;
+			std::cout << "--> " << wname << " is an invalid whisker ID.\n" << std::endl;
+			exit (EXIT_FAILURE);
+		}
     }
 
     return wc;
