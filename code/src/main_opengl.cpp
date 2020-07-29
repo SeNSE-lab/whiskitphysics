@@ -183,7 +183,6 @@ int main(int argc, char** argv)
 
 	    	else if (param->WHISKER_NAMES[0] == "R"){
 	    		param->WHISKER_NAMES = {
-	    			
 	    			"RA0","RA1","RA2","RA3","RA4",
 	    			"RB0","RB1","RB2","RB3","RB4",
 	    			"RC0","RC1","RC2","RC3","RC4","RC5",

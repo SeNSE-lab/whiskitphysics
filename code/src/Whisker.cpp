@@ -454,7 +454,9 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     
 	// find parameters for specific whiskers from "data"
 	whisker_config wc;
+	int wfound = 0;
     for(int i=0;i<whisker_names.size();i++){
+		
         if(!wname.compare(whisker_names[i])){
 			wc.index = i;
             wc.id = wname;
@@ -465,15 +467,16 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
             wc.link_angles = whisker_angles[i];
             wc.base_pos = btVector3(whisker_bp_coor[i][0],whisker_bp_coor[i][1],whisker_bp_coor[i][2]);		// unit: mm
             wc.base_rot = btVector3(whisker_bp_angles[i][0]-PI/2,-whisker_bp_angles[i][1],whisker_bp_angles[i][2]+PI/2);
+			wfound = 1;
             break;
         }
-		else{
-			std::cout << "\n======== ABORT SIMULATION ========" << std::endl;
-			std::cout << "--> " << wname << " is an invalid whisker ID.\n" << std::endl;
-			exit (EXIT_FAILURE);
-		}
+		
     }
-
+	if (!wfound){
+		std::cout << "\n======== ABORT SIMULATION ========" << std::endl;
+		std::cout << "--> " << wname << " is an invalid whisker ID.\n" << std::endl;
+		exit (EXIT_FAILURE);
+	}
     return wc;
     
 }
