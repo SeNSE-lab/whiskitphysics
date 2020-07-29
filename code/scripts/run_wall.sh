@@ -11,6 +11,6 @@
 --TIME_STOP 1.0 \
 --WHISKER_NAMES R \
 --SAVE_VIDEO 0 \
---SAVE 1 \
+--SAVE 0 \
 --file_video "../output/video_wall.mp4" \
 --dir_out ../output/full_array_wall

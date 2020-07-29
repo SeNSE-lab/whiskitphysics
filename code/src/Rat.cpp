@@ -22,7 +22,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
 		for(int w=0;w<parameters->WHISKER_NAMES.size();w++){
-			Whisker* whisker = new Whisker(world, helper, shapes, parameters->WHISKER_NAMES[w], parameters->WHISKER_INDEX[w], parameters);
+			Whisker* whisker = new Whisker(world, helper, shapes, parameters->WHISKER_NAMES[w], parameters);
 			whisker->buildWhisker(rathead->body, head2origin);
 			m_whiskerArray.push_back(whisker);
 		}
@@ -66,9 +66,10 @@ const btVector3 Rat::getAngularVelocity(){
 void Rat::whisk(int step, std::vector<std::vector<float>> whisker_vel){
 	// total number of steps in one cycle of whisking phase
 	int totalStep = whisker_vel[0].size()/3;
+	
 	// for every whisker, read its angular velocity at this step
 	for (int i=0;i<m_whiskerArray.size();i++){
-		int idx = m_whiskerArray[i]->m_index;
+		int idx = m_whiskerArray[i]->idx;
 		btScalar a_vel_0 = whisker_vel[idx][(step%totalStep)*3-3];
 		btScalar a_vel_1 = whisker_vel[idx][(step%totalStep)*3-2];
 		btScalar a_vel_2 = whisker_vel[idx][(step%totalStep)*3-1];

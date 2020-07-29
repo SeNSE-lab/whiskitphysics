@@ -28,15 +28,11 @@ Parameters::Parameters(){
 
 	// specify whisker configuration parameters
 	WHISKER_NAMES = {"RC0", "RC1", "RB1", "RD1", "LC0", "LC1", "LB1", "LD1"}; // select whiskers to simulate
-    WHISKER_INDEX = {12, 13, 6, 19, 43, 44, 37, 50};			  // indices for these whiskers based on a 30-whisker indexing plan
 	// WHISKER_NAMES = {"RA0", "RA1", "RA2", "RA3", "RA4", "RB0", "RB1", "RB2", "RB3", "RB4",
 	// 				 "RC0", "RC1", "RC2", "RC3", "RC4", "RC5", "RC6", 
 	// 				 "RD0", "RD1", "RD2", "RD3", "RD4", "RD5", "RD6", 
 	// 				 "RE1", "RE2", "RE3", "RE4", "RE5", "RE6"};
-    // WHISKER_INDEX = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
-	// 				 11, 12, 13, 14, 15, 16, 17,
-	// 				 18, 19, 20, 21, 22, 23, 24,
-	// 				 25, 26, 27, 28, 29, 30};		
+    	
 	BLOW = 1;				// increase whisker diameter for better visualization (will affect dynamics!!)
 	NO_CURVATURE = 0;		// disable curvature
 	NO_MASS = 0;			// disable mass of bodies

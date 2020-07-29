@@ -1,13 +1,12 @@
 #include "Whisker.hpp"
 
-Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, std::string w_name, int w_index, Parameters* parameters){
+Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, std::string w_name, Parameters* parameters){
 	color = btVector4(0.1, 0.1, 0.1, 1);
 	// save parameters and global variables to whisker object
 	m_collisionShapes = shapes;	// shape vector pointer
 	m_dynamicsWorld = world;	// simulation world pointer
 	m_guiHelper = helper;		// gui helper pointer
 
-    m_index = w_index;
 	friction = 0.5;
 	m_angle = 0.;		// initialize protraction angle
 	m_time = 0;			// initialize time
@@ -27,6 +26,7 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 
 	//Whisker specific configuration parameters					// unit:
 	whisker_config config = get_config(w_name, parameters);
+	idx = config.index;
 	side = config.side;											// -
 	row = config.row;											// -
 	col = config.col;											// -
@@ -456,6 +456,7 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
 	whisker_config wc;
     for(int i=0;i<whisker_names.size();i++){
         if(!wname.compare(whisker_names[i])){
+			wc.index = i;
             wc.id = wname;
             wc.side = whisker_pos[i][0];
             wc.row = whisker_pos[i][1];

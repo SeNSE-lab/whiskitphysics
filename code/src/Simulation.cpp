@@ -39,7 +39,6 @@ void Simulation::stepSimulation(){
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
 			scabbers->whisk(m_step, parameters->WHISKER_VEL);
-			std::cout << "whisked" << std::endl;
 			
 		}
 		

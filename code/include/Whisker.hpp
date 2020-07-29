@@ -34,6 +34,7 @@ subject to the following restrictions:
 #include "math.h"
 
 struct whisker_config{
+	int index;
 	std::string id;
 	int side;
 	int row;
@@ -128,10 +129,10 @@ private:
 
 public:
 
-	Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* shapes, std::string w_name, int w_index, Parameters* parameters);
+	Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* shapes, std::string w_name, Parameters* parameters);
 	~Whisker(){}
-	int m_index;
-	
+
+	int idx;	
 	void buildWhisker(btRigidBody* refBody, btTransform offset);
 	// void updateVelocity(btScalar dtheta, int activeFlag);
 	// void updateTransform();
