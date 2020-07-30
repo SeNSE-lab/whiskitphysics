@@ -31,6 +31,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btAlignedObjectArray.h"
 #include "LinearMath/btQuaternion.h"
+#include "CommonInterfaces/CommonRigidBodyBase.h"
+#include "CommonInterfaces/CommonGUIHelperInterface.h"
+
 
 class Simulation* SimulationCreateFunc(struct CommonExampleOptions& options);
 
@@ -56,10 +59,12 @@ private:
 	Object* curvWall;
 	output* data_dump = new output();
 	std::vector<float> this_loc_vel;
-
+	
 
 public:
-	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){}
+	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){
+		TimeSeriesCanvas* m_timeSeriesCanvas = new TimeSeriesCanvas(helper->get2dCanvasInterface(),256,256,"Position and Velocity");
+	}
 	virtual ~Simulation(){}
 	virtual void initPhysics();
 	virtual void stepSimulation();
