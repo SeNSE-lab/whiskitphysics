@@ -39,16 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/HelloWorld/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/BasicDemo/cmake_install.cmake")
   include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/ExampleBrowser/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/RobotSimulator/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/SharedMemory/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/ThirdPartyLibs/Gwen/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/ThirdPartyLibs/BussIK/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/ThirdPartyLibs/clsocket/cmake_install.cmake")
   include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/OpenGLWindow/cmake_install.cmake")
-  include("/home/nadina/Github/whiskitphysics/code/bulletlib/build/examples/TwoJoint/cmake_install.cmake")
 
 endif()
 

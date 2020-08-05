@@ -6,7 +6,7 @@ SET(MSVC_INCREMENTAL_DEFAULT ON)
 PROJECT(BULLET_PHYSICS)
 FILE (STRINGS "VERSION" BULLET_VERSION)
 
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_HOME_DIRECTORY}/lib)
+SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 SET(BULLET_PHYSICS_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 IF(COMMAND cmake_policy)
@@ -341,76 +341,74 @@ IF(BUILD_BULLET2_DEMOS)
 
 ENDIF(BUILD_BULLET2_DEMOS)
 
-
-
-OPTION(BUILD_EXTRAS "Set when you want to build the extras" ON)
-IF(BUILD_EXTRAS)
-  SUBDIRS(Extras)
-ENDIF(BUILD_EXTRAS)
+# OPTION(BUILD_EXTRAS "Set when you want to build the extras" ON)
+# IF(BUILD_EXTRAS)
+#   SUBDIRS(Extras)
+# ENDIF(BUILD_EXTRAS)
 
 
 SUBDIRS(src)
 
-IF("${CMAKE_GENERATOR}" MATCHES "Unix Makefiles")
-	OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
-ELSE()
-	IF(APPLE AND FRAMEWORK)
-		OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
-	ELSE()
-#by default, don't enable the 'INSTALL' option for Xcode and MSVC projectfiles
-		OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
-	ENDIF()
-ENDIF()
+# IF("${CMAKE_GENERATOR}" MATCHES "Unix Makefiles")
+# 	OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
+# ELSE()
+# 	IF(APPLE AND FRAMEWORK)
+# 		OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
+# 	ELSE()
+# #by default, don't enable the 'INSTALL' option for Xcode and MSVC projectfiles
+# 		OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
+# 	ENDIF()
+# ENDIF()
 
 
-IF(INSTALL_LIBS)
-	#INSTALL of other files requires CMake 2.6
-	IF(BUILD_EXTRAS)
-		IF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
-			OPTION(INSTALL_EXTRA_LIBS "Set when you want extra libraries installed" ON)
-		ENDIF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
-	ENDIF(BUILD_EXTRAS)
+# IF(INSTALL_LIBS)
+# 	#INSTALL of other files requires CMake 2.6
+# 	IF(BUILD_EXTRAS)
+# 		IF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
+# 			OPTION(INSTALL_EXTRA_LIBS "Set when you want extra libraries installed" ON)
+# 		ENDIF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
+# 	ENDIF(BUILD_EXTRAS)
 
-	SET (LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)" )
-	SET (LIB_DESTINATION "lib${LIB_SUFFIX}" CACHE STRING "Library directory name")
-	## the following are directories where stuff will be installed to
-	SET(INCLUDE_INSTALL_DIR "include/bullet/" CACHE PATH "The subdirectory to the header prefix")
-	SET(PKGCONFIG_INSTALL_PREFIX "lib${LIB_SUFFIX}/pkgconfig/" CACHE STRING "Base directory for pkgconfig files")
-	IF(NOT MSVC)
-	  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/bullet.pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/bullet.pc @ONLY)
-  	INSTALL(
-		FILES
-		${CMAKE_CURRENT_BINARY_DIR}/bullet.pc
-		DESTINATION
-		${PKGCONFIG_INSTALL_PREFIX})
-	ENDIF(NOT MSVC)
-ENDIF()
+# 	SET (LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)" )
+# 	SET (LIB_DESTINATION "lib${LIB_SUFFIX}" CACHE STRING "Library directory name")
+# 	## the following are directories where stuff will be installed to
+# 	SET(INCLUDE_INSTALL_DIR "include/bullet/" CACHE PATH "The subdirectory to the header prefix")
+# 	SET(PKGCONFIG_INSTALL_PREFIX "lib${LIB_SUFFIX}/pkgconfig/" CACHE STRING "Base directory for pkgconfig files")
+# 	IF(NOT MSVC)
+# 	  CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/bullet.pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/bullet.pc @ONLY)
+#   	INSTALL(
+# 		FILES
+# 		${CMAKE_CURRENT_BINARY_DIR}/bullet.pc
+# 		DESTINATION
+# 		${PKGCONFIG_INSTALL_PREFIX})
+# 	ENDIF(NOT MSVC)
+# ENDIF()
 
 
-OPTION(BUILD_UNIT_TESTS "Build Unit Tests"	OFF)
+# OPTION(BUILD_UNIT_TESTS "Build Unit Tests"	OFF)
 
-IF (BUILD_UNIT_TESTS)
-	ENABLE_TESTING()
-	SUBDIRS(test)
-ENDIF()
+# IF (BUILD_UNIT_TESTS)
+# 	ENABLE_TESTING()
+# 	SUBDIRS(test)
+# ENDIF()
 
-set (BULLET_CONFIG_CMAKE_PATH lib${LIB_SUFFIX}/cmake/bullet )
-list (APPEND BULLET_LIBRARIES LinearMath)
-list (APPEND BULLET_LIBRARIES Bullet3Common)
-list (APPEND BULLET_LIBRARIES BulletInverseDynamics)
-list (APPEND BULLET_LIBRARIES BulletCollision)
-list (APPEND BULLET_LIBRARIES BulletDynamics)
-list (APPEND BULLET_LIBRARIES BulletSoftBody)
-set (BULLET_USE_FILE ${BULLET_CONFIG_CMAKE_PATH}/UseBullet.cmake)
-configure_file 	( ${CMAKE_CURRENT_SOURCE_DIR}/BulletConfig.cmake.in
-					${CMAKE_CURRENT_BINARY_DIR}/BulletConfig.cmake
-					@ONLY ESCAPE_QUOTES
-				)
-OPTION(INSTALL_CMAKE_FILES "Install generated CMake files" OFF)
+# set (BULLET_CONFIG_CMAKE_PATH lib${LIB_SUFFIX}/cmake/bullet )
+# list (APPEND BULLET_LIBRARIES LinearMath)
+# list (APPEND BULLET_LIBRARIES Bullet3Common)
+# list (APPEND BULLET_LIBRARIES BulletInverseDynamics)
+# list (APPEND BULLET_LIBRARIES BulletCollision)
+# list (APPEND BULLET_LIBRARIES BulletDynamics)
+# list (APPEND BULLET_LIBRARIES BulletSoftBody)
+# set (BULLET_USE_FILE ${BULLET_CONFIG_CMAKE_PATH}/UseBullet.cmake)
+# configure_file 	( ${CMAKE_CURRENT_SOURCE_DIR}/BulletConfig.cmake.in
+# 					${CMAKE_CURRENT_BINARY_DIR}/BulletConfig.cmake
+# 					@ONLY ESCAPE_QUOTES
+# 				)
+# OPTION(INSTALL_CMAKE_FILES "Install generated CMake files" OFF)
 
-IF (INSTALL_CMAKE_FILES)
-	install ( FILES ${CMAKE_CURRENT_SOURCE_DIR}/UseBullet.cmake
-		${CMAKE_CURRENT_BINARY_DIR}/BulletConfig.cmake
-		DESTINATION ${BULLET_CONFIG_CMAKE_PATH}
-	)
-ENDIF (INSTALL_CMAKE_FILES)
+# IF (INSTALL_CMAKE_FILES)
+# 	install ( FILES ${CMAKE_CURRENT_SOURCE_DIR}/UseBullet.cmake
+# 		${CMAKE_CURRENT_BINARY_DIR}/BulletConfig.cmake
+# 		DESTINATION ${BULLET_CONFIG_CMAKE_PATH}
+# 	)
+# ENDIF (INSTALL_CMAKE_FILES)

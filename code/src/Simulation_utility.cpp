@@ -1,6 +1,6 @@
 
 
-#include "Simulation_utility.hpp"
+#include "Simulation_utility.h"
 
 // Helper Functions for simulation
 // ================================

@@ -6,7 +6,7 @@
 #include "../ImportObjDemo/Wavefront2GLInstanceGraphicsShape.h"
 #include "../../Utils/b3ResourcePath.h"
 #include "Bullet3Common/b3FileUtils.h"
-#include "stb_image/stb_image.h"
+#include "../../ThirdPartyLibs/stb_image/stb_image.h"
 #include "../ImportObjDemo/LoadMeshFromObj.h"
 #include "Bullet3Common/b3HashMap.h"
 

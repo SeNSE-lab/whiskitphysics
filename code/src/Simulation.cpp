@@ -7,7 +7,7 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 */
 
 
-#include "Simulation.hpp"
+#include "Simulation.h"
 
 btVector4 BLUE = btVector4(0.,0.,1.0,1);
 btVector4 RED = btVector4(1.,0.,0.0,1);

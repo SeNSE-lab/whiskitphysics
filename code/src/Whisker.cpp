@@ -1,4 +1,4 @@
-#include "Whisker.hpp"
+#include "Whisker.h"
 
 Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAlignedObjectArray<btCollisionShape*>* shapes, std::string w_name, Parameters* parameters){
 	color = btVector4(0.1, 0.1, 0.1, 1);

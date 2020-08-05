@@ -56,51 +56,16 @@ CMAKE_BINARY_DIR = /home/nadina/Github/whiskitphysics/code/bulletlib/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -112,17 +77,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -156,18 +110,300 @@ depend:
 	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+examples/CMakeFiles/BulletExampleLib.dir/rule:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/BulletExampleLib.dir/rule
+.PHONY : examples/CMakeFiles/BulletExampleLib.dir/rule
+
+# Convenience name for target.
+BulletExampleLib: examples/CMakeFiles/BulletExampleLib.dir/rule
+
+.PHONY : BulletExampleLib
+
+# fast build rule for target.
+BulletExampleLib/fast:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/build
+.PHONY : BulletExampleLib/fast
+
+# target to build an object file
+Importers/ImportColladaDemo/LoadMeshFromCollada.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportColladaDemo/LoadMeshFromCollada.o
+.PHONY : Importers/ImportColladaDemo/LoadMeshFromCollada.o
+
+# target to preprocess a source file
+Importers/ImportColladaDemo/LoadMeshFromCollada.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportColladaDemo/LoadMeshFromCollada.i
+.PHONY : Importers/ImportColladaDemo/LoadMeshFromCollada.i
+
+# target to generate assembly for a file
+Importers/ImportColladaDemo/LoadMeshFromCollada.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportColladaDemo/LoadMeshFromCollada.s
+.PHONY : Importers/ImportColladaDemo/LoadMeshFromCollada.s
+
+# target to build an object file
+Importers/ImportMeshUtility/b3ImportMeshUtility.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportMeshUtility/b3ImportMeshUtility.o
+.PHONY : Importers/ImportMeshUtility/b3ImportMeshUtility.o
+
+# target to preprocess a source file
+Importers/ImportMeshUtility/b3ImportMeshUtility.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportMeshUtility/b3ImportMeshUtility.i
+.PHONY : Importers/ImportMeshUtility/b3ImportMeshUtility.i
+
+# target to generate assembly for a file
+Importers/ImportMeshUtility/b3ImportMeshUtility.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportMeshUtility/b3ImportMeshUtility.s
+.PHONY : Importers/ImportMeshUtility/b3ImportMeshUtility.s
+
+# target to build an object file
+Importers/ImportObjDemo/LoadMeshFromObj.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportObjDemo/LoadMeshFromObj.o
+.PHONY : Importers/ImportObjDemo/LoadMeshFromObj.o
+
+# target to preprocess a source file
+Importers/ImportObjDemo/LoadMeshFromObj.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportObjDemo/LoadMeshFromObj.i
+.PHONY : Importers/ImportObjDemo/LoadMeshFromObj.i
+
+# target to generate assembly for a file
+Importers/ImportObjDemo/LoadMeshFromObj.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportObjDemo/LoadMeshFromObj.s
+.PHONY : Importers/ImportObjDemo/LoadMeshFromObj.s
+
+# target to build an object file
+Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
+.PHONY : Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o
+
+# target to preprocess a source file
+Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
+.PHONY : Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i
+
+# target to generate assembly for a file
+Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
+.PHONY : Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s
+
+# target to build an object file
+Importers/ImportURDFDemo/BulletUrdfImporter.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/BulletUrdfImporter.o
+.PHONY : Importers/ImportURDFDemo/BulletUrdfImporter.o
+
+# target to preprocess a source file
+Importers/ImportURDFDemo/BulletUrdfImporter.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/BulletUrdfImporter.i
+.PHONY : Importers/ImportURDFDemo/BulletUrdfImporter.i
+
+# target to generate assembly for a file
+Importers/ImportURDFDemo/BulletUrdfImporter.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/BulletUrdfImporter.s
+.PHONY : Importers/ImportURDFDemo/BulletUrdfImporter.s
+
+# target to build an object file
+Importers/ImportURDFDemo/UrdfParser.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/UrdfParser.o
+.PHONY : Importers/ImportURDFDemo/UrdfParser.o
+
+# target to preprocess a source file
+Importers/ImportURDFDemo/UrdfParser.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/UrdfParser.i
+.PHONY : Importers/ImportURDFDemo/UrdfParser.i
+
+# target to generate assembly for a file
+Importers/ImportURDFDemo/UrdfParser.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/UrdfParser.s
+.PHONY : Importers/ImportURDFDemo/UrdfParser.s
+
+# target to build an object file
+Importers/ImportURDFDemo/urdfStringSplit.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/urdfStringSplit.o
+.PHONY : Importers/ImportURDFDemo/urdfStringSplit.o
+
+# target to preprocess a source file
+Importers/ImportURDFDemo/urdfStringSplit.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/urdfStringSplit.i
+.PHONY : Importers/ImportURDFDemo/urdfStringSplit.i
+
+# target to generate assembly for a file
+Importers/ImportURDFDemo/urdfStringSplit.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Importers/ImportURDFDemo/urdfStringSplit.s
+.PHONY : Importers/ImportURDFDemo/urdfStringSplit.s
+
+# target to build an object file
+ThirdPartyLibs/Wavefront/tiny_obj_loader.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/Wavefront/tiny_obj_loader.o
+.PHONY : ThirdPartyLibs/Wavefront/tiny_obj_loader.o
+
+# target to preprocess a source file
+ThirdPartyLibs/Wavefront/tiny_obj_loader.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/Wavefront/tiny_obj_loader.i
+.PHONY : ThirdPartyLibs/Wavefront/tiny_obj_loader.i
+
+# target to generate assembly for a file
+ThirdPartyLibs/Wavefront/tiny_obj_loader.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/Wavefront/tiny_obj_loader.s
+.PHONY : ThirdPartyLibs/Wavefront/tiny_obj_loader.s
+
+# target to build an object file
+ThirdPartyLibs/stb_image/stb_image.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/stb_image/stb_image.o
+.PHONY : ThirdPartyLibs/stb_image/stb_image.o
+
+# target to preprocess a source file
+ThirdPartyLibs/stb_image/stb_image.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/stb_image/stb_image.i
+.PHONY : ThirdPartyLibs/stb_image/stb_image.i
+
+# target to generate assembly for a file
+ThirdPartyLibs/stb_image/stb_image.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/stb_image/stb_image.s
+.PHONY : ThirdPartyLibs/stb_image/stb_image.s
+
+# target to build an object file
+ThirdPartyLibs/tinyxml/tinystr.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinystr.o
+.PHONY : ThirdPartyLibs/tinyxml/tinystr.o
+
+# target to preprocess a source file
+ThirdPartyLibs/tinyxml/tinystr.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinystr.i
+.PHONY : ThirdPartyLibs/tinyxml/tinystr.i
+
+# target to generate assembly for a file
+ThirdPartyLibs/tinyxml/tinystr.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinystr.s
+.PHONY : ThirdPartyLibs/tinyxml/tinystr.s
+
+# target to build an object file
+ThirdPartyLibs/tinyxml/tinyxml.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxml.o
+.PHONY : ThirdPartyLibs/tinyxml/tinyxml.o
+
+# target to preprocess a source file
+ThirdPartyLibs/tinyxml/tinyxml.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxml.i
+.PHONY : ThirdPartyLibs/tinyxml/tinyxml.i
+
+# target to generate assembly for a file
+ThirdPartyLibs/tinyxml/tinyxml.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxml.s
+.PHONY : ThirdPartyLibs/tinyxml/tinyxml.s
+
+# target to build an object file
+ThirdPartyLibs/tinyxml/tinyxmlerror.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxmlerror.o
+.PHONY : ThirdPartyLibs/tinyxml/tinyxmlerror.o
+
+# target to preprocess a source file
+ThirdPartyLibs/tinyxml/tinyxmlerror.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxmlerror.i
+.PHONY : ThirdPartyLibs/tinyxml/tinyxmlerror.i
+
+# target to generate assembly for a file
+ThirdPartyLibs/tinyxml/tinyxmlerror.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxmlerror.s
+.PHONY : ThirdPartyLibs/tinyxml/tinyxmlerror.s
+
+# target to build an object file
+ThirdPartyLibs/tinyxml/tinyxmlparser.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxmlparser.o
+.PHONY : ThirdPartyLibs/tinyxml/tinyxmlparser.o
+
+# target to preprocess a source file
+ThirdPartyLibs/tinyxml/tinyxmlparser.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxmlparser.i
+.PHONY : ThirdPartyLibs/tinyxml/tinyxmlparser.i
+
+# target to generate assembly for a file
+ThirdPartyLibs/tinyxml/tinyxmlparser.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/ThirdPartyLibs/tinyxml/tinyxmlparser.s
+.PHONY : ThirdPartyLibs/tinyxml/tinyxmlparser.s
+
+# target to build an object file
+Utils/b3Clock.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Utils/b3Clock.o
+.PHONY : Utils/b3Clock.o
+
+# target to preprocess a source file
+Utils/b3Clock.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Utils/b3Clock.i
+.PHONY : Utils/b3Clock.i
+
+# target to generate assembly for a file
+Utils/b3Clock.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Utils/b3Clock.s
+.PHONY : Utils/b3Clock.s
+
+# target to build an object file
+Utils/b3ResourcePath.o:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Utils/b3ResourcePath.o
+.PHONY : Utils/b3ResourcePath.o
+
+# target to preprocess a source file
+Utils/b3ResourcePath.i:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Utils/b3ResourcePath.i
+.PHONY : Utils/b3ResourcePath.i
+
+# target to generate assembly for a file
+Utils/b3ResourcePath.s:
+	cd /home/nadina/Github/whiskitphysics/code/bulletlib/build && $(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/Utils/b3ResourcePath.s
+.PHONY : Utils/b3ResourcePath.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... list_install_components"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... BulletExampleLib"
+	@echo "... edit_cache"
+	@echo "... Importers/ImportColladaDemo/LoadMeshFromCollada.o"
+	@echo "... Importers/ImportColladaDemo/LoadMeshFromCollada.i"
+	@echo "... Importers/ImportColladaDemo/LoadMeshFromCollada.s"
+	@echo "... Importers/ImportMeshUtility/b3ImportMeshUtility.o"
+	@echo "... Importers/ImportMeshUtility/b3ImportMeshUtility.i"
+	@echo "... Importers/ImportMeshUtility/b3ImportMeshUtility.s"
+	@echo "... Importers/ImportObjDemo/LoadMeshFromObj.o"
+	@echo "... Importers/ImportObjDemo/LoadMeshFromObj.i"
+	@echo "... Importers/ImportObjDemo/LoadMeshFromObj.s"
+	@echo "... Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.o"
+	@echo "... Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.i"
+	@echo "... Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.s"
+	@echo "... Importers/ImportURDFDemo/BulletUrdfImporter.o"
+	@echo "... Importers/ImportURDFDemo/BulletUrdfImporter.i"
+	@echo "... Importers/ImportURDFDemo/BulletUrdfImporter.s"
+	@echo "... Importers/ImportURDFDemo/UrdfParser.o"
+	@echo "... Importers/ImportURDFDemo/UrdfParser.i"
+	@echo "... Importers/ImportURDFDemo/UrdfParser.s"
+	@echo "... Importers/ImportURDFDemo/urdfStringSplit.o"
+	@echo "... Importers/ImportURDFDemo/urdfStringSplit.i"
+	@echo "... Importers/ImportURDFDemo/urdfStringSplit.s"
+	@echo "... ThirdPartyLibs/Wavefront/tiny_obj_loader.o"
+	@echo "... ThirdPartyLibs/Wavefront/tiny_obj_loader.i"
+	@echo "... ThirdPartyLibs/Wavefront/tiny_obj_loader.s"
+	@echo "... ThirdPartyLibs/stb_image/stb_image.o"
+	@echo "... ThirdPartyLibs/stb_image/stb_image.i"
+	@echo "... ThirdPartyLibs/stb_image/stb_image.s"
+	@echo "... ThirdPartyLibs/tinyxml/tinystr.o"
+	@echo "... ThirdPartyLibs/tinyxml/tinystr.i"
+	@echo "... ThirdPartyLibs/tinyxml/tinystr.s"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxml.o"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxml.i"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxml.s"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxmlerror.o"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxmlerror.i"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxmlerror.s"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxmlparser.o"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxmlparser.i"
+	@echo "... ThirdPartyLibs/tinyxml/tinyxmlparser.s"
+	@echo "... Utils/b3Clock.o"
+	@echo "... Utils/b3Clock.i"
+	@echo "... Utils/b3Clock.s"
+	@echo "... Utils/b3ResourcePath.o"
+	@echo "... Utils/b3ResourcePath.i"
+	@echo "... Utils/b3ResourcePath.s"
 .PHONY : help
 
 

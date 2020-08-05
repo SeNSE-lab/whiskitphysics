@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
+../examples/../src/Bullet3Common/b3AlignedAllocator.h
 b3Scalar.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
+../examples/../src/Bullet3Common/b3Scalar.h
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedObjectArray.h
+../examples/../src/Bullet3Common/b3AlignedObjectArray.h
 b3Scalar.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
+../examples/../src/Bullet3Common/b3Scalar.h
 b3AlignedAllocator.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
+../examples/../src/Bullet3Common/b3AlignedAllocator.h
 memory.h
 -
 string.h
@@ -22,39 +22,39 @@ string.h
 new
 -
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
+../examples/../src/Bullet3Common/b3Logging.h
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Matrix3x3.h
+../examples/../src/Bullet3Common/b3Matrix3x3.h
 b3Vector3.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
+../examples/../src/Bullet3Common/b3Vector3.h
 b3Quaternion.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
+../examples/../src/Bullet3Common/b3Quaternion.h
 stdio.h
 -
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
+../examples/../src/Bullet3Common/b3MinMax.h
 b3Scalar.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
+../examples/../src/Bullet3Common/b3Scalar.h
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
+../examples/../src/Bullet3Common/b3QuadWord.h
 b3Scalar.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
+../examples/../src/Bullet3Common/b3Scalar.h
 b3MinMax.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
+../examples/../src/Bullet3Common/b3MinMax.h
 altivec.h
 -
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
+../examples/../src/Bullet3Common/b3Quaternion.h
 b3Vector3.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
+../examples/../src/Bullet3Common/b3Vector3.h
 b3QuadWord.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
+../examples/../src/Bullet3Common/b3QuadWord.h
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3ResizablePool.h
+../examples/../src/Bullet3Common/b3ResizablePool.h
 Bullet3Common/b3AlignedObjectArray.h
-../examples/OpenGLWindow/../../src/Bullet3Common/Bullet3Common/b3AlignedObjectArray.h
+../examples/../src/Bullet3Common/Bullet3Common/b3AlignedObjectArray.h
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
+../examples/../src/Bullet3Common/b3Scalar.h
 math.h
 -
 stdlib.h
@@ -62,7 +62,7 @@ stdlib.h
 float.h
 -
 b3Logging.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
+../examples/../src/Bullet3Common/b3Logging.h
 ppcintrinsics.h
 -
 emmintrin.h
@@ -96,19 +96,19 @@ assert.h
 arm_neon.h
 -
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Transform.h
+../examples/../src/Bullet3Common/b3Transform.h
 b3Matrix3x3.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Matrix3x3.h
+../examples/../src/Bullet3Common/b3Matrix3x3.h
 
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
+../examples/../src/Bullet3Common/b3Vector3.h
 b3Scalar.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
+../examples/../src/Bullet3Common/b3Scalar.h
 b3MinMax.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
+../examples/../src/Bullet3Common/b3MinMax.h
 b3AlignedAllocator.h
-../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
+../examples/../src/Bullet3Common/b3AlignedAllocator.h
 
-../examples/OpenGLWindow/../../src/LinearMath/btScalar.h
+../examples/../src/LinearMath/btScalar.h
 math.h
 -
 stdlib.h
@@ -148,6 +148,38 @@ assert.h
 arm_neon.h
 -
 arm_neon.h
+-
+
+../examples/./ThirdPartyLibs/stb_image/stb_image_write.h
+stdarg.h
+-
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+assert.h
+-
+
+../examples/./ThirdPartyLibs/stb_image/stb_truetype.h
+stb_truetype.h
+../examples/./ThirdPartyLibs/stb_image/stb_truetype.h
+stdio.h
+-
+stb_truetype.h
+../examples/./ThirdPartyLibs/stb_image/stb_truetype.h
+math.h
+-
+math.h
+-
+stdlib.h
+-
+assert.h
+-
+string.h
+-
+memory.h
 -
 
 ../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_image_write.h
@@ -160,26 +192,6 @@ stdio.h
 string.h
 -
 assert.h
--
-
-../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_truetype.h
-stb_truetype.h
-../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_truetype.h
-stdio.h
--
-stb_truetype.h
-../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_truetype.h
-math.h
--
-math.h
--
-stdlib.h
--
-assert.h
--
-string.h
--
-memory.h
 -
 
 ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
@@ -437,8 +449,8 @@ OpenGL/OpenGL.h
 -
 OpenGL/gl.h
 -
-CustomGL/glew.h
-/home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/CustomGL/glew.h
+../ThirdPartyLibs/Glew/CustomGL/glew.h
+/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 third_party/GL/gl/include/GL/gl.h
 /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/third_party/GL/gl/include/GL/gl.h
 third_party/GL/gl/include/GL/glext.h
@@ -459,8 +471,8 @@ OpenGL/gl.h
 -
 OpenGL/gl3.h
 -
-CustomGL/glew.h
-/home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/CustomGL/glew.h
+../ThirdPartyLibs/Glew/CustomGL/glew.h
+/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 third_party/GL/gl/include/GL/gl.h
 /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/third_party/GL/gl/include/GL/gl.h
 third_party/GL/gl/include/GL/glext.h
@@ -621,8 +633,8 @@ Bullet3Common/b3Quaternion.h
 /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/Bullet3Common/b3Quaternion.h
 string.h
 -
-stb_image/stb_image_write.h
-/home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/stb_image/stb_image_write.h
+ThirdPartyLibs/stb_image/stb_image_write.h
+/home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/ThirdPartyLibs/stb_image/stb_image_write.h
 
 /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.h
 ../OpenGLWindow/GLInstancingRenderer.h
@@ -733,4 +745,18 @@ stb_image/stb_image_write.h
 /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/opengl_fontstashcallbacks.h
 fontstash.h
 /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/fontstash.h
+
+/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
 

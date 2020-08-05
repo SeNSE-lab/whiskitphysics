@@ -1,19 +1,36 @@
 cmake_minimum_required(VERSION 3.10.2)
 set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true)
 cmake_policy(SET CMP0017 NEW)
-#this line has to appear before 'PROJECT' in order to be able to disable incremental linking
-SET(MSVC_INCREMENTAL_DEFAULT ON)
 
+SET(MSVC_INCREMENTAL_DEFAULT ON)
 PROJECT(WHISKIT_PHYSICS C CXX)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+IF(COMMAND cmake_policy)
+   cmake_policy(SET CMP0003 NEW)
+   if(POLICY CMP0042)
+      # Enable MACOSX_RPATH by default.
+      cmake_policy(SET CMP0042 NEW)
+   endif(POLICY CMP0042)
+ENDIF(COMMAND cmake_policy)
 
 IF (NOT CMAKE_BUILD_TYPE)
 # SET(CMAKE_BUILD_TYPE "Debug")
  SET(CMAKE_BUILD_TYPE "Release")
 ENDIF (NOT CMAKE_BUILD_TYPE)
 
+# SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
+#MESSAGE("CMAKE_CXX_FLAGS_DEBUG="+${CMAKE_CXX_FLAGS_DEBUG})
+
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
+IF (NOT CMAKE_BUILD_TYPE)
+ SET(CMAKE_BUILD_TYPE "Release")
+ENDIF (NOT CMAKE_BUILD_TYPE)
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
+
+
+# ADD_DEPENDENCIES(WHISKIT_PHYSICS bulletlib)
+# SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY bulletlib/lib)
+# SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY bulletlib/lib)
 
 IF(APPLE)
     SET(DYLIB_SUFFIX dylib)
@@ -79,20 +96,12 @@ IF (Boost_FOUND)
     ADD_DEFINITIONS( "-DHAS_BOOST" )
 ENDIF()
 
-
 INCLUDE_DIRECTORIES(
 	include
 	bulletlib/
     bulletlib/src
     bulletlib/examples
     bulletlib/Extras
-    bulletlib/examples/CommonInterfaces
-    bulletlib/examples/OpenGLWindow
-    bulletlib/examples/ExampleBrowser
-    bulletlib/examples/ThirdPartyLibs
-    bulletlib/examples/ThirdPartyLibs/Glew
-    bulletlib/examples/Importers
-    bulletlib/Extras/Serialize
     ${OPENGL_INCLUDE_DIRS}
 	${GLUT_INCLUDE_DIRS}
 	)
@@ -112,26 +121,24 @@ SET(SOURCES
 
 SET(EXT_SOURCES
     bulletlib/build3/bullet.rc
-    bulletlib/examples/ExampleBrowser/OpenGLGuiHelper.cpp
-    bulletlib/examples/ExampleBrowser/GL_ShapeDrawer.cpp
-    bulletlib/examples/ExampleBrowser/CollisionShape2TriangleMesh.cpp
-    bulletlib/examples/Utils/b3Clock.cpp
-    bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp
-    bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
-    bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp
-    bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp
-    bulletlib/examples/OpenGLWindow/SimpleOpenGL3App.cpp
-    bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.cpp
-    bulletlib/examples/Utils/b3ResourcePath.cpp
-    bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.cpp
-    bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.cpp
-    bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp
-    bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp
-    bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.cpp
-    bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
-    bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp
-    bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp
-    bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.cpp
+    # bulletlib/examples/Utils/b3Clock.cpp
+    # bulletlib/examples/Utils/b3ResourcePath.cpp
+    # bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp
+    # bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
+
+    # bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp
+    # bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.cpp
+    # bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.cpp
+
+    # bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp
+    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.cpp
+    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.cpp
+    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp
+    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp
+    # bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.cpp
+    # bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
+    # bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp
+    # bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp
 
 )
 
@@ -139,6 +146,12 @@ SET(EXT_SOURCES
 IF(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
 ENDIF(COMMAND cmake_policy)
+
+
+# OPTION(BUILD_BULLETLIB "Set when you want to build bullet library" ON)
+# IF(BUILD_BULLETLIB)
+#     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/bulletlib)
+# ENDIF(BUILD_BULLETLIB)
 
 LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/bulletlib/lib)
 
@@ -148,7 +161,9 @@ LINK_LIBRARIES(
     libBulletDynamics.a 
     libBulletCollision.a  
     libLinearMath.a 
-    
+    libOpenGLWindow.a
+    libBulletExampleBrowserLib.a
+    libBulletExampleLib.a
 )
 
 ADD_EXECUTABLE(

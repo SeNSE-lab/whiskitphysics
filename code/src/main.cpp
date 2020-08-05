@@ -21,7 +21,7 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 
 */
 
-#include "Simulation.hpp"
+#include "Simulation.h"
 #include "CommonInterfaces/CommonExampleInterface.h"
 #include "CommonInterfaces/CommonGUIHelperInterface.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"

@@ -29,17 +29,11 @@ BUILD_CPU_DEMOS:BOOL=ON
 //Set when you want to build apps with enet UDP networking support
 BUILD_ENET:BOOL=ON
 
-//Set when you want to build the extras
-BUILD_EXTRAS:BOOL=ON
-
 //Set when you want to build Bullet 3 OpenGL3+ demos
 BUILD_OPENGL3_DEMOS:BOOL=ON
 
 //Use shared libraries
 BUILD_SHARED_LIBS:BOOL=OFF
-
-//Build Unit Tests
-BUILD_UNIT_TESTS:BOOL=OFF
 
 //Build Bullet 2 libraries with mutex locking around certain operations
 // (required for multi-threading)
@@ -79,34 +73,13 @@ BulletDynamics_LIB_DEPENDS:STATIC=
 BulletExampleBrowserLib_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-BulletFileLoader_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-BulletInverseDynamicsUtils_LIB_DEPENDS:STATIC=
+BulletExampleLib_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 BulletInverseDynamics_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-BulletRobotics_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
 BulletSoftBody_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-BulletWorldImporter_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-BulletXmlWorldImporter_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-BussIK_LIB_DEPENDS:STATIC=
-
-//Build for use inside other CMake projects as dependency.
-CLSOCKET_DEP_ONLY:BOOL=OFF
-
-//Build clsocket lib as shared.
-CLSOCKET_SHARED:BOOL=OFF
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
@@ -279,23 +252,8 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Dependencies for target
-ConvexDecomposition_LIB_DEPENDS:STATIC=
-
 //Single output directory for building all executables.
 EXECUTABLE_OUTPUT_PATH:PATH=
-
-//Dependencies for target
-GIMPACTUtils_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-HACD_LIB_DEPENDS:STATIC=
-
-//Install generated CMake files
-INSTALL_CMAKE_FILES:BOOL=OFF
-
-//Set when you want to install libraries
-INSTALL_LIBS:BOOL=OFF
 
 //Internal update serialization structures
 INTERNAL_UPDATE_SERIALIZATION_STRUCTURES:BOOL=OFF
@@ -356,12 +314,6 @@ USE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=OFF
 
 //Use btSoftMultiBodyDynamicsWorld
 USE_SOFT_BODY_MULTI_BODY_DYNAMICS_WORLD:BOOL=OFF
-
-//Dependencies for target
-clsocket_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-gwen_LIB_DEPENDS:STATIC=
 
 
 ########################
@@ -464,7 +416,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=35
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=16
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

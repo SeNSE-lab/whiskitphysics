@@ -22,10 +22,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 struct GLInstanceGraphicsShape;
 
-#include <Wavefront/tiny_obj_loader.h>
+#include <ThirdPartyLibs/Wavefront/tiny_obj_loader.h>
 #include <btBulletDynamicsCommon.h>
 #include <btBulletCollisionCommon.h>
-#include <ImportURDFDemo/BulletUrdfImporter.h>
+#include <Importers/ImportURDFDemo/BulletUrdfImporter.h>
 #include <BulletCollision/CollisionShapes/btConvexHullShape.h>
 
 

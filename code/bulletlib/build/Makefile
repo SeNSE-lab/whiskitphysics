@@ -56,51 +56,16 @@ CMAKE_BINARY_DIR = /home/nadina/Github/whiskitphysics/code/bulletlib/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -112,17 +77,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -157,56 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named App_HelloWorld
+# Target rules for targets named BulletExampleLib
 
 # Build rule for target.
-App_HelloWorld: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_HelloWorld
-.PHONY : App_HelloWorld
+BulletExampleLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 BulletExampleLib
+.PHONY : BulletExampleLib
 
 # fast build rule for target.
-App_HelloWorld/fast:
-	$(MAKE) -f examples/HelloWorld/CMakeFiles/App_HelloWorld.dir/build.make examples/HelloWorld/CMakeFiles/App_HelloWorld.dir/build
-.PHONY : App_HelloWorld/fast
-
-#=============================================================================
-# Target rules for targets named AppBasicExampleGui
-
-# Build rule for target.
-AppBasicExampleGui: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 AppBasicExampleGui
-.PHONY : AppBasicExampleGui
-
-# fast build rule for target.
-AppBasicExampleGui/fast:
-	$(MAKE) -f examples/BasicDemo/CMakeFiles/AppBasicExampleGui.dir/build.make examples/BasicDemo/CMakeFiles/AppBasicExampleGui.dir/build
-.PHONY : AppBasicExampleGui/fast
-
-#=============================================================================
-# Target rules for targets named App_BasicExample
-
-# Build rule for target.
-App_BasicExample: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_BasicExample
-.PHONY : App_BasicExample
-
-# fast build rule for target.
-App_BasicExample/fast:
-	$(MAKE) -f examples/BasicDemo/CMakeFiles/App_BasicExample.dir/build.make examples/BasicDemo/CMakeFiles/App_BasicExample.dir/build
-.PHONY : App_BasicExample/fast
-
-#=============================================================================
-# Target rules for targets named App_ExampleBrowser
-
-# Build rule for target.
-App_ExampleBrowser: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_ExampleBrowser
-.PHONY : App_ExampleBrowser
-
-# fast build rule for target.
-App_ExampleBrowser/fast:
-	$(MAKE) -f examples/ExampleBrowser/CMakeFiles/App_ExampleBrowser.dir/build.make examples/ExampleBrowser/CMakeFiles/App_ExampleBrowser.dir/build
-.PHONY : App_ExampleBrowser/fast
+BulletExampleLib/fast:
+	$(MAKE) -f examples/CMakeFiles/BulletExampleLib.dir/build.make examples/CMakeFiles/BulletExampleLib.dir/build
+.PHONY : BulletExampleLib/fast
 
 #=============================================================================
 # Target rules for targets named BulletExampleBrowserLib
@@ -222,84 +137,6 @@ BulletExampleBrowserLib/fast:
 .PHONY : BulletExampleBrowserLib/fast
 
 #=============================================================================
-# Target rules for targets named App_RobotSimulator
-
-# Build rule for target.
-App_RobotSimulator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_RobotSimulator
-.PHONY : App_RobotSimulator
-
-# fast build rule for target.
-App_RobotSimulator/fast:
-	$(MAKE) -f examples/RobotSimulator/CMakeFiles/App_RobotSimulator.dir/build.make examples/RobotSimulator/CMakeFiles/App_RobotSimulator.dir/build
-.PHONY : App_RobotSimulator/fast
-
-#=============================================================================
-# Target rules for targets named App_PhysicsServer_SharedMemory_GUI
-
-# Build rule for target.
-App_PhysicsServer_SharedMemory_GUI: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_PhysicsServer_SharedMemory_GUI
-.PHONY : App_PhysicsServer_SharedMemory_GUI
-
-# fast build rule for target.
-App_PhysicsServer_SharedMemory_GUI/fast:
-	$(MAKE) -f examples/SharedMemory/CMakeFiles/App_PhysicsServer_SharedMemory_GUI.dir/build.make examples/SharedMemory/CMakeFiles/App_PhysicsServer_SharedMemory_GUI.dir/build
-.PHONY : App_PhysicsServer_SharedMemory_GUI/fast
-
-#=============================================================================
-# Target rules for targets named App_PhysicsServer_SharedMemory
-
-# Build rule for target.
-App_PhysicsServer_SharedMemory: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_PhysicsServer_SharedMemory
-.PHONY : App_PhysicsServer_SharedMemory
-
-# fast build rule for target.
-App_PhysicsServer_SharedMemory/fast:
-	$(MAKE) -f examples/SharedMemory/CMakeFiles/App_PhysicsServer_SharedMemory.dir/build.make examples/SharedMemory/CMakeFiles/App_PhysicsServer_SharedMemory.dir/build
-.PHONY : App_PhysicsServer_SharedMemory/fast
-
-#=============================================================================
-# Target rules for targets named gwen
-
-# Build rule for target.
-gwen: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gwen
-.PHONY : gwen
-
-# fast build rule for target.
-gwen/fast:
-	$(MAKE) -f examples/ThirdPartyLibs/Gwen/CMakeFiles/gwen.dir/build.make examples/ThirdPartyLibs/Gwen/CMakeFiles/gwen.dir/build
-.PHONY : gwen/fast
-
-#=============================================================================
-# Target rules for targets named BussIK
-
-# Build rule for target.
-BussIK: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BussIK
-.PHONY : BussIK
-
-# fast build rule for target.
-BussIK/fast:
-	$(MAKE) -f examples/ThirdPartyLibs/BussIK/CMakeFiles/BussIK.dir/build.make examples/ThirdPartyLibs/BussIK/CMakeFiles/BussIK.dir/build
-.PHONY : BussIK/fast
-
-#=============================================================================
-# Target rules for targets named clsocket
-
-# Build rule for target.
-clsocket: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 clsocket
-.PHONY : clsocket
-
-# fast build rule for target.
-clsocket/fast:
-	$(MAKE) -f examples/ThirdPartyLibs/clsocket/CMakeFiles/clsocket.dir/build.make examples/ThirdPartyLibs/clsocket/CMakeFiles/clsocket.dir/build
-.PHONY : clsocket/fast
-
-#=============================================================================
 # Target rules for targets named OpenGLWindow
 
 # Build rule for target.
@@ -311,136 +148,6 @@ OpenGLWindow: cmake_check_build_system
 OpenGLWindow/fast:
 	$(MAKE) -f examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/build.make examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/build
 .PHONY : OpenGLWindow/fast
-
-#=============================================================================
-# Target rules for targets named App_TwoJoint
-
-# Build rule for target.
-App_TwoJoint: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_TwoJoint
-.PHONY : App_TwoJoint
-
-# fast build rule for target.
-App_TwoJoint/fast:
-	$(MAKE) -f examples/TwoJoint/CMakeFiles/App_TwoJoint.dir/build.make examples/TwoJoint/CMakeFiles/App_TwoJoint.dir/build
-.PHONY : App_TwoJoint/fast
-
-#=============================================================================
-# Target rules for targets named BulletInverseDynamicsUtils
-
-# Build rule for target.
-BulletInverseDynamicsUtils: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BulletInverseDynamicsUtils
-.PHONY : BulletInverseDynamicsUtils
-
-# fast build rule for target.
-BulletInverseDynamicsUtils/fast:
-	$(MAKE) -f Extras/InverseDynamics/CMakeFiles/BulletInverseDynamicsUtils.dir/build.make Extras/InverseDynamics/CMakeFiles/BulletInverseDynamicsUtils.dir/build
-.PHONY : BulletInverseDynamicsUtils/fast
-
-#=============================================================================
-# Target rules for targets named BulletRobotics
-
-# Build rule for target.
-BulletRobotics: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BulletRobotics
-.PHONY : BulletRobotics
-
-# fast build rule for target.
-BulletRobotics/fast:
-	$(MAKE) -f Extras/BulletRobotics/CMakeFiles/BulletRobotics.dir/build.make Extras/BulletRobotics/CMakeFiles/BulletRobotics.dir/build
-.PHONY : BulletRobotics/fast
-
-#=============================================================================
-# Target rules for targets named App_obj2sdf
-
-# Build rule for target.
-App_obj2sdf: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 App_obj2sdf
-.PHONY : App_obj2sdf
-
-# fast build rule for target.
-App_obj2sdf/fast:
-	$(MAKE) -f Extras/obj2sdf/CMakeFiles/App_obj2sdf.dir/build.make Extras/obj2sdf/CMakeFiles/App_obj2sdf.dir/build
-.PHONY : App_obj2sdf/fast
-
-#=============================================================================
-# Target rules for targets named ConvexDecomposition
-
-# Build rule for target.
-ConvexDecomposition: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ConvexDecomposition
-.PHONY : ConvexDecomposition
-
-# fast build rule for target.
-ConvexDecomposition/fast:
-	$(MAKE) -f Extras/ConvexDecomposition/CMakeFiles/ConvexDecomposition.dir/build.make Extras/ConvexDecomposition/CMakeFiles/ConvexDecomposition.dir/build
-.PHONY : ConvexDecomposition/fast
-
-#=============================================================================
-# Target rules for targets named HACD
-
-# Build rule for target.
-HACD: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 HACD
-.PHONY : HACD
-
-# fast build rule for target.
-HACD/fast:
-	$(MAKE) -f Extras/HACD/CMakeFiles/HACD.dir/build.make Extras/HACD/CMakeFiles/HACD.dir/build
-.PHONY : HACD/fast
-
-#=============================================================================
-# Target rules for targets named GIMPACTUtils
-
-# Build rule for target.
-GIMPACTUtils: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 GIMPACTUtils
-.PHONY : GIMPACTUtils
-
-# fast build rule for target.
-GIMPACTUtils/fast:
-	$(MAKE) -f Extras/GIMPACTUtils/CMakeFiles/GIMPACTUtils.dir/build.make Extras/GIMPACTUtils/CMakeFiles/GIMPACTUtils.dir/build
-.PHONY : GIMPACTUtils/fast
-
-#=============================================================================
-# Target rules for targets named BulletFileLoader
-
-# Build rule for target.
-BulletFileLoader: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BulletFileLoader
-.PHONY : BulletFileLoader
-
-# fast build rule for target.
-BulletFileLoader/fast:
-	$(MAKE) -f Extras/Serialize/BulletFileLoader/CMakeFiles/BulletFileLoader.dir/build.make Extras/Serialize/BulletFileLoader/CMakeFiles/BulletFileLoader.dir/build
-.PHONY : BulletFileLoader/fast
-
-#=============================================================================
-# Target rules for targets named BulletXmlWorldImporter
-
-# Build rule for target.
-BulletXmlWorldImporter: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BulletXmlWorldImporter
-.PHONY : BulletXmlWorldImporter
-
-# fast build rule for target.
-BulletXmlWorldImporter/fast:
-	$(MAKE) -f Extras/Serialize/BulletXmlWorldImporter/CMakeFiles/BulletXmlWorldImporter.dir/build.make Extras/Serialize/BulletXmlWorldImporter/CMakeFiles/BulletXmlWorldImporter.dir/build
-.PHONY : BulletXmlWorldImporter/fast
-
-#=============================================================================
-# Target rules for targets named BulletWorldImporter
-
-# Build rule for target.
-BulletWorldImporter: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 BulletWorldImporter
-.PHONY : BulletWorldImporter
-
-# fast build rule for target.
-BulletWorldImporter/fast:
-	$(MAKE) -f Extras/Serialize/BulletWorldImporter/CMakeFiles/BulletWorldImporter.dir/build.make Extras/Serialize/BulletWorldImporter/CMakeFiles/BulletWorldImporter.dir/build
-.PHONY : BulletWorldImporter/fast
 
 #=============================================================================
 # Target rules for targets named Bullet3OpenCL_clew
@@ -591,34 +298,11 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... list_install_components"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... App_HelloWorld"
-	@echo "... AppBasicExampleGui"
-	@echo "... App_BasicExample"
-	@echo "... App_ExampleBrowser"
+	@echo "... edit_cache"
+	@echo "... BulletExampleLib"
 	@echo "... BulletExampleBrowserLib"
-	@echo "... App_RobotSimulator"
-	@echo "... App_PhysicsServer_SharedMemory_GUI"
-	@echo "... App_PhysicsServer_SharedMemory"
-	@echo "... gwen"
-	@echo "... BussIK"
-	@echo "... clsocket"
 	@echo "... OpenGLWindow"
-	@echo "... App_TwoJoint"
-	@echo "... BulletInverseDynamicsUtils"
-	@echo "... BulletRobotics"
-	@echo "... App_obj2sdf"
-	@echo "... ConvexDecomposition"
-	@echo "... HACD"
-	@echo "... GIMPACTUtils"
-	@echo "... BulletFileLoader"
-	@echo "... BulletXmlWorldImporter"
-	@echo "... BulletWorldImporter"
 	@echo "... Bullet3OpenCL_clew"
 	@echo "... Bullet2FileLoader"
 	@echo "... Bullet3Dynamics"

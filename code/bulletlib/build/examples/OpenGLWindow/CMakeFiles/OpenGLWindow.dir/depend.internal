@@ -15,32 +15,31 @@ examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/__/ThirdPartyLibs/Glew/glew.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glxew.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/glew.c
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/EGLOpenGLWindow.o
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCallbacks.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonWindowInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/EGLOpenGLWindow.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/EGLOpenGLWindow.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenGLInclude.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/GLFWOpenGLWindow.o
- ../examples/OpenGLWindow/../../src/LinearMath/btScalar.h
+ ../examples/../src/LinearMath/btScalar.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCallbacks.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonWindowInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLFWOpenGLWindow.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLFWOpenGLWindow.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/GLInstancingRenderer.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedObjectArray.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Matrix3x3.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3ResizablePool.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Transform.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
- ../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_image_write.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+ ../examples/../src/Bullet3Common/b3AlignedAllocator.h
+ ../examples/../src/Bullet3Common/b3AlignedObjectArray.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3Matrix3x3.h
+ ../examples/../src/Bullet3Common/b3MinMax.h
+ ../examples/../src/Bullet3Common/b3QuadWord.h
+ ../examples/../src/Bullet3Common/b3Quaternion.h
+ ../examples/../src/Bullet3Common/b3ResizablePool.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
+ ../examples/../src/Bullet3Common/b3Transform.h
+ ../examples/../src/Bullet3Common/b3Vector3.h
+ ../examples/./ThirdPartyLibs/stb_image/stb_image_write.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCallbacks.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCameraInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonRenderInterface.h
@@ -62,52 +61,52 @@ examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/GLInstancingRenderer.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/Shaders/useShadowMapInstancingPS.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/Shaders/useShadowMapInstancingVS.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleCamera.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/GLPrimitiveRenderer.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLPrimInternalData.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLPrimitiveRenderer.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLPrimitiveRenderer.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/LoadShader.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenGLInclude.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/GLRenderToTexture.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLRenderToTexture.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLRenderToTexture.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenGLInclude.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/LoadShader.o
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/LoadShader.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/LoadShader.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenGLInclude.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/OpenSans.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenSans.cpp
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleCamera.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Matrix3x3.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Transform.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
+ ../examples/../src/Bullet3Common/b3AlignedAllocator.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3Matrix3x3.h
+ ../examples/../src/Bullet3Common/b3MinMax.h
+ ../examples/../src/Bullet3Common/b3QuadWord.h
+ ../examples/../src/Bullet3Common/b3Quaternion.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
+ ../examples/../src/Bullet3Common/b3Transform.h
+ ../examples/../src/Bullet3Common/b3Vector3.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCameraInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleCamera.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleCamera.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleOpenGL2App.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedObjectArray.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+ ../examples/../src/Bullet3Common/b3AlignedAllocator.h
+ ../examples/../src/Bullet3Common/b3AlignedObjectArray.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3MinMax.h
+ ../examples/../src/Bullet3Common/b3QuadWord.h
+ ../examples/../src/Bullet3Common/b3Quaternion.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
+ ../examples/../src/Bullet3Common/b3Vector3.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCallbacks.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCameraInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonGraphicsAppInterface.h
@@ -128,19 +127,19 @@ examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleOpenGL2App.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/Win32OpenGLWindow.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/Win32Window.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/X11OpenGLWindow.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleOpenGL2Renderer.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedObjectArray.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Matrix3x3.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3ResizablePool.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Transform.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+ ../examples/../src/Bullet3Common/b3AlignedAllocator.h
+ ../examples/../src/Bullet3Common/b3AlignedObjectArray.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3Matrix3x3.h
+ ../examples/../src/Bullet3Common/b3MinMax.h
+ ../examples/../src/Bullet3Common/b3QuadWord.h
+ ../examples/../src/Bullet3Common/b3Quaternion.h
+ ../examples/../src/Bullet3Common/b3ResizablePool.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
+ ../examples/../src/Bullet3Common/b3Transform.h
+ ../examples/../src/Bullet3Common/b3Vector3.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCameraInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonRenderInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLInstanceGraphicsShape.h
@@ -148,17 +147,17 @@ examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleOpenGL2Renderer.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleCamera.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleOpenGL2Renderer.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/SimpleOpenGL2Renderer.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleOpenGL3App.o
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedAllocator.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3AlignedObjectArray.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Logging.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3MinMax.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3QuadWord.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Quaternion.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Scalar.h
- ../examples/OpenGLWindow/../../src/Bullet3Common/b3Vector3.h
+ ../examples/../src/Bullet3Common/b3AlignedAllocator.h
+ ../examples/../src/Bullet3Common/b3AlignedObjectArray.h
+ ../examples/../src/Bullet3Common/b3Logging.h
+ ../examples/../src/Bullet3Common/b3MinMax.h
+ ../examples/../src/Bullet3Common/b3QuadWord.h
+ ../examples/../src/Bullet3Common/b3Quaternion.h
+ ../examples/../src/Bullet3Common/b3Scalar.h
+ ../examples/../src/Bullet3Common/b3Vector3.h
  ../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_image_write.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCallbacks.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonCameraInterface.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/CommonInterfaces/CommonGraphicsAppInterface.h
@@ -181,6 +180,7 @@ examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/SimpleOpenGL3App.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/X11OpenGLWindow.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/fontstash.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/opengl_fontstashcallbacks.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/TwFonts.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/TwFonts.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/TwFonts.h
@@ -200,16 +200,17 @@ examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/X11OpenGLWindow.o
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenGLInclude.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/X11OpenGLWindow.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/X11OpenGLWindow.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/fontstash.o
- ../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_truetype.h
+ ../examples/./ThirdPartyLibs/stb_image/stb_truetype.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/fontstash.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/fontstash.h
 examples/OpenGLWindow/CMakeFiles/OpenGLWindow.dir/opengl_fontstashcallbacks.o
- ../examples/OpenGLWindow/../ThirdPartyLibs/stb_image/stb_image_write.h
- ../examples/ThirdPartyLibs/Glew/CustomGL/glew.h
+ ../examples/./ThirdPartyLibs/stb_image/stb_image_write.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLPrimInternalData.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/GLPrimitiveRenderer.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/OpenGLInclude.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/fontstash.h
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/opengl_fontstashcallbacks.cpp
  /home/nadina/Github/whiskitphysics/code/bulletlib/examples/OpenGLWindow/opengl_fontstashcallbacks.h
+ /home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew/CustomGL/glew.h

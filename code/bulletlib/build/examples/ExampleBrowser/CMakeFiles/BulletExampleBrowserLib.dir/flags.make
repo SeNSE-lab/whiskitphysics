@@ -6,5 +6,5 @@ CXX_FLAGS = -O3 -DNDEBUG
 
 CXX_DEFINES = -DGLEW_DYNAMIC_LOAD_ALL_GLX_FUNCTIONS=1 -DGLEW_INIT_OPENGL11_FUNCTIONS=1 -DGLEW_STATIC -DUSE_GRAPHICAL_BENCHMARK
 
-CXX_INCLUDES = -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ExampleBrowser/. -I/home/nadina/Github/whiskitphysics/code/bulletlib/src -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew 
+CXX_INCLUDES = -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/../src -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/./ThirdPartyLibs -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/./Utils -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/./Importers -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ExampleBrowser/. -I/home/nadina/Github/whiskitphysics/code/bulletlib/src -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs -I/home/nadina/Github/whiskitphysics/code/bulletlib/examples/ThirdPartyLibs/Glew 
 

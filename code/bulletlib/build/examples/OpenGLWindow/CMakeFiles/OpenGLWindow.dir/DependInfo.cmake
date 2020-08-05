@@ -20,6 +20,10 @@ set(CMAKE_TARGET_DEFINITIONS_C
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../examples/../src"
+  "../examples/./ThirdPartyLibs"
+  "../examples/./Utils"
+  "../examples/./Importers"
   "../examples/OpenGLWindow/.."
   "../examples/OpenGLWindow/../ThirdPartyLibs"
   "../examples/OpenGLWindow/../../src"
@@ -56,6 +60,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../examples/../src"
+  "../examples/./ThirdPartyLibs"
+  "../examples/./Utils"
+  "../examples/./Importers"
   "../examples/OpenGLWindow/.."
   "../examples/OpenGLWindow/../ThirdPartyLibs"
   "../examples/OpenGLWindow/../../src"
