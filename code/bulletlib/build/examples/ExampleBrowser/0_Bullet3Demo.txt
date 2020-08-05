@@ -1,4 +1,4 @@
---start_demo_name=Solve Contact Constraint
+--start_demo_name=Multi-Pendulum
 --mouse_move_multiplier=0.400000
 --mouse_wheel_multiplier=0.010000
 --background_color_red= 0.700000

@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SIMULATION_UTILITY_HPP
-#define SIMULATION_UTILITY_HPP
+#ifndef SIMULATION_UTILITY_H
+#define SIMULATION_UTILITY_H
 
 
 #define SCALE 1000. // set to mm scale
@@ -76,4 +76,4 @@ btTransform rotY(float angle);
 btTransform rotZ(float angle);
 btTransform createFrame(btVector3 origin=btVector3(0.,0.,0.), btVector3 rotation=btVector3(0.,0.,0.));
 
-#endif //SIMULATION_UTILITY_HPP
+#endif //SIMULATION_UTILITY_H

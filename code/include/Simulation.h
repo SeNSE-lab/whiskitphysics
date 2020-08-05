@@ -16,16 +16,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SIMULATION_HPP
-#define SIMULATION_HPP
+#ifndef SIMULATION_H
+#define SIMULATION_H
 
-#include "Rat.hpp"
-#include "Object.hpp"
-#include "Simulation_utility.hpp"
-#include "Simulation_IO.hpp"
+#include "Rat.h"
+#include "Object.h"
+#include "Simulation_utility.h"
+#include "Simulation_IO.h"
 
 #include <iostream>
 #include <chrono> 
+#include <iomanip>      // std::setprecision
 
 #include "btBulletDynamicsCommon.h"
 #include "LinearMath/btVector3.h"
@@ -33,6 +34,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "LinearMath/btQuaternion.h"
 #include "CommonInterfaces/CommonRigidBodyBase.h"
 #include "CommonInterfaces/CommonGUIHelperInterface.h"
+#include "CommonInterfaces/CommonParameterInterface.h"
+
 
 
 class Simulation* SimulationCreateFunc(struct CommonExampleOptions& options);
@@ -62,9 +65,7 @@ private:
 	
 
 public:
-	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){
-		TimeSeriesCanvas* m_timeSeriesCanvas = new TimeSeriesCanvas(helper->get2dCanvasInterface(),256,256,"Position and Velocity");
-	}
+	Simulation(struct GUIHelperInterface* helper):CommonRigidBodyBase(helper){}
 	virtual ~Simulation(){}
 	virtual void initPhysics();
 	virtual void stepSimulation();
@@ -84,4 +85,4 @@ public:
 	
 };
 
-#endif //SIMULATION_HPP
+#endif //SIMULATION_H

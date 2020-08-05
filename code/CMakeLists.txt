@@ -86,13 +86,6 @@ INCLUDE_DIRECTORIES(
     bulletlib/src
     bulletlib/examples
     bulletlib/Extras
-    bulletlib/examples/CommonInterfaces
-    bulletlib/examples/OpenGLWindow
-    bulletlib/examples/ExampleBrowser
-    bulletlib/examples/ThirdPartyLibs
-    bulletlib/examples/ThirdPartyLibs/Glew
-    bulletlib/examples/Importers
-    bulletlib/Extras/Serialize
     ${OPENGL_INCLUDE_DIRS}
 	${GLUT_INCLUDE_DIRS}
 	)
@@ -107,6 +100,7 @@ SET(SOURCES
     src/Simulation.cpp
     src/LoadObj.cpp
     src/Object.cpp
+    #src/GraphicsApp.cpp
 
 )
 

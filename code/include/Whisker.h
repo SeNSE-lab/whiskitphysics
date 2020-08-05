@@ -13,15 +13,15 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef WHISKER_HPP
-#define WHISKER_HPP
+#ifndef WHISKER_H
+#define WHISKER_H
 
-#include "Simulation_IO.hpp"
-#include "Simulation_utility.hpp"
-#include "Parameters.hpp"
+#include "Simulation_IO.h"
+#include "Simulation_utility.h"
+#include "Parameters.h"
 
 #include "btBulletDynamicsCommon.h"
-#include "BulletWorldImporter/btWorldImporter.h"
+#include "Serialize/BulletWorldImporter/btWorldImporter.h"
 #include "LinearMath/btVector3.h"
 #include "LinearMath/btAlignedObjectArray.h"
 
@@ -153,4 +153,4 @@ public:
 };
 
 
-#endif //WHISKER_HPP
+#endif //WHISKER_H

@@ -36,7 +36,7 @@ subject to the following restrictions:
 
 
 #ifdef GLEW_STATIC
-#include "CustomGL/glew.h"
+#include "ThirdPartyLibs/Glew/CustomGL/glew.h"
 #else
 #ifdef NO_GLEW
 #define GL_GLEXT_LEGACY

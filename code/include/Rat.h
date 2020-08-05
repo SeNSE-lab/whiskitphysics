@@ -16,14 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef RAT_HPP
-#define RAT_HPP
+#ifndef RAT_H
+#define RAT_H
 
 
-#include "Whisker.hpp"
-#include "Simulation_utility.hpp"
-#include "Simulation_IO.hpp"
-#include "Object.hpp"
+#include "Whisker.h"
+#include "Simulation_utility.h"
+#include "Simulation_IO.h"
+#include "Object.h"
 #include <vector>
 #include <string>
 
@@ -68,4 +68,4 @@ public:
 	void detect_collision(btDiscreteDynamicsWorld* world);
 };
 
-#endif //RAT_HPP
+#endif //RAT_H

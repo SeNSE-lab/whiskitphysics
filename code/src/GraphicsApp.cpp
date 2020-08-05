@@ -1,7 +1,7 @@
 #ifndef NO_OPENGL3
 
-#include "SimpleOpenGL3App.h"
-#include "ShapeData.h"
+#include "GraphicsApp.h"
+#include "OpenGLWindow/ShapeData.h"
 
 
 #ifdef B3_USE_GLFW
@@ -20,7 +20,7 @@
 #ifdef BT_USE_EGL
 #include "EGLOpenGLWindow.h"
 #else
-#include "X11OpenGLWindow.h"
+#include "OpenGLWindow/X11OpenGLWindow.h"
 #endif //BT_USE_EGL
 #endif //_WIN32
 #endif//__APPLE__
@@ -28,17 +28,17 @@
 
 #include <stdio.h>
 
-#include "GLPrimitiveRenderer.h"
-#include "GLInstancingRenderer.h"
+#include "OpenGLWindow/GLPrimitiveRenderer.h"
+#include "OpenGLWindow/GLInstancingRenderer.h"
 
 #include "Bullet3Common/b3Vector3.h"
 #include "Bullet3Common/b3Logging.h"
 
-#include "fontstash.h"
-#include "TwFonts.h"
-#include "opengl_fontstashcallbacks.h"
+#include "OpenGLWindow/fontstash.h"
+#include "OpenGLWindow/TwFonts.h"
+#include "OpenGLWindow/opengl_fontstashcallbacks.h"
 #include <assert.h>
-#include "GLRenderToTexture.h"
+#include "OpenGLWindow/GLRenderToTexture.h"
 #include "Bullet3Common/b3Quaternion.h"
 #include <string.h>//memset
 #ifdef _WIN32
@@ -67,7 +67,7 @@ struct SimpleInternalData
 
 };
 
-static SimpleOpenGL3App* gApp=0;
+static GraphicsApp* gApp=0;
 
 static void SimpleResizeCallback( float widthf, float heightf)
 {
@@ -285,7 +285,7 @@ struct	MyRenderCallbacks : public RenderCallbacks
 	}
 };
 
-SimpleOpenGL3App::SimpleOpenGL3App(	const char* title, int width,int height, bool allowRetina)
+GraphicsApp::GraphicsApp(	const char* title, int width,int height, bool allowRetina)
 {
 	gApp = this;
 
@@ -295,6 +295,8 @@ SimpleOpenGL3App::SimpleOpenGL3App(	const char* title, int width,int height, boo
 	m_data->m_ffmpegFile = 0;
 	m_data->m_userPointer = 0;
 	m_data->m_upAxis = 1;
+
+
 
 	m_window = new b3gDefaultOpenGLWindow();
    
@@ -407,14 +409,14 @@ SimpleOpenGL3App::SimpleOpenGL3App(	const char* title, int width,int height, boo
 }
 
 
-struct sth_stash* SimpleOpenGL3App::getFontStash()
+struct sth_stash* GraphicsApp::getFontStash()
 {
 	return m_data->m_fontStash;
 }
 
-void SimpleOpenGL3App::drawText3D( const char* txt, float position[3], float orientation[4], float color[4], float size, int optionFlag)
+void GraphicsApp::drawText3D( const char* txt, float position[3], float orientation[4], float color[4], float size, int optionFlag)
 {
-	B3_PROFILE("SimpleOpenGL3App::drawText3D");
+	B3_PROFILE("GraphicsApp::drawText3D");
 	float viewMat[16];
 	float projMat[16];
 	CommonCameraInterface* cam = m_instancingRenderer->getActiveCamera();
@@ -580,7 +582,7 @@ void SimpleOpenGL3App::drawText3D( const char* txt, float position[3], float ori
 
 }
 
-void SimpleOpenGL3App::drawText3D( const char* txt, float worldPosX, float worldPosY, float worldPosZ, float size1)
+void GraphicsApp::drawText3D( const char* txt, float worldPosX, float worldPosY, float worldPosZ, float size1)
 {
 	
 	float position[3] = {worldPosX,worldPosY,worldPosZ};
@@ -593,7 +595,7 @@ void SimpleOpenGL3App::drawText3D( const char* txt, float worldPosX, float world
 
 
 
-void SimpleOpenGL3App::drawText( const char* txt, int posXi, int posYi, float size, float colorRGBA[4])
+void GraphicsApp::drawText( const char* txt, int posXi, int posYi, float size, float colorRGBA[4])
 {
 
 	float posX = (float)posXi;
@@ -669,7 +671,7 @@ void SimpleOpenGL3App::drawText( const char* txt, int posXi, int posYi, float si
 }
 
 
-void SimpleOpenGL3App::drawTexturedRect(float x0, float y0, float x1, float y1, float color[4], float u0,float v0, float u1, float v1, int useRGBA)
+void GraphicsApp::drawTexturedRect(float x0, float y0, float x1, float y1, float color[4], float u0,float v0, float u1, float v1, int useRGBA)
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -681,7 +683,7 @@ void SimpleOpenGL3App::drawTexturedRect(float x0, float y0, float x1, float y1, 
 
 
 
-int	SimpleOpenGL3App::registerCubeShape(float halfExtentsX,float halfExtentsY, float halfExtentsZ, int textureIndex, float textureScaling)
+int	GraphicsApp::registerCubeShape(float halfExtentsX,float halfExtentsY, float halfExtentsZ, int textureIndex, float textureScaling)
 {
 
 
@@ -708,7 +710,7 @@ int	SimpleOpenGL3App::registerCubeShape(float halfExtentsX,float halfExtentsY, f
 	return shapeId;
 }
 
-void SimpleOpenGL3App::registerGrid(int cells_x, int cells_z, float color0[4], float color1[4])
+void GraphicsApp::registerGrid(int cells_x, int cells_z, float color0[4], float color1[4])
 {
 	b3Vector3 cubeExtents=b3MakeVector3(0.5,0.5,0.5);
 	double halfHeight=0.1;
@@ -742,7 +744,7 @@ void SimpleOpenGL3App::registerGrid(int cells_x, int cells_z, float color0[4], f
 	
 }
 
-int	SimpleOpenGL3App::registerGraphicsUnitSphereShape(EnumSphereLevelOfDetail lod, int textureId)
+int	GraphicsApp::registerGraphicsUnitSphereShape(EnumSphereLevelOfDetail lod, int textureId)
 {
 
 	int strideInBytes = 9*sizeof(float);
@@ -786,7 +788,7 @@ int	SimpleOpenGL3App::registerGraphicsUnitSphereShape(EnumSphereLevelOfDetail lo
 }
 
 
-void SimpleOpenGL3App::drawGrid(DrawGridData data)
+void GraphicsApp::drawGrid(DrawGridData data)
 {
     int gridSize = data.gridSize;
     float upOffset = data.upOffset;
@@ -879,13 +881,13 @@ void SimpleOpenGL3App::drawGrid(DrawGridData data)
 	m_instancingRenderer->drawPoint(b3MakeVector3(0,0,1),b3MakeVector3(0,0,1),6);
 }
 
-void SimpleOpenGL3App::setBackgroundColor(float red, float green, float blue)
+void GraphicsApp::setBackgroundColor(float red, float green, float blue)
 {
 	CommonGraphicsApp::setBackgroundColor(red,green,blue);
 	glClearColor(m_backgroundColorRGB[0],m_backgroundColorRGB[1],m_backgroundColorRGB[2],1.f);
 }
 
-SimpleOpenGL3App::~SimpleOpenGL3App()
+GraphicsApp::~GraphicsApp()
 {
 	
 	delete m_instancingRenderer;
@@ -903,7 +905,7 @@ SimpleOpenGL3App::~SimpleOpenGL3App()
 	delete m_data ;
 }
 
-void SimpleOpenGL3App::getScreenPixels(unsigned char* rgbaBuffer, int bufferSizeInBytes, float* depthBuffer, int depthBufferSizeInBytes)
+void GraphicsApp::getScreenPixels(unsigned char* rgbaBuffer, int bufferSizeInBytes, float* depthBuffer, int depthBufferSizeInBytes)
 {
     
     int width = (int)m_window->getRetinaScale()*m_instancingRenderer->getScreenWidth();
@@ -991,7 +993,7 @@ static void writeTextureToFile(int textureWidth, int textureHeight, const char* 
 }
 
 
-void SimpleOpenGL3App::swapBuffer()
+void GraphicsApp::swapBuffer()
 {
 
 	if (m_data->m_frameDumpPngFileName)
@@ -1012,7 +1014,7 @@ void SimpleOpenGL3App::swapBuffer()
 }
 
 // see also http://blog.mmacklin.com/2013/06/11/real-time-video-capture-with-ffmpeg/
-void SimpleOpenGL3App::dumpFramesToVideo(const char* mp4FileName)
+void GraphicsApp::dumpFramesToVideo(const char* mp4FileName)
 {
 	if (mp4FileName)
 	{
@@ -1059,7 +1061,7 @@ void SimpleOpenGL3App::dumpFramesToVideo(const char* mp4FileName)
 		m_data->m_ffmpegFile = 0;
 	}
 }
-void SimpleOpenGL3App::dumpNextFrameToPng(const char* filename)
+void GraphicsApp::dumpNextFrameToPng(const char* filename)
 {
 
     // open pipe to ffmpeg's stdin in binary write mode
@@ -1095,14 +1097,13 @@ void SimpleOpenGL3App::dumpNextFrameToPng(const char* filename)
 
 }
 
-void SimpleOpenGL3App::setUpAxis(int axis)
+void GraphicsApp::setUpAxis(int axis)
 {
 	b3Assert((axis == 1)||(axis==2));//only Y or Z is supported at the moment
 	m_data->m_upAxis = axis;
 }
-int SimpleOpenGL3App::getUpAxis() const
+int GraphicsApp::getUpAxis() const
 {
 	return m_data->m_upAxis;
 }
 #endif//#ifndef NO_OPENGL3
-

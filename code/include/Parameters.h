@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PARAMETERS_HPP
-#define PARAMETERS_HPP
+#ifndef PARAMETERS_H
+#define PARAMETERS_H
 
 #define PI 3.1415927
 
@@ -101,4 +101,4 @@ void set_default(Parameters* param);
 std::vector<float> get_vector(float value, int N);
 std::vector<float> stringToFloatVect(std::vector<std::string> vect_string);
 
-#endif //PARAMETERS_HPP
+#endif //PARAMETERS_H

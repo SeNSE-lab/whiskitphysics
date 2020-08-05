@@ -1,5 +1,5 @@
 
-#include "Parameters.hpp"
+#include "Parameters.h"
 
 // set default parameter values
 Parameters::Parameters(){

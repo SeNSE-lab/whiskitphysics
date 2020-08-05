@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SIMULATION_IO_HPP
-#define SIMULATION_IO_HPP
+#ifndef SIMULATION_IO_H
+#define SIMULATION_IO_H
 
 #include <typeinfo>
 #include <iostream>
@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include <iterator>
 #include <string>
 #include <sys/stat.h>
-#include <msgpack.hpp>
+#include <msgpack.h>
 #include "LinearMath/btVector3.h"
 
 #include <boost/lexical_cast.hpp>
@@ -82,4 +82,4 @@ void write_2D_float_csv(std::string filename, std::vector<std::vector<float>> da
 void write_2D_int_csv(std::string filename, std::vector<std::vector<int>> data);
 void write_1D_string_csv(std::string filename, std::vector<std::string> data);
 
-#endif //SIMULATION_IO_HPP
+#endif //SIMULATION_IO_H

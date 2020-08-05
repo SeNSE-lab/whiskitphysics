@@ -16,13 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef OBJECT_HPP
-#define OBJECT_HPP
+#ifndef OBJECT_H
+#define OBJECT_H
 
 
-#include "Whisker.hpp"
-#include "Simulation_utility.hpp"
-#include "Simulation_IO.hpp"
+#include "Whisker.h"
+#include "Simulation_utility.h"
+#include "Simulation_IO.h"
 #include <vector>
 #include <string>
 
@@ -71,4 +71,4 @@ public:
 
 
 
-#endif //OBJECT_HPP
+#endif //OBJECT_H

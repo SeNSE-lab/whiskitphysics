@@ -1,5 +1,5 @@
 
-#include "Object.hpp"
+#include "Object.h"
 
 Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, btTransform trans,
 	std::string filename, btVector4 color, float scaling, float mass, int colGroup, int colMask){

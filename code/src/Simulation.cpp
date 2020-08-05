@@ -7,7 +7,7 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 */
 
 
-#include "Simulation.hpp"
+#include "Simulation.h"
 
 btVector4 BLUE = btVector4(0.,0.,1.0,1);
 btVector4 RED = btVector4(1.,0.,0.0,1);
@@ -15,6 +15,8 @@ btVector4 GREEN = btVector4(0.,1.,0.0,1);
 btVector4 GREY = btVector4(0.,0.,0.0,0.5);
 btVector4 YELLOW = btVector4(1.,1.,0.0,1);
 btVector4 ORANGE = btVector4(1.,0.647,0.0,1);
+
+
 
 void Simulation::stepSimulation(){
 	auto start = std::chrono::high_resolution_clock::now(); 
@@ -81,8 +83,25 @@ void Simulation::stepSimulation(){
     
 }
 
+// static btScalar gTilt = 20.0f/180.0f*SIMD_PI; // tilt the ramp 20 degrees
+// void onRampInclinationChanged(float inclination, void* userPtr);
+
+// void onRampInclinationChanged(float inclination, void*){
+	
+// }
+
 void Simulation::initPhysics()
 {	
+
+	// // create slider to change the ramp tilt
+    // SliderParams slider("Ramp Tilt",&gTilt);
+    // slider.m_minVal=0;
+    // slider.m_maxVal=SIMD_PI/2.0f;
+    // slider.m_clampToNotches = false;
+    // slider.m_callback = onRampInclinationChanged;
+    // m_guiHelper->getParameterInterface()->registerSliderFloatParameter(slider);
+    
+
 	vec = btVector3(0.5,-1,0).normalized();
 	data_dump->init(parameters->WHISKER_NAMES);
 

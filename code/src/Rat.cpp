@@ -1,5 +1,5 @@
 
-#include "Rat.hpp"
+#include "Rat.h"
 
 Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObjectArray<btCollisionShape*>* shapes, Parameters* parameters){
 	// set initial position and orientation of rat head
