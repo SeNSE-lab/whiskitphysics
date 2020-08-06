@@ -20,15 +20,7 @@ For more information or feedback contact nzweifel@u.northwestern.edu
 	git clone https://github.com/SeNSE-lab/whiskitphysics.git
 ```
 
-4. First, compile Bullet Physics Library (may take a while):
-```
-	cd your/path/to/whiskitphysics/code/bulletlib
-	mkdir build
-	cd build
-	cmake ..
-	make
-```
-5. Compile whisketphysics:
+4. Compile whisketphysics:
 ```
 	cd your/path/to/whiskitphysics/code
 	mkdir build
@@ -48,5 +40,5 @@ For more information or feedback contact nzweifel@u.northwestern.edu
 	sudo make
 
 ```
-6. Run `whiskit` (no graphics) or `whiskit_gui` (with graphics). Use --help or -h for information about command line arguments. Bash scripts for simulation presets are available in "script" folder.
+5. Run `whiskit` (no graphics) or `whiskit_gui` (with graphics). Use --help or -h for information about command line arguments. Bash scripts for simulation presets are available in "script" folder.
  

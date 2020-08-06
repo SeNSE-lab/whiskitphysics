@@ -1,6 +1,7 @@
-# SUBDIRS( HelloWorld BasicDemo )
 IF(BUILD_BULLET3)
-	SUBDIRS(ExampleBrowser OpenGLWindow)
+	SUBDIRS(ExampleBrowser ThirdPartyLibs/Gwen ThirdPartyLibs/BussIK ThirdPartyLibs/clsocket OpenGLWindow)
+	# SUBDIRS(ExampleBrowser ThirdPartyLibs/Gwen ThirdPartyLibs/BussIK OpenGLWindow TwoJoint)
+
 ENDIF()
 
 INCLUDE_DIRECTORIES(
@@ -37,6 +38,8 @@ SET(BULLET_EXAMPLE_SOURCES
 ADD_LIBRARY(BulletExampleLib
 	${BULLET_EXAMPLE_SOURCES}
 )
+
+TARGET_LINK_LIBRARIES(BulletExampleLib Bullet3Common)
 
 IF(BUILD_PYBULLET)
 	SUBDIRS(pybullet)

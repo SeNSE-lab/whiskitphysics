@@ -28,10 +28,6 @@ ENDIF (NOT CMAKE_BUILD_TYPE)
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
 
 
-# ADD_DEPENDENCIES(WHISKIT_PHYSICS bulletlib)
-# SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY bulletlib/lib)
-# SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY bulletlib/lib)
-
 IF(APPLE)
     SET(DYLIB_SUFFIX dylib)
 ELSEIF(UNIX)
@@ -96,6 +92,13 @@ IF (Boost_FOUND)
     ADD_DEFINITIONS( "-DHAS_BOOST" )
 ENDIF()
 
+SET(BULLETLIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bulletlib/lib)
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/bulletlib)
+
+SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${BULLETLIB_DIR})
+SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BULLETLIB_DIR})
+# SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BULLETLIB_DIR})
+
 INCLUDE_DIRECTORIES(
 	include
 	bulletlib/
@@ -121,49 +124,6 @@ SET(SOURCES
 
 SET(EXT_SOURCES
     bulletlib/build3/bullet.rc
-    # bulletlib/examples/Utils/b3Clock.cpp
-    # bulletlib/examples/Utils/b3ResourcePath.cpp
-    # bulletlib/examples/Importers/ImportObjDemo/Wavefront2GLInstanceGraphicsShape.cpp
-    # bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
-
-    # bulletlib/examples/Importers/ImportObjDemo/LoadMeshFromObj.cpp
-    # bulletlib/examples/Importers/ImportURDFDemo/UrdfParser.cpp
-    # bulletlib/examples/ThirdPartyLibs/stb_image/stb_image.cpp
-
-    # bulletlib/examples/ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp
-    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinystr.cpp
-    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxml.cpp
-    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlerror.cpp
-    # bulletlib/examples/ThirdPartyLibs/tinyxml/tinyxmlparser.cpp
-    # bulletlib/examples/Importers/ImportURDFDemo/urdfStringSplit.cpp
-    # bulletlib/examples/Importers/ImportURDFDemo/BulletUrdfImporter.cpp
-    # bulletlib/examples/Importers/ImportMeshUtility/b3ImportMeshUtility.cpp
-    # bulletlib/examples/Importers/ImportColladaDemo/LoadMeshFromCollada.cpp
-
-)
-
-
-IF(COMMAND cmake_policy)
-	cmake_policy(SET CMP0003 NEW)
-ENDIF(COMMAND cmake_policy)
-
-
-# OPTION(BUILD_BULLETLIB "Set when you want to build bullet library" ON)
-# IF(BUILD_BULLETLIB)
-#     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/bulletlib)
-# ENDIF(BUILD_BULLETLIB)
-
-LINK_DIRECTORIES(${CMAKE_SOURCE_DIR}/bulletlib/lib)
-
-LINK_LIBRARIES(
-	libOpenGLWindow.a
-    libBullet3Common.a 
-    libBulletDynamics.a 
-    libBulletCollision.a  
-    libLinearMath.a 
-    libOpenGLWindow.a
-    libBulletExampleBrowserLib.a
-    libBulletExampleLib.a
 )
 
 ADD_EXECUTABLE(
@@ -173,11 +133,20 @@ ADD_EXECUTABLE(
 	${CMAKE_SOURCE_DIR}/src/main.cpp
 	)
 
-TARGET_LINK_LIBRARIES(whiskit 
+    
+TARGET_LINK_LIBRARIES(whiskit
 	${CMAKE_DL_LIBS}
 	${Boost_LIBRARIES} 	
 	${OPENGL_gl_LIBRARY} 
-	${OPENGL_glu_LIBRARY}
+    ${OPENGL_glu_LIBRARY}
+    Bullet3Common
+    BulletDynamics
+    BulletCollision
+    LinearMath
+    OpenGLWindow
+    BulletExampleBrowserLib
+    BulletExampleLib
+    
  )
 
 
@@ -232,7 +201,15 @@ TARGET_LINK_LIBRARIES(whiskit_gui
 	${CMAKE_DL_LIBS}
 	${Boost_LIBRARIES} 	
 	${OPENGL_gl_LIBRARY} 
-	${OPENGL_glu_LIBRARY}
+    ${OPENGL_glu_LIBRARY}
+    Bullet3Common
+    BulletDynamics
+    BulletCollision
+    LinearMath
+    OpenGLWindow
+    BulletExampleBrowserLib
+    BulletExampleLib
+    
  )
 
 
