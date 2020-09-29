@@ -154,12 +154,12 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     % A12345 B12345 C1234567 D1234567 E234567
 
     a_vel = cell2mat(cellfun(@tensor2vector, W, 'UniformOutput', false));
-    writematrix(a_vel, '../code/data/whisking_trajectory_sample.csv', 'Delimiter', ',');
+    writematrix(a_vel, '../../data/whisking_trajectory_sample.csv', 'Delimiter', ',');
 
     %% Step 4: 
     a_loc = [EulerThetasList(:,1), EulerPhisList(:,1), EulerZetasList(:,1);...
              -EulerThetasList(:,1), EulerPhisList(:,1), -EulerZetasList(:,1)]*pi/180;
-    writematrix(a_loc, '../code/data/whisking_init_angle_sample.csv', 'Delimiter', ',');
+    writematrix(a_loc, '../../data/whisking_init_angle_sample.csv', 'Delimiter', ',');
  
  end
 
