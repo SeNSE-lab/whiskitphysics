@@ -42,3 +42,4 @@ For more information or feedback contact nzweifel@u.northwestern.edu
 ```
 5. Run `whiskit` (no graphics) or `whiskit_gui` (with graphics). Use --help or -h for information about command line arguments. Bash scripts for simulation presets are available in "script" folder.
  
+<h1 Generate whisking trajectory </h1>
