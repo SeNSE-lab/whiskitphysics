@@ -8,7 +8,7 @@ Parameters::Parameters(){
 	TIME_STEP = 0.001;	// set time step, this is related to output video's FPS
 	NUM_STEP_INT = 100;	// set internal time step
 	TIME_STOP = 1.5;		// set overall simulation time
-    PRINT = 0;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
+    PRINT = 2;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
 	SAVE = 1;			// save results to csv file
 	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
 
@@ -19,7 +19,7 @@ Parameters::Parameters(){
 						// 3: create object from 3D scan
 				
 	// parameters for peg (OBJECT = 1)
-	PEG_LOC = btVector3(10, 50, 0);
+	PEG_LOC = btVector3(30, 30, 0);
 	PEG_SPEED = 10;	
 
 	// specify whisker configuration parameters

@@ -76,7 +76,7 @@ void Simulation::stepSimulation(){
 	auto factor = m_time_elapsed / m_time;
 	auto time_remaining = (int)((parameters->TIME_STOP - m_time) * (factor));
 	if(parameters->PRINT==2){
-		std::cout << "\rCompleted: " << std::setprecision(2) << m_time/parameters->TIME_STOP*100 << " %\tTime remaining: " << std::setprecision(4) << time_remaining/60 << " min " << std::setprecision(4) << (time_remaining % 60) << " s\n" << std::flush;
+		std::cout << "\rSimulation time: " << std::setprecision(2) << m_time << "s\tCompleted: " << std::setprecision(2) << m_time/parameters->TIME_STOP*100 << " %\tTime remaining: " << std::setprecision(4) << time_remaining/60 << " min " << std::setprecision(4) << (time_remaining % 60) << " s\n" << std::flush;
 	}
     
 }
@@ -208,6 +208,8 @@ void Simulation::initPhysics()
 	if (parameters->EXPLORING){
 		read_csv_float(parameters->dir_rathead_trajectory, parameters->HEAD_LOC_VEL);
 	}
+
+	parameters->TIME_STOP = (parameters->WHISKER_VEL[0].size()/3 - 1) * parameters->TIME_STEP;
 
 	// initialize time/step tracker
 	m_time_elapsed = 0;
