@@ -1,14 +1,14 @@
 
 ../build/whiskit_gui \
 --CDIST 50 \
---CPITCH -0 \
+--CPITCH -89 \
 --NO_MASS 0 \
 --CYAW 90 \
 --BLOW 1 \
 --DEBUG 0 \
 --OBJECT 1 \
---SPEED 0 \
---ACTIVE 1 \
+--SPEED 300 \
+--ACTIVE 0 \
 --WHISKER_NAMES R \
 --SAVE_VIDEO 0 \
 --SAVE 0 \

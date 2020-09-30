@@ -33,7 +33,10 @@ void Simulation::stepSimulation(){
 
 		// moving object 1
 		if(parameters->OBJECT==1){
-			peg->setLinearVelocity(vec*parameters->PEG_SPEED);
+			if(parameters->PEG_SPEED>0){
+				peg->setLinearVelocity(btVector3(0.32,-0.94,0)*parameters->PEG_SPEED);
+			}
+			
 		}
 
 		// move array if in ACTIVE mode
@@ -202,6 +205,7 @@ void Simulation::initPhysics()
 	// if active whisking, load whisking protraction angle trajectory
 	if (parameters->ACTIVE){
 		read_csv_float(parameters->dir_whisking_angle, parameters->WHISKER_VEL);
+		parameters->TIME_STOP = (parameters->WHISKER_VEL[0].size()/3 - 1) * parameters->TIME_STEP;
 	}
 
 	// if exploring, load data for rat head trajectory
@@ -209,7 +213,7 @@ void Simulation::initPhysics()
 		read_csv_float(parameters->dir_rathead_trajectory, parameters->HEAD_LOC_VEL);
 	}
 
-	parameters->TIME_STOP = (parameters->WHISKER_VEL[0].size()/3 - 1) * parameters->TIME_STEP;
+	
 
 	// initialize time/step tracker
 	m_time_elapsed = 0;

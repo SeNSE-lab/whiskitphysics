@@ -19,7 +19,7 @@ Parameters::Parameters(){
 						// 3: create object from 3D scan
 				
 	// parameters for peg (OBJECT = 1)
-	PEG_LOC = btVector3(30, 30, 0);
+	PEG_LOC = btVector3(20, 25, 0);
 	PEG_SPEED = 10;	
 
 	// specify whisker configuration parameters
