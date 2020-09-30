@@ -55,6 +55,8 @@ public:
 	btVector3 curvWall_ORIENT;
 
 	// whisker model parameters
+	int MODEL_TYPE;
+	std::string dir_param;
     std::vector<std::string> WHISKER_NAMES;
 	std::vector<int> WHISKER_INDEX;
     float BLOW; // scale whisker diameter for visibility - ATTENTION: will affect dynamics!!!

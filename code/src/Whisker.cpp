@@ -445,11 +445,13 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     std::vector<std::vector<float>> whisker_bp_coor;
     std::vector<std::vector<float>> whisker_bp_angles;
 	
-    read_csv_string("../data/param_name.csv",whisker_names);
-    read_csv_int("../data/param_side_row_col.csv",whisker_pos);
-    read_csv_float("../data/param_s_a.csv",whisker_geom);
-    read_csv_float("../data/param_angles.csv",whisker_angles);
-    read_csv_float("../data/param_bp_pos.csv",whisker_bp_coor);
+	parameters->dir_param = parameters->MODEL_TYPE?"../data/whisker_param_model_rat/":"../data/whisker_param_average_rat/";
+	std::cout << "Loading whisker parameters from:  " << parameters->dir_param << " (MODEL_TYPE = " << parameters->MODEL_TYPE << ") " << std::endl;
+    read_csv_string(parameters->dir_param + "param_name.csv",whisker_names);
+    read_csv_int(parameters->dir_param +"param_side_row_col.csv",whisker_pos);
+    read_csv_float(parameters->dir_param +"param_s_a.csv",whisker_geom);
+    read_csv_float(parameters->dir_param +"param_angles.csv",whisker_angles);
+    read_csv_float(parameters->dir_param +"param_bp_pos.csv",whisker_bp_coor);
     read_csv_float(parameters->dir_whisking_init_angle,whisker_bp_angles);
     
 	// find parameters for specific whiskers from "data"

@@ -134,6 +134,7 @@ int main(int argc, char** argv)
 
 		("OBJECT", po::value<int>(&param->OBJECT), "collision object ID (0: none, 1: stationary peg, 2: moving peg, 3: wall")
 		
+		("MODEL_TYPE", po::value<int>(&param->MODEL_TYPE), "model type: 0: average rat, 1: model Belli et al. 2018")
 		("WHISKER_NAMES", po::value<std::vector<std::string> >(&param->WHISKER_NAMES)->multitoken(), "whisker names to simulate")
 		("BLOW,b", po::value<float>(&param->BLOW), "whisker curvature on/off")
 		("NO_MASS", po::value<int>(&param->NO_MASS), "whisker mass on/off")

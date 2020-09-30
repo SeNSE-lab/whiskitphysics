@@ -23,6 +23,7 @@ Parameters::Parameters(){
 	PEG_SPEED = 10;	
 
 	// specify whisker configuration parameters
+	MODEL_TYPE = 0; // Selects model type: 0 => average rat whisker array; 1 => model rat whisker array from Belli et al. 2018
 	WHISKER_NAMES = {"RC0", "RC1", "RB1", "RD1", "LC0", "LC1", "LB1", "LD1"}; // select whiskers to simulate
 	// WHISKER_NAMES = {"RA0", "RA1", "RA2", "RA3", "RA4", "RB0", "RB1", "RB2", "RB3", "RB4",
 	// 				 "RC0", "RC1", "RC2", "RC3", "RC4", "RC5", "RC6", 
