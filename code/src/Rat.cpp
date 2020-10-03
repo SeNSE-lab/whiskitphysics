@@ -146,7 +146,7 @@ void Rat::detect_collision(btDiscreteDynamicsWorld* world){
 			double ptdist = pt.getDistance();
 			
 			
-			if (ptdist < 0.0001){
+			if (ptdist < 0.1){
 				int* coll0 = (int*) obA->getUserPointer();
 				if(coll0!=nullptr){
 					*coll0 = 1;

@@ -159,7 +159,7 @@ int main(int argc, char** argv)
 
 
 	    try { 
-		    po::store(po::parse_command_line(argc, argv, desc), vm); // can throw 
+		    po::store(po::parse_command_line(argc, argv, desc,po::command_line_style::unix_style ^ po::command_line_style::allow_short), vm); // can throw 
 		 	po::notify(vm);
 
 		 	if ( vm.count("help")  ) { 
@@ -204,6 +204,13 @@ int main(int argc, char** argv)
 				param->RATHEAD_LOC[0] = lexical_cast<float>(coordinates[0]);
 				param->RATHEAD_LOC[1] = lexical_cast<float>(coordinates[1]);
 				param->RATHEAD_LOC[2] = lexical_cast<float>(coordinates[2]);
+			}	
+
+			std::vector<std::string> angles;
+			if (!vm["ORIENTATION"].empty() && (angles = vm["ORIENTATION"].as<std::vector<std::string> >()).size() == 3) {
+				param->RATHEAD_ORIENT[0] = lexical_cast<float>(angles[0]);
+				param->RATHEAD_ORIENT[1] = lexical_cast<float>(angles[1]);
+				param->RATHEAD_ORIENT[2] = lexical_cast<float>(angles[2]);
 			}	
 
 			if (vm.count("CPITCH")){
