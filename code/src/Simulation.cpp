@@ -24,6 +24,9 @@ void Simulation::stepSimulation(){
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
 
+		// register collisions
+		scabbers->detect_collision(m_dynamicsWorld);
+		
 		// first, push back data into data_dump 
 		if(!parameters->NO_WHISKERS && parameters->SAVE){
 			scabbers->dump_M(data_dump);
@@ -34,7 +37,9 @@ void Simulation::stepSimulation(){
 		// moving object 1
 		if(parameters->OBJECT==1){
 			if(parameters->PEG_SPEED>0){
-				peg->setLinearVelocity(btVector3(0.32,-0.94,0)*parameters->PEG_SPEED);
+				btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
+				peg->setLinearVelocity(velocity);
+				
 			}
 			
 		}
@@ -56,9 +61,6 @@ void Simulation::stepSimulation(){
 
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);
-
-		// register collisions
-		scabbers->detect_collision(m_dynamicsWorld);
 
 		// draw debug if enabled
 	    if(parameters->DEBUG){
@@ -152,12 +154,6 @@ void Simulation::initPhysics()
 		}
 	}
 
-	if(parameters->OBJECT==3){
-		// set rat initial position
-		parameters->RATHEAD_LOC = {-70,-30,0};
-		parameters->RATHEAD_ORIENT = {1.,1,1};
-	}
-
 	// add rat to world
 	scabbers = new Rat(m_guiHelper,m_dynamicsWorld, &m_collisionShapes, parameters);
 	btVector3 rathead_pos = scabbers->getPosition();
@@ -165,8 +161,8 @@ void Simulation::initPhysics()
 	// create object to collide with
 	// peg
 	if(parameters->OBJECT==1){
-		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(0.5,0.5,80));
-		pegShape->setMargin(0.0001);
+		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(1,1,80));
+		pegShape->setMargin(0.1);
 		m_collisionShapes.push_back(pegShape);
 		btTransform trans = createFrame(parameters->PEG_LOC,btVector3(0, 0, 0));
 		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
@@ -177,7 +173,7 @@ void Simulation::initPhysics()
 	// create object to collide with wall
 	else if(parameters->OBJECT==2){
 		btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
-		wallShape->setMargin(0.0001);
+		wallShape->setMargin(0.1);
 		m_collisionShapes.push_back(wallShape);
 		btTransform trans = createFrame(btVector3(50,0,0),btVector3(0,0,PI/6));
 		wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);

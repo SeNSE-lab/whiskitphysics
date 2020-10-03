@@ -66,7 +66,7 @@ Parameters::Parameters(){
 	// input/output file paths
 	dir_out = "../output/test";
 	file_video = "../output/video_test.mp4";
-	file_env = "../data/3D_data/rat_habitat/drain_pipe.obj";	
+	file_env = "../data/environment/env_1.obj";	
 
 }
 

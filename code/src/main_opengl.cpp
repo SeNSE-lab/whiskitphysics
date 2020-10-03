@@ -143,7 +143,8 @@ int main(int argc, char** argv)
 		("ACTIVE", po::value<int>(&param->ACTIVE), "active on/off")
 		
 		("POSITION", po::value<std::vector<std::string> >()->multitoken(), "initial position of rat")
-		
+		("ORIENTATION", po::value<std::vector<std::string> >()->multitoken(), "initial orientation of rat (euler angles)")
+
 		("CDIST", po::value<float>(&param->CDIST), "distance of camera")
 		("CPITCH", po::value<std::string>(), "head pitch")
 		("CYAW", po::value<std::string>(), "head yaw")
