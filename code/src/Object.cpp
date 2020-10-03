@@ -103,7 +103,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
-	hull->setMargin(0.0001);
+	hull->setMargin(0.1);
 	// m_collisionShapes->push_back(hull);
 	
 	// hull->optimizeConvexHull();
@@ -167,7 +167,7 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
-	hull->setMargin(0.0001);
+	hull->setMargin(0.1);
 	// m_collisionShapes->push_back(hull);
 	
     //shape->optimizeConvexHull();
