@@ -1,3 +1,21 @@
+/*
+WHISKiT Physics Simulator
+Copyright (C) 2019 Nadina Zweifel (SeNSE Lab)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+*/
 
 #include "Rat.h"
 
@@ -17,7 +35,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	rathead->body->setActivationState(DISABLE_DEACTIVATION);
 
 	// create new Whiskers for this rat head
-	// origin: mean possition of all beasepoints
+	// origin: mean possition of all basepoints
 	btTransform head2origin = createFrame(originOffset,originOrientation);
 	// create Whiskers
 	if(!parameters->NO_WHISKERS){
@@ -126,6 +144,9 @@ void Rat::dump_Q(output* data){
 
 // detect collisions between whiskers and objects
 void Rat::detect_collision(btDiscreteDynamicsWorld* world){
+
+// Code adapted from: https://andysomogyi.github.io/mechanica/bullet.html
+
 	world->performDiscreteCollisionDetection();
 
 	int numManifolds = world->getDispatcher()->getNumManifolds();

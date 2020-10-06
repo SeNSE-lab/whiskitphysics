@@ -65,7 +65,8 @@ public:
 	void dump_F(output* data);
 	void dump_Q(output* data);
 
-	void detect_collision(btDiscreteDynamicsWorld* world);
+	void detect_collision(btDiscreteDynamicsWorld* world); // Code adapted from: https://andysomogyi.github.io/mechanica/bullet.html
+
 };
 
 #endif //RAT_H

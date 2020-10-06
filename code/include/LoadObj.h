@@ -28,9 +28,13 @@ struct GLInstanceGraphicsShape;
 #include <Importers/ImportURDFDemo/BulletUrdfImporter.h>
 #include <BulletCollision/CollisionShapes/btConvexHullShape.h>
 
-
 btCollisionShape* createConvexHullFromShapes(std::vector<tinyobj::shape_t>& shapes, const btVector3& geomScale);
+// Author: Dirk Mittler 
+// Copyright (C) 2015 Google   http://dirkmittler.homeip.net/blend4web_ce/uranium/bullet/examples/Importers/ImportURDFDemo/
+
 btCollisionShape* LoadShapeFromObj(const char* relativeFileName, const char* materialPrefixPath, const btVector3& geomScale);
+// Author: Erwin Coumans
+// Copyright (c) 2003-2009 Erwin Coumans  http://bulletphysics.org
 
 #endif //LOAD_OBJ_HPP
 

@@ -1,3 +1,25 @@
+/*
+WHISKiT Physics Simulator
+Copyright (C) 2019 Nadina Zweifel (SeNSE Lab)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+This code is based on code published by
+Bullet Continuous Collision Detection and Physics Library
+Copyright (c) 2015 Google Inc. http://bulletphysics.org
+
+*/
 
 #include "Object.h"
 
@@ -104,9 +126,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
 	hull->setMargin(0.1);
-	// m_collisionShapes->push_back(hull);
-	
-	// hull->optimizeConvexHull();
+
     int num_point = hull->getNumPoints();
 	float s;
 	if (scaling_factor != 0.){
@@ -145,7 +165,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
                                                                     &glmesh->m_indices->at(0), 
                                                                     glmesh->m_numIndices,
 																	B3_GL_TRIANGLES, -1);
-	// shape_compound->setUserIndex(shapeId);
+
 	btTransform bodyTransform = body->getCenterOfMassTransform();
 	
     int renderInstance = m_guiHelper->registerGraphicsInstance(shapeId,bodyTransform.getOrigin(),bodyTransform.getRotation(),color,scaling);
@@ -168,9 +188,6 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
 	hull->setMargin(0.1);
-	// m_collisionShapes->push_back(hull);
-	
-    //shape->optimizeConvexHull();
 
     int num_point = hull->getNumPoints();
 
@@ -214,11 +231,8 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
                                                                     &glmesh->m_indices->at(0), 
                                                                     glmesh->m_numIndices,
 																	B3_GL_TRIANGLES, -1);
-	// shape->setUserIndex(shapeId);
 
 	btTransform bodyTransform = body->getCenterOfMassTransform();
-
-	
     int renderInstance = m_guiHelper->registerGraphicsInstance(shapeId,bodyTransform.getOrigin(),bodyTransform.getRotation(),color,scaling);
 	
 	body->setUserIndex(renderInstance);
