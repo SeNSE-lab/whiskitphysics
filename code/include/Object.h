@@ -14,11 +14,6 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-This code is based on code published by
-Bullet Continuous Collision Detection and Physics Library
-Copyright (c) 2015 Google Inc. http://bulletphysics.org
-
 */
 
 #ifndef OBJECT_H
@@ -72,5 +67,8 @@ public:
 
 
 };
+
+
+
 
 #endif //OBJECT_H

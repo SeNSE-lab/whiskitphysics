@@ -47,6 +47,8 @@ public:
 	
 	// collision object type
 	int OBJECT;
+	btScalar SCALING;
+	
 	// peg parameters
 	btVector3 PEG_LOC;
 	float PEG_SPEED; // in mm/second
@@ -72,6 +74,7 @@ public:
 	// configuration parameters of rat head
 	std::vector<float> RATHEAD_LOC;
 	std::vector<float> RATHEAD_ORIENT;
+	std::vector<float> RATHEAD_ANGVEL;
 
 	// whisking parameters
 	int ACTIVE;

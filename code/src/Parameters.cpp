@@ -1,21 +1,3 @@
-/*
-WHISKiT Physics Simulator
-Copyright (C) 2019 Nadina Zweifel (SeNSE Lab)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-*/
 
 #include "Parameters.h"
 
@@ -35,9 +17,11 @@ Parameters::Parameters(){
 						// 1: peg
 						// 2: wall
 						// 3: create object from 3D scan
-				
+
+	SCALING = 1;				
 	// parameters for peg (OBJECT = 1)
-	PEG_LOC = btVector3(20, 25, 0);
+	PEG_LOC = btVector3(20, 25, 0); //8x passive stimulation
+	// PEG_LOC = btVector3(10, 35, 0);
 	PEG_SPEED = 10;	
 
 	// specify whisker configuration parameters
@@ -74,6 +58,7 @@ Parameters::Parameters(){
 	// rat position/orientation parameters
 	RATHEAD_LOC = {0,0,0}; 			// set position of rathead
 	RATHEAD_ORIENT = {0,0,0}; 		// set initial heading of rathead
+	RATHEAD_ANGVEL = {0,0,0};		// set angular head velocity
 
 	// camera parameters for visualization
 	CPOS = btVector3(0, 26, 20);	// set camera pos relative to rathead

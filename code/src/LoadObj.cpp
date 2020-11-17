@@ -1,23 +1,3 @@
-/*
-WHISKiT Physics Simulator
-Copyright (C) 2019 Nadina Zweifel (SeNSE Lab)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-*/
-
-
 #include "LoadObj.h"
 
 #include "OpenGLWindow/GLInstanceGraphicsShape.h"
@@ -34,9 +14,6 @@ static double gUrdfDefaultCollisionMargin;
 
 btCollisionShape* createConvexHullFromShapes(std::vector<tinyobj::shape_t>& shapes, const btVector3& geomScale)
 {
-	// Author: Dirk Mittler 
-	// Copyright (C) 2015 Google   http://dirkmittler.homeip.net/blend4web_ce/uranium/bullet/examples/Importers/ImportURDFDemo/ 
-
 	btCompoundShape* compound = new btCompoundShape();
 	compound->setMargin(gUrdfDefaultCollisionMargin);
 
@@ -73,6 +50,7 @@ btCollisionShape* createConvexHullFromShapes(std::vector<tinyobj::shape_t>& shap
 
 		convexHull->recalcLocalAabb();
 		convexHull->optimizeConvexHull();
+		// convexHull->initializePolyhedralFeatures();
 		compound->addChildShape(identity,convexHull);
 	}
 
@@ -80,10 +58,6 @@ btCollisionShape* createConvexHullFromShapes(std::vector<tinyobj::shape_t>& shap
 }
 
 btCollisionShape* LoadShapeFromObj(const char* relativeFileName, const char* materialPrefixPath, const btVector3& geomScale){
-	
-	// Author: Erwin Coumans
-	// Copyright (c) 2003-2009 Erwin Coumans  http://bulletphysics.org
-
     std::vector<tinyobj::shape_t> shapes;
     std::string err = tinyobj::LoadObj(shapes, relativeFileName, materialPrefixPath);
     //create a convex hull for each shape, and store it in a btCompoundShape

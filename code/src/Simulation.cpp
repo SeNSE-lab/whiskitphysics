@@ -1,19 +1,4 @@
 /*
-WHISKiT Physics Simulator
-Copyright (C) 2019 Nadina Zweifel (SeNSE Lab)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 This code is based on code published by
 Bullet Continuous Collision Detection and Physics Library
@@ -38,7 +23,7 @@ void Simulation::stepSimulation(){
 	
 	// run simulation as long as stop time not exceeded
 	if(parameters->TIME_STOP==0 || m_time < parameters->TIME_STOP){
-
+		
 		// register collisions
 		scabbers->detect_collision(m_dynamicsWorld);
 		
@@ -52,16 +37,19 @@ void Simulation::stepSimulation(){
 		// moving object 1
 		if(parameters->OBJECT==1){
 			if(parameters->PEG_SPEED>0){
-				btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
+				btScalar w = 2*PI*8;
+				btVector3 velocity = parameters->PEG_SPEED * sinf32(w*(m_time)) * btVector3(0,-1,0);
+				// btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
 				peg->setLinearVelocity(velocity);
 				
 			}
-			
 		}
 
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
+			scabbers->setAngularVelocity(btVector3(parameters->RATHEAD_ANGVEL[0],parameters->RATHEAD_ANGVEL[1],parameters->RATHEAD_ANGVEL[2]));
 			scabbers->whisk(m_step, parameters->WHISKER_VEL);
+			
 			
 		}
 		
@@ -69,13 +57,14 @@ void Simulation::stepSimulation(){
 		if(parameters->EXPLORING){
 			this_loc_vel = parameters->HEAD_LOC_VEL[m_step-1];
 			scabbers->setLinearVelocity(btVector3(this_loc_vel[3], this_loc_vel[4], this_loc_vel[5]/10));
-			// scabbers->setLinearVelocity(btVector3(0, 0, 0));
 			scabbers->setAngularVelocity(btVector3(this_loc_vel[6], this_loc_vel[7], this_loc_vel[8]));
-			// scabbers->setAngularVelocity(btVector3(0, 0, 0));
 		}
 
+		
 		// step simulation
 		m_dynamicsWorld->stepSimulation(parameters->TIME_STEP,parameters->NUM_STEP_INT,parameters->TIME_STEP/parameters->NUM_STEP_INT);
+
+		
 
 		// draw debug if enabled
 	    if(parameters->DEBUG){
@@ -169,6 +158,12 @@ void Simulation::initPhysics()
 		}
 	}
 
+	if(parameters->OBJECT==3){
+		// set rat initial position
+		// parameters->RATHEAD_LOC = {-70,-30,0};
+		// parameters->RATHEAD_ORIENT = {0,1,0};
+	}
+
 	// add rat to world
 	scabbers = new Rat(m_guiHelper,m_dynamicsWorld, &m_collisionShapes, parameters);
 	btVector3 rathead_pos = scabbers->getPosition();
@@ -179,7 +174,8 @@ void Simulation::initPhysics()
 		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(1,1,80));
 		pegShape->setMargin(0.1);
 		m_collisionShapes.push_back(pegShape);
-		btTransform trans = createFrame(parameters->PEG_LOC,btVector3(0, 0, 0));
+		btVector3 peg_init = scabbers->getWhisker(1)->get_unit(19)->getCenterOfMassPosition() + parameters->PEG_LOC;
+		btTransform trans = createFrame(peg_init,btVector3(0, 0, 0));
 		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
@@ -198,7 +194,7 @@ void Simulation::initPhysics()
 	else if(parameters->OBJECT==3){
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
-		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE),btScalar(0),COL_ENV,envCollidesWith);
+		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE*parameters->SCALING),btScalar(0),COL_ENV,envCollidesWith);
 	}
 	
 	// generate graphics
@@ -216,13 +212,14 @@ void Simulation::initPhysics()
 	// if active whisking, load whisking protraction angle trajectory
 	if (parameters->ACTIVE){
 		read_csv_float(parameters->dir_whisking_angle, parameters->WHISKER_VEL);
-		parameters->TIME_STOP = (parameters->WHISKER_VEL[0].size()/3 - 1) * parameters->TIME_STEP;
+		parameters->TIME_STOP = std::min((parameters->WHISKER_VEL[0].size()/3 - 1) * parameters->TIME_STEP,parameters->TIME_STOP);
 	}
 
 	// if exploring, load data for rat head trajectory
 	if (parameters->EXPLORING){
 		read_csv_float(parameters->dir_rathead_trajectory, parameters->HEAD_LOC_VEL);
 	}
+
 
 	
 

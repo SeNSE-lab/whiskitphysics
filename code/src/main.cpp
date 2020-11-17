@@ -22,6 +22,7 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 */
 
 #include "Simulation.h"
+
 #include "CommonInterfaces/CommonExampleInterface.h"
 #include "CommonInterfaces/CommonGUIHelperInterface.h"
 #include "BulletCollision/CollisionDispatch/btCollisionObject.h"
@@ -30,8 +31,8 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 #include "OpenGLWindow/SimpleOpenGL3App.h"
 #include "Bullet3Common/b3Quaternion.h"
 
-#include "LinearMath/btTransform.h"
-#include "LinearMath/btHashMap.h"
+#include <stdio.h>
+#include "ExampleBrowser/OpenGLGuiHelper.h"
 
 #include <iostream>
 #include <boost/program_options.hpp>
@@ -71,7 +72,6 @@ int main(int argc, char* argv[])
 
 		("OBJECT", po::value<int>(&param->OBJECT), "collision object ID (0: none, 1: stationary peg, 2: moving peg, 3: wall")
 		
-		("MODEL_TYPE", po::value<int>(&param->MODEL_TYPE), "model type: 0: average rat, 1: model Belli et al. 2018")
 		("WHISKER_NAMES", po::value<std::vector<std::string> >(&param->WHISKER_NAMES)->multitoken(), "whisker names to simulate")
 		("BLOW,b", po::value<float>(&param->BLOW), "whisker curvature on/off")
 		("NO_MASS", po::value<int>(&param->NO_MASS), "whisker mass on/off")
@@ -79,9 +79,11 @@ int main(int argc, char* argv[])
 
 		("ACTIVE", po::value<int>(&param->ACTIVE), "active on/off")
 		
+		("SCALING", po::value<float>(&param->SCALING), "peg speed")
 		("POSITION", po::value<std::vector<std::string> >()->multitoken(), "initial position of rat")
+		("PEG_LOC", po::value<std::vector<std::string> >()->multitoken(), "initial position of peg")
 		("ORIENTATION", po::value<std::vector<std::string> >()->multitoken(), "initial orientation of rat (euler angles)")
-		
+
 		("CDIST", po::value<float>(&param->CDIST), "distance of camera")
 		("CPITCH", po::value<std::string>(), "head pitch")
 		("CYAW", po::value<std::string>(), "head yaw")
@@ -138,11 +140,20 @@ int main(int argc, char* argv[])
 	    			"LE1","LE2","LE3","LE4","LE5"};
 	    	}
 
+			std::vector<std::string> peg_coor;
+			if (!vm["PEG_LOC"].empty() && (peg_coor = vm["PEG_LOC"].as<std::vector<std::string> >()).size() == 3) {
+				param->PEG_LOC[0] = lexical_cast<float>(peg_coor[0]);
+				param->PEG_LOC[1] = lexical_cast<float>(peg_coor[1]);
+				param->PEG_LOC[2] = lexical_cast<float>(peg_coor[2]);
+				std::cout << peg_coor[2] << std::endl;
+			}
+
 			std::vector<std::string> coordinates;
 			if (!vm["POSITION"].empty() && (coordinates = vm["POSITION"].as<std::vector<std::string> >()).size() == 3) {
 				param->RATHEAD_LOC[0] = lexical_cast<float>(coordinates[0]);
 				param->RATHEAD_LOC[1] = lexical_cast<float>(coordinates[1]);
 				param->RATHEAD_LOC[2] = lexical_cast<float>(coordinates[2]);
+				std::cout << coordinates[2] << std::endl;
 			}	
 
 			std::vector<std::string> angles;
@@ -150,13 +161,13 @@ int main(int argc, char* argv[])
 				param->RATHEAD_ORIENT[0] = lexical_cast<float>(angles[0]);
 				param->RATHEAD_ORIENT[1] = lexical_cast<float>(angles[1]);
 				param->RATHEAD_ORIENT[2] = lexical_cast<float>(angles[2]);
-			}		
+			}	
 
-			
 		  	DummyGUIHelper noGfx;
-
 			CommonExampleOptions options(&noGfx);
+
 			Simulation* simulation = new Simulation(options.m_guiHelper);
+			simulation->processCommandLineArgs(argc, argv);
 
 			// save parameters in simulation object
 			simulation->parameters = param;
@@ -168,9 +179,10 @@ int main(int argc, char* argv[])
 				simulation->stepSimulation();
 			}while(!(exitFlag || simulation->exitSim) );
 
-			std::cout << "Saving data..." << std::endl;
+			
 			if(simulation->parameters->SAVE){
 				std::cout << "Simualtion terminated." << std::endl;
+				std::cout << "Saving data..." << std::endl;
 				output* results = simulation->get_results();
 				save_data(results,simulation->parameters->dir_out);
 			}
@@ -192,8 +204,10 @@ int main(int argc, char* argv[])
  
   	} 
   	catch(std::exception& e) 
-  	{ 	std::cerr << "Unhandled Exception reached the top of main: "           << e.what() << ", application will now exit" << std::endl; 	return 2; 
- 
+  	{ 	std::cerr << "Unhandled Exception reached the top of main: "   
+	          << e.what() << ", application will now exit" << std::endl; 
+		return 2; 
+		
   	} 
 
 	

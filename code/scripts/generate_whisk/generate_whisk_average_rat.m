@@ -25,8 +25,7 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     dt = 1/fps;
     
     %% Collecting information
-    data = load('RAT_cubic_all.mat');    
-    
+    data = load('RAT_cubic_all.mat');
     whisker_num = length(data.AnimalNum);
     minimap = containers.Map();
     % for every whisker, put info into the container
@@ -39,7 +38,6 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
                 first_struct.num = 1;
                 first_struct.S2D = data.S2D(wh);
                 first_struct.S3D = data.S3D(wh);
-                first_struct.A3D = data.A3D(wh);
                 first_struct.K2D = data.K2D(wh);
                 first_struct.BPTheta = data.BPTheta(wh);
                 first_struct.BPPhi = data.BPPhi(wh);
@@ -53,8 +51,7 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
                 % add new information to that struct
                 this_struct.num = this_struct.num + 1;
                 this_struct.S2D = [this_struct.S2D; data.S2D(wh)];
-                this_struct.S3D = [this_struct.S3D; data.S3D(wh)];
-                this_struct.S3D = [this_struct.A3D; data.A3D(wh)];
+                this_struct.S3D = [this_struct.S2D; data.S3D(wh)];
                 this_struct.K2D = [this_struct.K2D; data.K2D(wh)];
                 this_struct.BPTheta = [this_struct.BPTheta; data.BPTheta(wh)];
                 this_struct.BPPhi = [this_struct.BPPhi; data.BPPhi(wh)];

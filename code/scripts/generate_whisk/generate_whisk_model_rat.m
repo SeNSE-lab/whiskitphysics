@@ -22,7 +22,7 @@ function generate_whisk_model_rat(retr_degree,prot_degree,whisk_freq,time_stop)
     fps = 1000;
     dt = 1/fps;
    
-    data = load('../../data/param_bp_angles.csv');
+    data = load('../../data/whisker_param_model_rat/param_bp_angles.csv');
     
     %% Collecting information
     % a_vel is a 62x(nStep*3) matrix with 31 whiskers on each side.
