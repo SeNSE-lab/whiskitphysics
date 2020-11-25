@@ -29,7 +29,7 @@
 --TIME_STOP 1. \
 --ACTIVE 1 \
 --WHISKER_NAMES R \
---PEG_LOC 0 0 0 \
+--PEG_LOC 0 20 0 \
 --SAVE_VIDEO 0 \
 --SAVE 0 \
 --file_video "../output/video_peg.mp4" \

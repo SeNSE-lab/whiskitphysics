@@ -136,6 +136,7 @@ int main(int argc, char** argv)
 		("NO_MASS", po::value<int>(&param->NO_MASS), "whisker mass on/off")
 		("NO_WHISKERS", po::value<int>(&param->NO_WHISKERS), "whisker on/off")
 
+		("MODEL_TYPE", po::value<int>(&param->MODEL_TYPE), "active on/off")
 		("ACTIVE", po::value<int>(&param->ACTIVE), "active on/off")
 		
 		("SCALING", po::value<float>(&param->SCALING), "peg speed")

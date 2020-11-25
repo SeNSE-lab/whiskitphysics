@@ -157,7 +157,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 
         // generate shape for unit
         btTruncatedConeShape* linkShape = new btTruncatedConeShape(radius*BLOW, radius_next*BLOW, link_length, 0);
-        linkShape->setMargin(0.0001);
+        linkShape->setMargin(0.01);
         m_collisionShapes->push_back(linkShape);
 
         // set position and rotation of current unit

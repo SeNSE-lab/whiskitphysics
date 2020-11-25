@@ -128,11 +128,11 @@ function generate_whisk_model_rat(retr_degree,prot_degree,whisk_freq,time_stop)
             phi = EulerPhisList(i, s);
             zeta = EulerZetasList(i, s);
             % Right
-            orientMat{i, s} = rotz(theta, 'deg')*rotx(-phi, 'deg')*...
-                              roty(-zeta, 'deg');
-            % Left
-            orientMat{i+(max_whiskers/2), s} = rotz(-theta, 'deg')*rotx(-phi, 'deg')*...
+            orientMat{i, s} = rotz(theta, 'deg')*rotx(phi, 'deg')*...
                               roty(zeta, 'deg');
+            % Left
+            orientMat{i+(max_whiskers/2), s} = rotz(-theta, 'deg')*rotx(phi, 'deg')*...
+                              roty(-zeta, 'deg');
         end
     end
 
