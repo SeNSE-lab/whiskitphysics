@@ -44,11 +44,30 @@ void Simulation::stepSimulation(){
 				
 			}
 		}
+		
+		// define head velocity (linear, angular)
+		btVector3 headLinearVelocity = btVector3(0,0,0);
+		btVector3 headAngularVelocity = btVector3(parameters->RATHEAD_ANGVEL[0],parameters->RATHEAD_ANGVEL[1],parameters->RATHEAD_ANGVEL[2]);
 
+		btScalar dtheta = 0;
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-			scabbers->setAngularVelocity(btVector3(parameters->RATHEAD_ANGVEL[0],parameters->RATHEAD_ANGVEL[1],parameters->RATHEAD_ANGVEL[2]));
-			scabbers->whisk(m_step, parameters->WHISKER_VEL);
+			btScalar angle_fwd = 35*PI/180;
+			btScalar angle_bwd = 15*PI/180;
+			btScalar w = 2*PI*8;
+			btScalar t = m_time;
+			btScalar dt = parameters->TIME_STEP;
+
+			btScalar amp = (angle_fwd + angle_bwd)/2;
+			btScalar shift = (angle_fwd - angle_bwd)/2;
+			btScalar phase = asin(shift/amp);
+			btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
+			btScalar theta = (amp*sin(w*t + phase)-sin(phase));
+
+			dtheta = (theta-prevtheta)/dt;
+			scabbers->setVelocity(headLinearVelocity,headAngularVelocity,dtheta,parameters->ACTIVE); // set active flag = 1 for velocity
+			// scabbers->setAngularVelocity(btVector3(parameters->RATHEAD_ANGVEL[0],parameters->RATHEAD_ANGVEL[1],parameters->RATHEAD_ANGVEL[2]));
+			// scabbers->whisk(m_step, parameters->WHISKER_VEL);
 			
 			
 		}

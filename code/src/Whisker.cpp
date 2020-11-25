@@ -21,8 +21,10 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	// initialize collide array
 	std::vector<int> all_zeros(NUM_LINKS, 0);
 	collide = all_zeros;
-	dphi = {0.398f,0.591f,0.578f,0.393f,0.217f};
-	dzeta = {-0.9f,-0.284f,0.243f,0.449f, 0.744f};
+
+	dphi = {0.12f,0.3f,0.3f,0.14f,-0.02f};
+	dzeta = {-0.75f,-0.25,0.20f,0.40f, 0.73f};
+	
 
 	//Whisker specific configuration parameters					// unit:
 	whisker_config config = get_config(w_name, parameters);
@@ -61,6 +63,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base, radius_base, radius_base));
 	m_collisionShapes->push_back(basepointShape);
 	basepoint = createDynamicBody(btScalar(100), friction, basepointTransform, basepointShape, m_guiHelper, color);
+	
 	// add basepoint rigid body to the world
 	m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
 	basepoint->setActivationState(DISABLE_DEACTIVATION);
@@ -256,6 +259,40 @@ void Whisker::whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVect
 	btVector3 localAngularVelocity = btVector3(a_vel_0, a_vel_1, a_vel_2);
 	btVector3 globalAngularVelocity = localAngularVelocity + headAngularVelocity;
 	base->setAngularVelocity(globalAngularVelocity);	
+}
+
+void Whisker::updateVelocity(btVector3 headLinearVelocity, btVector3 headAngularVelocity, btTransform headTransform, btTransform head2origin, btScalar dtheta, int activeFlag){
+	
+	btTransform originTransform = headTransform*head2origin;
+	// basepointTransform is the location of the basepoints
+	btTransform basepointTransform = originTransform*createFrame(base_pos);
+
+	basepoint->setCenterOfMassTransform(basepointTransform);
+	basepoint->setLinearVelocity(head2origin*headLinearVelocity);
+	basepoint->setAngularVelocity(head2origin*headAngularVelocity);
+
+	
+	if(!activeFlag){
+		base->setLinearVelocity(headLinearVelocity);
+		base->setAngularVelocity(headAngularVelocity);
+	}
+	else{
+		btScalar dphi_new = dtheta * get_dphi(row-1);
+		btScalar dzeta_new = -dtheta * get_dzeta(row-1);
+		
+		if(side){ // right side
+			dtheta = -dtheta;
+		}
+		
+		btVector3 worldProtraction = (basepoint->getWorldTransform().getBasis()*btVector3(0,0,dtheta));
+		btVector3 worldElevation = (basepoint->getWorldTransform().getBasis()*btVector3(0,dphi_new,0));
+		btVector3 worldTorsion = (basepoint->getWorldTransform().getBasis()*btVector3(dzeta_new,0,0));
+		btVector3 whiskerAngularVelocity = worldProtraction+worldElevation+worldTorsion + headAngularVelocity;
+
+		base->setLinearVelocity(headLinearVelocity);
+		base->setAngularVelocity(whiskerAngularVelocity);
+	}
+	
 }
 
 btRigidBody* Whisker::get_unit(int idx) const{

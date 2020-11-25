@@ -99,11 +99,11 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
 	
     GLInstanceGraphicsShape* glmesh = LoadMeshFromObj(fileName.c_str(), "");
-    printf("[INFO] Obj loaded: Extracted %d verticed from obj file [%s]\n", glmesh->m_numvertices, fileName.c_str());
+    printf("[INFO] Dynamic Obj loaded: Extracted %d verticed from obj file [%s]\n", glmesh->m_numvertices, fileName.c_str());
 
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
-	hull->setMargin(0.0001);
+	hull->setMargin(1);
 	// m_collisionShapes->push_back(hull);
 	
 	// hull->optimizeConvexHull();
@@ -136,7 +136,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 
 
 	btCollisionShape* shape_compound = LoadShapeFromObj(fileName.c_str(), "", btVector3(scaling[0], scaling[1],scaling[2]));
-	shape_compound->setMargin(0.5);
+	shape_compound->setMargin(1);
 	m_collisionShapes->push_back(shape_compound);
 	btRigidBody* body = createDynamicBody(mass,0.5,trans, shape_compound,m_guiHelper,color);
 	
@@ -163,11 +163,11 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 
 	
     GLInstanceGraphicsShape* glmesh = LoadMeshFromObj(fileName.c_str(), "");
-    printf("[INFO] Obj loaded: Extracted %d verticed from obj file [%s]\n", glmesh->m_numvertices, fileName.c_str());
+    printf("[INFO] Static Obj loaded: Extracted %d verticed from obj file [%s]\n", glmesh->m_numvertices, fileName.c_str());
 
     const GLInstanceVertex& v = glmesh->m_vertices->at(0);
     hull = new btConvexHullShape((const btScalar*)(&(v.xyzw[0])), glmesh->m_numvertices, sizeof(GLInstanceVertex));
-	hull->setMargin(0.1);
+	hull->setMargin(1);
 	// m_collisionShapes->push_back(hull);
 	
     //shape->optimizeConvexHull();
@@ -203,12 +203,17 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 	btTriangleMesh* meshInterface = new btTriangleMesh();
     for (int i=0;i<num_point/3;i++)
        meshInterface->addTriangle(hull->getScaledPoint(i*3), hull->getScaledPoint(i*3+1), hull->getScaledPoint(i*3+2));
-    btBvhTriangleMeshShape* trimesh = new btBvhTriangleMeshShape(meshInterface,true,true);
-	trimesh->setMargin(0.5);
+    
+	btBvhTriangleMeshShape* trimesh = new btBvhTriangleMeshShape(meshInterface,true,true);
+	trimesh->setMargin(1);
 	m_collisionShapes->push_back(trimesh);
-	btRigidBody* body = createDynamicBody(0,0.5,trans,trimesh,m_guiHelper,color);
+
+	// btCollisionShape* trimesh = new btConvexTriangleMeshShape(meshInterface);
+	// trimesh->setMargin(1);
+	// m_collisionShapes->push_back(trimesh);
 	
-		
+	btRigidBody* body = createDynamicBody(0,0.5,trans,trimesh,m_guiHelper,color);
+
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
                                                                     glmesh->m_numvertices, 
                                                                     &glmesh->m_indices->at(0), 
@@ -226,4 +231,6 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 	
     return body;
 }
+
+
 

@@ -72,7 +72,7 @@ private:
 	btRigidBody* basepoint;
 	btAlignedObjectArray<btRigidBody*> whisker;
 
-	btTransform basepointTransform;
+	// btTransform basepointTransform;
 	btTransform baseTransform;
 	
 	btGeneric6DofConstraint* basePointConstraint;
@@ -115,7 +115,7 @@ private:
 	std::vector<btScalar> link_angles;
 	btVector3 base_pos;
 	btVector3 base_rot;
-
+	
 	btScalar calc_base_radius(int row, int col, btScalar S) const;
 	btScalar calc_slope(btScalar L, btScalar rbase, int row, int col) const;
 	btScalar calc_mass(btScalar length, btScalar R, btScalar r, btScalar rho) const;
@@ -137,6 +137,8 @@ public:
 	// void updateVelocity(btScalar dtheta, int activeFlag);
 	// void updateTransform();
 	void whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity);
+
+	void updateVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btTransform headTransform, btTransform head2origin, btScalar dtheta, int activeFlag);
 
 	btRigidBody* get_unit(int idx) const;
 	btRigidBody* get_base() const;

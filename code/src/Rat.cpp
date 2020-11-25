@@ -10,7 +10,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	btTransform headTransform = createFrame(position, orientation);
 	
 	// define shape and body of head (mass=100)
-	btVector4 color = btVector4(0.5,0.5,0.5,1);
+	btVector4 color = btVector4(0.1,0.1,0.1,1);
 	rathead = new Object(helper,world,shapes,headTransform,parameters->dir_rathead,color,SCALE/10,100.,COL_HEAD,headCollidesWith);
 	
 	// set rathead->body to active state
@@ -74,6 +74,18 @@ void Rat::whisk(int step, std::vector<std::vector<float>> whisker_vel){
 		btScalar a_vel_1 = whisker_vel[idx][(step%totalStep)*3-2];
 		btScalar a_vel_2 = whisker_vel[idx][(step%totalStep)*3-1];
 		m_whiskerArray[i]->whisk(a_vel_0, a_vel_1, a_vel_2, getAngularVelocity());
+	}
+}
+
+void Rat::setVelocity(btVector3 linearVelocity, btVector3 angularVelocity, btScalar dtheta, int activeFlag){
+	
+	btTransform headTransform = getTransform();
+	btTransform originTransform = createFrame(originOffset,originOrientation);
+	setLinearVelocity(linearVelocity);
+	setAngularVelocity(angularVelocity);
+	
+	for (int i=0;i<m_whiskerArray.size();i++){
+		m_whiskerArray[i]->updateVelocity(linearVelocity, angularVelocity, headTransform, originTransform, dtheta, activeFlag);
 	}
 }
 
