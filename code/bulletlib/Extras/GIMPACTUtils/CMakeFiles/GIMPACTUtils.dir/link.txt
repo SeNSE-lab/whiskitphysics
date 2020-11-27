@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../lib/libGIMPACTUtils.a  CMakeFiles/GIMPACTUtils.dir/btGImpactConvexDecompositionShape.o
-/usr/bin/ranlib ../../lib/libGIMPACTUtils.a

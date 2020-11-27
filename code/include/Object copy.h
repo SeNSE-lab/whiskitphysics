@@ -31,8 +31,6 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 #include <vector>
 #include <string>
 
-
-
 class Object
 
 {
@@ -55,6 +53,7 @@ public:
 
 	btRigidBody* body;
     btCollisionShape* shape;
+	btConvexHullShape* hull;
 
 	int collisionGroup;
 	int collisionMask;
@@ -62,12 +61,17 @@ public:
 	btVector3 xyz_min;
 	btVector3 xyz_max;
 
+	void calcExtremes();
 	void setPosition(btVector3 pos);
 	void setOrientation(btVector3 axis, btScalar angle);
 
+	btRigidBody* obj2DynamicBody(std::string fileName,btVector4 color, btVector3 position, btQuaternion orientation, btScalar mass, float scaling_factor, 
+    	GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* m_collisionShapes,btDiscreteDynamicsWorld* m_dynamicsWorld);
+	btRigidBody* obj2StaticBody(std::string fileName,btVector4 color, btVector3 position, btQuaternion orientation, btScalar mass, float scaling_factor, 
+		GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* m_collisionShapes,btDiscreteDynamicsWorld* m_dynamicsWorld);
 	btRigidBody* createLargeMeshBody(std::string fileName,btVector4 color,
 	btVector3 position, btQuaternion orientation, btScalar mass, float scaling_factor, GUIHelperInterface* m_guiHelper,
-	btAlignedObjectArray<btCollisionShape*>* m_collisionShapes,btDiscreteDynamicsWorld* m_dynamicsWorld);
+	btAlignedObjectArray<btCollisionShape*>* m_collisionShapes,btDiscreteDynamicsWorld* m_dynamicsWorld)
 
 };
 

@@ -60,6 +60,9 @@
         "thread": "cpp",
         "cfenv": "cpp",
         "typeindex": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "condition_variable": "cpp",
+        "mutex": "cpp",
+        "valarray": "cpp"
     }
 }

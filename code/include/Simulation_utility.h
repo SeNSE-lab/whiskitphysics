@@ -47,9 +47,13 @@ Copyright (c) 2015 Google Inc. http://bulletphysics.org
 #include "BulletCollision/Gimpact/btGImpactShape.h"
 #include "BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
 #include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
+#include "OpenGLWindow/GLInstancingRenderer.h"
+#include "ThirdPartyLibs/Wavefront/tiny_obj_loader.h"
+#include "OpenGLWindow/GLInstanceGraphicsShape.h"
+#include "Utils/b3BulletDefaultFileIO.h"
+
 #include <BulletCollision/CollisionShapes/btConvexHullShape.h>
 #include <OpenGLWindow/GLInstanceGraphicsShape.h>
-#include <LoadObj.h>
 
 #define BIT(x) (1<<(x))
 
