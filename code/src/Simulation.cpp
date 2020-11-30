@@ -213,7 +213,7 @@ void Simulation::initPhysics()
 	else if(parameters->OBJECT==3){
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
-		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE*parameters->SCALING),btScalar(0),COL_ENV,envCollidesWith);
+		env = new Object(m_guiHelper,m_dynamicsWorld, &m_collisionShapes,btTransform(),parameters->file_env,envColor,btScalar(SCALE*parameters->SCALING),btScalar(100000),COL_ENV,envCollidesWith);
 	}
 	
 	// generate graphics
