@@ -13,7 +13,7 @@ btCollisionShape* createSphereShape(btScalar radius){
 }
 
 // function to create dynamic body
-btRigidBody* createDynamicBody(float mass,float friction,  const btTransform& bodyTransform, btCollisionShape* shape,GUIHelperInterface* m_guiHelper,  btVector4 color, btScalar restitution)
+btRigidBody* createDynamicBody(btScalar mass, const btTransform& bodyTransform, btCollisionShape* shape, btVector4 color, btScalar friction,  btScalar restitution)
 {
 	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
 

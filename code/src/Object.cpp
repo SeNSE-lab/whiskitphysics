@@ -15,6 +15,7 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 	if(filename.compare("")!=0){
 		if(mass==0.){
 			body = obj2StaticBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
+			
 		}
 		else{
 			body = obj2DynamicBody(filename,color,obj_trans,obj_orient,mass,scaling,helper,shapes,world);
@@ -28,7 +29,7 @@ Object::Object(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlig
 		btTransform someTransform = createFrame();
 		btSphereShape* sphere = new btSphereShape(0.5);
 		shapes->push_back(sphere);
-		body = createDynamicBody(0,0.5,someTransform,sphere,helper,color);
+		body = createDynamicBody(0,someTransform,sphere,color);
 		shape = body->getCollisionShape();
 		
 	}
@@ -138,7 +139,7 @@ btRigidBody* Object::obj2DynamicBody(std::string fileName,btVector4 color,
 	btCollisionShape* shape_compound = LoadShapeFromObj(fileName.c_str(), "", btVector3(scaling[0], scaling[1],scaling[2]));
 	shape_compound->setMargin(1);
 	m_collisionShapes->push_back(shape_compound);
-	btRigidBody* body = createDynamicBody(mass,0.5,trans, shape_compound,m_guiHelper,color);
+	btRigidBody* body = createDynamicBody(mass,trans, shape_compound,color);
 	
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
                                                                     glmesh->m_numvertices, 
@@ -212,7 +213,7 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 	// trimesh->setMargin(1);
 	// m_collisionShapes->push_back(trimesh);
 	
-	btRigidBody* body = createDynamicBody(0,0.5,trans,trimesh,m_guiHelper,color);
+	btRigidBody* body = createDynamicBody(0,trans,trimesh,color);
 
     int shapeId = m_guiHelper->registerGraphicsShape(&glmesh->m_vertices->at(0).xyzw[0], 
                                                                     glmesh->m_numvertices, 
@@ -224,9 +225,9 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 	btTransform bodyTransform = body->getCenterOfMassTransform();
 
 	
-    int renderInstance = m_guiHelper->registerGraphicsInstance(shapeId,bodyTransform.getOrigin(),bodyTransform.getRotation(),color,scaling);
+    // int renderInstance = m_guiHelper->registerGraphicsInstance(shapeId,bodyTransform.getOrigin(),bodyTransform.getRotation(),color,scaling);
 	
-	body->setUserIndex(renderInstance);
+	// body->setUserIndex(renderInstance);
 
 	
     return body;

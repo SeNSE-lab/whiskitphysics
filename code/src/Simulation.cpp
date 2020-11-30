@@ -52,22 +52,22 @@ void Simulation::stepSimulation(){
 		btScalar dtheta = 0;
 		// move array if in ACTIVE mode
 		if(parameters->ACTIVE && !parameters->NO_WHISKERS){
-			btScalar angle_fwd = 35*PI/180;
-			btScalar angle_bwd = 15*PI/180;
-			btScalar w = 2*PI*8;
-			btScalar t = m_time;
-			btScalar dt = parameters->TIME_STEP;
+			// btScalar angle_fwd = 35*PI/180;
+			// btScalar angle_bwd = 15*PI/180;
+			// btScalar w = 2*PI*8;
+			// btScalar t = m_time;
+			// btScalar dt = parameters->TIME_STEP;
 
-			btScalar amp = (angle_fwd + angle_bwd)/2;
-			btScalar shift = (angle_fwd - angle_bwd)/2;
-			btScalar phase = asin(shift/amp);
-			btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
-			btScalar theta = (amp*sin(w*t + phase)-sin(phase));
+			// btScalar amp = (angle_fwd + angle_bwd)/2;
+			// btScalar shift = (angle_fwd - angle_bwd)/2;
+			// btScalar phase = asin(shift/amp);
+			// btScalar prevtheta = (amp*sin(w*(t-dt) + phase)-sin(phase));
+			// btScalar theta = (amp*sin(w*t + phase)-sin(phase));
 
-			dtheta = (theta-prevtheta)/dt;
-			scabbers->setVelocity(headLinearVelocity,headAngularVelocity,dtheta,parameters->ACTIVE); // set active flag = 1 for velocity
-			// scabbers->setAngularVelocity(btVector3(parameters->RATHEAD_ANGVEL[0],parameters->RATHEAD_ANGVEL[1],parameters->RATHEAD_ANGVEL[2]));
-			// scabbers->whisk(m_step, parameters->WHISKER_VEL);
+			// dtheta = (theta-prevtheta)/dt;
+			// scabbers->setVelocity(headLinearVelocity,headAngularVelocity,dtheta,parameters->ACTIVE); // set active flag = 1 for velocity
+			scabbers->setAngularVelocity(btVector3(parameters->RATHEAD_ANGVEL[0],parameters->RATHEAD_ANGVEL[1],parameters->RATHEAD_ANGVEL[2]));
+			scabbers->whisk(m_step, parameters->WHISKER_VEL);
 			
 			
 		}
@@ -195,7 +195,7 @@ void Simulation::initPhysics()
 		m_collisionShapes.push_back(pegShape);
 		btVector3 peg_init = scabbers->getWhisker(1)->get_unit(19)->getCenterOfMassPosition() + parameters->PEG_LOC;
 		btTransform trans = createFrame(peg_init,btVector3(0, 0, 0));
-		peg = createDynamicBody(1,0.5,trans, pegShape, m_guiHelper,  BLUE);
+		peg = createDynamicBody(1,trans, pegShape, BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
 		peg->setActivationState(DISABLE_DEACTIVATION);
 		
@@ -206,7 +206,7 @@ void Simulation::initPhysics()
 		wallShape->setMargin(0.1);
 		m_collisionShapes.push_back(wallShape);
 		btTransform trans = createFrame(btVector3(50,0,0),btVector3(0,0,PI/6));
-		wall = createDynamicBody(0,0.5, trans, wallShape, m_guiHelper,  BLUE);
+		wall = createDynamicBody(0,trans, wallShape, BLUE);
 		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
 	}
 	// create object from 3D scan

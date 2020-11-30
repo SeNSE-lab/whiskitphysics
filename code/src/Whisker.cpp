@@ -62,7 +62,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	// create shape for base point
 	btCollisionShape* basepointShape = new btBoxShape(4*btVector3(radius_base, radius_base, radius_base));
 	m_collisionShapes->push_back(basepointShape);
-	basepoint = createDynamicBody(btScalar(100), friction, basepointTransform, basepointShape, m_guiHelper, color);
+	basepoint = createDynamicBody(btScalar(100), basepointTransform, basepointShape, color);
 	
 	// add basepoint rigid body to the world
 	m_dynamicsWorld->addRigidBody(basepoint,COL_BASE,baseCollidesWith);
@@ -91,7 +91,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	// create shape for whisker base
 	btCollisionShape* baseShape = new btSphereShape(radius_base*5.f);
 	m_collisionShapes->push_back(baseShape);
-	base = createDynamicBody(btScalar(10),friction,baseTransform,baseShape,m_guiHelper,color);
+	base = createDynamicBody(btScalar(10),baseTransform,baseShape,color);
 	// add whisker base rigid body to the world
 	m_dynamicsWorld->addRigidBody(base,COL_BASE,baseCollidesWith);
 	base->setActivationState(DISABLE_DEACTIVATION);
@@ -180,7 +180,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
         }
 
         // add unit to whisker and world
-        btRigidBody* link = createDynamicBody(mass,friction,totalTransform,linkShape,m_guiHelper,color,0);
+        btRigidBody* link = createDynamicBody(mass,totalTransform,linkShape,color,0.5,0);
         whisker.push_back(link);	
         
         if(side){ 
