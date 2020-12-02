@@ -230,7 +230,7 @@ void Simulation::initPhysics()
 
 	// if active whisking, load whisking protraction angle trajectory
 	if (parameters->ACTIVE){
-		read_csv_float(parameters->dir_whisking_angle, parameters->WHISKER_VEL);
+		read_csv_float(parameters->dir_param + parameters->file_whisking_angle, parameters->WHISKER_VEL);
 		parameters->TIME_STOP = std::min((parameters->WHISKER_VEL[0].size()/3 - 1) * parameters->TIME_STEP,parameters->TIME_STOP);
 	}
 

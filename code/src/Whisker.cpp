@@ -91,7 +91,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	// create shape for whisker base
 	btCollisionShape* baseShape = new btSphereShape(radius_base*5.f);
 	m_collisionShapes->push_back(baseShape);
-	base = createDynamicBody(btScalar(10),baseTransform,baseShape,color);
+	base = createDynamicBody(btScalar(100),baseTransform,baseShape,color);
 	// add whisker base rigid body to the world
 	m_dynamicsWorld->addRigidBody(base,COL_BASE,baseCollidesWith);
 	base->setActivationState(DISABLE_DEACTIVATION);
@@ -180,7 +180,7 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
         }
 
         // add unit to whisker and world
-        btRigidBody* link = createDynamicBody(mass,totalTransform,linkShape,color,0.5,0);
+        btRigidBody* link = createDynamicBody(mass,totalTransform,linkShape,color,0.5);
         whisker.push_back(link);	
         
         if(side){ 
@@ -489,7 +489,7 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     read_csv_float(parameters->dir_param +"param_s_a.csv",whisker_geom);
     read_csv_float(parameters->dir_param +"param_angles.csv",whisker_angles);
     read_csv_float(parameters->dir_param +"param_bp_pos.csv",whisker_bp_coor);
-    read_csv_float(parameters->dir_whisking_init_angle,whisker_bp_angles);
+    read_csv_float(parameters->dir_param + parameters->file_whisking_init_angle,whisker_bp_angles);
     
 	// find parameters for specific whiskers from "data"
 	whisker_config wc;

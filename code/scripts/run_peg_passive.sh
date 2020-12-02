@@ -1,5 +1,6 @@
 
 ../build/whiskit_gui \
+--MODEL_TYPE 1 \
 --CDIST 50 \
 --CPITCH -89 \
 --NO_MASS 0 \

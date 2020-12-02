@@ -13,6 +13,6 @@
 --WHISKER_NAMES R \
 --PEG_LOC 0 20 0 \
 --SAVE_VIDEO 0 \
---SAVE 0 \
+--SAVE 1 \
 --file_video "../output/video_peg.mp4" \
---dir_out ../output/whiskit_peg_active_8x
+--dir_out "/media/nadina/Nadina's Soul1/__projects/01_Dynamo/01_datasets/simulation_examples/whiskit_output/whiskit_peg_active_8x_new"
