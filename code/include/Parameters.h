@@ -75,8 +75,8 @@ public:
 
 	// whisking parameters
 	int ACTIVE;
-	std::string dir_whisking_init_angle;
-	std::string dir_whisking_angle;
+	std::string file_whisking_init_angle;
+	std::string file_whisking_angle;
 
 	// exploring
 	int EXPLORING;

@@ -28,7 +28,7 @@ Rat::Rat(GUIHelperInterface* helper,btDiscreteDynamicsWorld* world, btAlignedObj
 	btTransform headTransform = createFrame(position, orientation);
 	
 	// define shape and body of head (mass=100)
-	btVector4 color = btVector4(0.5,0.5,0.5,1);
+	btVector4 color = btVector4(0.1,0.1,0.1,1);
 	rathead = new Object(helper,world,shapes,headTransform,parameters->dir_rathead,color,SCALE/10,100.,COL_HEAD,headCollidesWith);
 	
 	// set rathead->body to active state

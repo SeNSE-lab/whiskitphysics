@@ -61,8 +61,8 @@ Parameters::Parameters(){
 	// enable/disable whisking mode for added whiskers
 	// Note: the whisking trajectory is pre-specified by user.
 	ACTIVE = 1;				
-	dir_whisking_init_angle = ACTIVE?"../data/whisking_init_angle_sample.csv":"../data/param_bp_angles.csv";
-	dir_whisking_angle = "../data/whisking_trajectory_sample.csv";
+	file_whisking_init_angle = ACTIVE?"whisking_init_angle.csv":"param_bp_angles.csv";
+	file_whisking_angle = "whisking_trajectory.csv";
 
 	// enable/disable exploring mode for rat head
 	// Note: the head trajectory is 
