@@ -1,4 +1,4 @@
-
+%% * function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop)
 % This function generates the angular velocity needed to simulate a whisk
 % of [whisk_freq] Hz for [time_stop] seconds by protracting the whiskers by
 % [prot_degree] degrees and retracting the whiskers by [retr_degree]
@@ -10,77 +10,54 @@
 % total.
 % Authors: Yifu Luo, Nadina Zweifel
 % ========================================================================
-% Inputs
+% INPUTS:
     % retr_degree:  retr_degree angle in degrees
     % prot_degree:  prot_degree angle in degrees 
     % whisk_freq:   whisking frequency in Hz
     % time_stop:    duration of simulation in seconds
-% Outputs:
+% OUTPUTS:
     % CSV file with whisker trajectories for simulation
     
 function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop)
 
-    max_whiskers = 60;
     fps = 1000;
     dt = 1/fps;
     
-    %% Collecting information
-    data = load('RAT_cubic_all.mat');    
+    %% Collecting information    
+%     filename = 'new_ratmap_data.xlsx';
+%     sheet = 'Average Rat';
+%     [data_avg,txt] = xlsread(filename,sheet);
+% 
+%     num_whiskers = length(data_avg(:,1)); % get number of whiskers
+%     max_whiskers = num_whiskers * 2;
+% 
+%     % read average whisker data_avg
+%     EulerThetaRest = data_avg(:,3);
+%     EulerPhiRest = data_avg(:,4);
+%     EulerZetaRest = data_avg(:,5);
+
+    param = compute_parameters('average','',0);
     
-    whisker_num = length(data.AnimalNum);
-    minimap = containers.Map();
-    % for every whisker, put info into the container
-    for wh = 1:whisker_num
-        this_name = data.Names(wh,3:end);
-        % if the whisker never appeared in the container
-        if data.quality(wh) == 1
-            if ~isKey(minimap, this_name)
-                % add a new struct to the container
-                first_struct.num = 1;
-                first_struct.S2D = data.S2D(wh);
-                first_struct.S3D = data.S3D(wh);
-                first_struct.A3D = data.A3D(wh);
-                first_struct.K2D = data.K2D(wh);
-                first_struct.BPTheta = data.BPTheta(wh);
-                first_struct.BPPhi = data.BPPhi(wh);
-                first_struct.BPR = data.BPR(wh);
-                first_struct.EulerTheta = data.EulerTheta(wh);
-                first_struct.EulerPhi = data.EulerPhi(wh);
-                first_struct.EulerZeta = data.EulerZeta(wh);
-                minimap(this_name) = first_struct;
-            else % if the container has the whisker
-                this_struct = minimap(this_name);
-                % add new information to that struct
-                this_struct.num = this_struct.num + 1;
-                this_struct.S2D = [this_struct.S2D; data.S2D(wh)];
-                this_struct.S3D = [this_struct.S3D; data.S3D(wh)];
-                this_struct.S3D = [this_struct.A3D; data.A3D(wh)];
-                this_struct.K2D = [this_struct.K2D; data.K2D(wh)];
-                this_struct.BPTheta = [this_struct.BPTheta; data.BPTheta(wh)];
-                this_struct.BPPhi = [this_struct.BPPhi; data.BPPhi(wh)];
-                this_struct.BPR = [this_struct.BPR; data.BPR(wh)];
-                this_struct.EulerTheta = [this_struct.EulerTheta; data.EulerTheta(wh)];
-                this_struct.EulerPhi = [this_struct.EulerPhi; data.EulerPhi(wh)];
-                this_struct.EulerZeta = [this_struct.EulerZeta; data.EulerZeta(wh)];
-                % add information to the struct
-                minimap(this_name) = this_struct;
-            end
-        end
-    end
+    EulerThetaRest = param.EulerThetaRest;
+    EulerPhiRest = param.EulerPhiRest;
+    EulerZetaRest = param.EulerZetaRest;
+    
+    num_whiskers = length(EulerThetaRest)/2; % get number of whiskers
+    max_whiskers = num_whiskers * 2;
 
     % The whisker start at rest.
     % Azimuth span: -retr_degree~prot_degree
     
     timepoints = floor(fps / whisk_freq);
-    k = keys(minimap)';
-    EulerThetas = zeros((max_whiskers/2), timepoints);
-    EulerPhis = zeros((max_whiskers/2), timepoints);
-    EulerZetas = zeros((max_whiskers/2), timepoints);
+    
+    EulerThetas = zeros(num_whiskers, timepoints);
+    EulerPhis = zeros(num_whiskers, timepoints);
+    EulerZetas = zeros(num_whiskers, timepoints);
     
     % Elevation with azimuth
     dPhi = [0.12*ones(5,1);     %   A row:  0.12 +/- 0.17
-            0.3*ones(6,1);      %   B row:  0.(max_whiskers/2) +/- 0.17
-            0.3*ones(7,1);      %   C row:  0.(max_whiskers/2) +/- 0.13
+            0.3*ones(6,1);      %   B row:  0.num_whiskers +/- 0.17
+            0.3*ones(7,1);      %   C row:  0.num_whiskers +/- 0.13
             0.14*ones(7,1);     %   D row:  0.14 +/- 0.14
             -0.02*ones(6,1)];   %   E row:  -0.02 +/- 0.13
     
@@ -91,17 +68,14 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
             0.40*ones(7,1);     %   D row:  0.40
             0.73*ones(6,1)];    %   E row:  0.73
     
-    % for (max_whiskers/2) whiskers
-    for i = 1:(max_whiskers/2)
-        EulerThetaRest = nanmean(minimap(k{i}).EulerTheta);
-        EulerPhiRest = nanmean(minimap(k{i}).EulerPhi);
-        EulerZetaRest = nanmean(minimap(k{i}).EulerZeta);
-
-        EulerThetas(i, :) = linspace(EulerThetaRest-retr_degree, EulerThetaRest+prot_degree, timepoints);
-        EulerPhis(i, :) = linspace(EulerPhiRest+retr_degree*dPhi(i), EulerPhiRest+prot_degree*dPhi(i), timepoints);
-        EulerZetas(i, :) = linspace(EulerZetaRest-retr_degree*dZeta(i), EulerZetaRest+prot_degree*dZeta(i), timepoints);
+    % for num_whiskers whiskers
+    for i = 1:num_whiskers
+        EulerThetas(i, :) = linspace(EulerThetaRest(i)-retr_degree, EulerThetaRest(i)+prot_degree, timepoints);
+        EulerPhis(i, :) = linspace(EulerPhiRest(i)+retr_degree*dPhi(i), EulerPhiRest(i)+prot_degree*dPhi(i), timepoints);
+        EulerZetas(i, :) = linspace(EulerZetaRest(i)-retr_degree*dZeta(i), EulerZetaRest(i)+prot_degree*dZeta(i), timepoints);
     end
-      
+
+    %%  Compute whisk
     % Load look-up data ranging from ~70+[-retr_degree,prot_degree]
     EulerThetaPhase = mean(EulerThetas);
     EulerThetaMin = min(EulerThetaPhase);
@@ -121,7 +95,7 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     nStep = length(phase);
     orientMat = cell(max_whiskers,nStep);
     for s = 1:nStep
-        for i = 1:(max_whiskers/2)
+        for i = 1:num_whiskers
             theta = EulerThetasList(i, s);
             phi = EulerPhisList(i, s);
             zeta = EulerZetasList(i, s);
@@ -129,7 +103,7 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
             orientMat{i, s} = rotz(theta, 'deg')*rotx(-phi, 'deg')*...
                               roty(-zeta, 'deg');
             % Left
-            orientMat{i+(max_whiskers/2), s} = rotz(-theta, 'deg')*rotx(-phi, 'deg')*...
+            orientMat{i+num_whiskers, s} = rotz(-theta, 'deg')*rotx(-phi, 'deg')*...
                               roty(zeta, 'deg');
         end
     end
@@ -157,12 +131,12 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     % A12345 B12345 C1234567 D1234567 E234567
 
     a_vel = cell2mat(cellfun(@tensor2vector, W, 'UniformOutput', false));
-    writematrix(a_vel, '../../data/whisking_trajectory_sample.csv', 'Delimiter', ',');
+    writematrix(a_vel, '../../data/whisker_param_average_rat/whisking_trajectory.csv', 'Delimiter', ',');
 
     %% Step 4: 
     a_loc = [EulerThetasList(:,1), EulerPhisList(:,1), EulerZetasList(:,1);...
              -EulerThetasList(:,1), EulerPhisList(:,1), -EulerZetasList(:,1)]*pi/180;
-    writematrix(a_loc, '../../data/whisking_init_angle_sample.csv', 'Delimiter', ',');
+    writematrix(a_loc, '../../data/whisker_param_average_rat/whisking_init_angle.csv', 'Delimiter', ',');
  
  end
 
