@@ -41,6 +41,7 @@ private:
 	btVector3 originOffset = btVector3(0,26,4);		//unit: mm
 	btVector3 originOrientation = btVector3(0,0,0);
 
+	btTransform headTransform;
 	// btScalar dtheta, angle_fwd, angle_bwd;
 
 public:

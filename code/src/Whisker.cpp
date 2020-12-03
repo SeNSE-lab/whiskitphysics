@@ -254,11 +254,11 @@ void Whisker::buildWhisker(btRigidBody* head, btTransform head2origin){
 	} 
 }
 
-void Whisker::whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity){
+void Whisker::whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity, btTransform headWorldTransform){
 	// localAngularVelocity is the velocity relative to the rat head
 	btVector3 localAngularVelocity = btVector3(a_vel_0, a_vel_1, a_vel_2);
 	btVector3 globalAngularVelocity = localAngularVelocity + headAngularVelocity;
-	base->setAngularVelocity(globalAngularVelocity);	
+	base->setAngularVelocity(headWorldTransform * globalAngularVelocity);	
 }
 
 void Whisker::updateVelocity(btVector3 headLinearVelocity, btVector3 headAngularVelocity, btTransform headTransform, btTransform head2origin, btScalar dtheta, int activeFlag){

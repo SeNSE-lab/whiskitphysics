@@ -1,18 +1,19 @@
 ../build/whiskit_gui \
 --MODEL_TYPE 1 \
 --CDIST 50 \
---CPITCH -89 \
+--CPITCH -0 \
 --NO_MASS 0 \
---CYAW 90 \
+--CYAW 180 \
 --BLOW 1 \
 --DEBUG 0 \
---OBJECT 1 \
+--OBJECT 0 \
 --SPEED 0 \
 --TIME_STOP 1. \
 --ACTIVE 1 \
 --WHISKER_NAMES R \
+--ORIENTATION 0. 0 1.5 \
 --PEG_LOC 0 20 0 \
 --SAVE_VIDEO 0 \
---SAVE 1 \
+--SAVE 0 \
 --file_video "../output/video_peg.mp4" \
 --dir_out "/media/nadina/Nadina's Soul1/__projects/01_Dynamo/01_datasets/simulation_examples/whiskit_output/whiskit_peg_active_8x_new"

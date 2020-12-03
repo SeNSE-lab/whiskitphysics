@@ -221,9 +221,9 @@ btRigidBody* Object::obj2StaticBody(std::string fileName,btVector4 color,
 	btTransform bodyTransform = body->getCenterOfMassTransform();
 
 	
-    // int renderInstance = m_guiHelper->registerGraphicsInstance(shapeId,bodyTransform.getOrigin(),bodyTransform.getRotation(),color,scaling);
+    int renderInstance = m_guiHelper->registerGraphicsInstance(shapeId,bodyTransform.getOrigin(),bodyTransform.getRotation(),color,scaling);
 	
-	// body->setUserIndex(renderInstance);
+	body->setUserIndex(renderInstance);
 
 	
     return body;

@@ -137,6 +137,13 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     a_loc = [EulerThetasList(:,1), EulerPhisList(:,1), EulerZetasList(:,1);...
              -EulerThetasList(:,1), EulerPhisList(:,1), -EulerZetasList(:,1)]*pi/180;
     writematrix(a_loc, '../../data/whisker_param_average_rat/whisking_init_angle.csv', 'Delimiter', ',');
+    
+    t = datestr(datetime('now'));
+    logfile = 'whisk_average_log.txt';
+    fid = fopen(logfile, 'a') ;
+    fprintf(fid, '\nDate\t\tTime\t\tRetr. (deg)\t\tProtr. (deg)\tFreq. (Hz)\tDuration(s)\n');
+    fprintf(fid, '%s\t%.3f\t\t\t%.3f\t\t\t%.3f\t\t%.3f\n', t,retr_degree,prot_degree,whisk_freq,time_stop) ;
+    fclose(fid) ;
  
  end
 
