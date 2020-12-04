@@ -12,9 +12,9 @@
 --TIME_STOP 1 \
 --WHISKER_NAMES R \
 --ORIENTATION 0.17 0 1.6 \
---POSITION -75 50 -170 \
+--POSITION -80 40 -170 \
 --SAVE_VIDEO 0 \
 --SAVE 0 \
 --file_env "../data/environment/dynamo_env_v2.obj" \
 --file_video "../output/video_wall.mp4" \
---dir_out "/media/nadina/Nadina's Soul1/__projects/01_Dynamo/01_datasets/simulation_examples/whiskit_output/whiskit_env_active_8x_new"
+--dir_out "/media/nadina/Nadina's Soul1/__projects/01_Dynamo/01_datasets/simulation_examples/whiskit_output/whiskit_env_active_8x"

@@ -38,8 +38,8 @@ void Simulation::stepSimulation(){
 		if(parameters->OBJECT==1){
 			if(parameters->PEG_SPEED>0){
 				btScalar w = 2*PI*8;
-				btVector3 velocity = parameters->PEG_SPEED * sinf32(w*(m_time)) * btVector3(0,-1,0);
-				// btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
+				// btVector3 velocity = parameters->PEG_SPEED * sinf32(w*(m_time)) * btVector3(0,-1,0);
+				btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
 				peg->setLinearVelocity(velocity);
 				
 			}
@@ -190,10 +190,14 @@ void Simulation::initPhysics()
 	// create object to collide with
 	// peg
 	if(parameters->OBJECT==1){
+		// to place peg at the nose it needs coordinates (0,35,0)
 		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(1,1,80));
 		pegShape->setMargin(0.1);
 		m_collisionShapes.push_back(pegShape);
-		btVector3 peg_init = scabbers->getWhisker(1)->get_unit(19)->getCenterOfMassPosition() + parameters->PEG_LOC;
+		btVector3 peg_init = parameters->PEG_LOC; // Scenario 1
+		// btVector3 peg_init = scabbers->getWhisker(1)->get_unit(19)->getCenterOfMassPosition() + parameters->PEG_LOC; // Scenario 2 and 3
+		std::cout << "\n==============================================================\n" << std::endl;
+		std::cout << peg_init[0] << ", " << peg_init[1] << ", " << peg_init[2] << std::endl;
 		btTransform trans = createFrame(peg_init,btVector3(0, 0, 0));
 		peg = createDynamicBody(1,trans, pegShape, BLUE);
 		m_dynamicsWorld->addRigidBody(peg,COL_ENV,envCollidesWith);
