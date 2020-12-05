@@ -1,3 +1,12 @@
 
 Date		Time		Retr. (deg)		Protr. (deg)	Freq. (Hz)	Duration(s)
 02-Dec-2020 15:26:35	15.000			40.000			8.000		1.000
+
+Date		Time		Retr. (deg)		Protr. (deg)	Freq. (Hz)	Duration(s)
+04-Dec-2020 17:02:45	15.000			35.000			8.000		1.000
+
+Date		Time		Retr. (deg)		Protr. (deg)	Freq. (Hz)	Duration(s)
+04-Dec-2020 17:03:53	15.000			30.000			8.000		1.000
+
+Date		Time		Retr. (deg)		Protr. (deg)	Freq. (Hz)	Duration(s)
+04-Dec-2020 18:47:34	15.000			40.000			8.000		1.000

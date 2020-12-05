@@ -2,19 +2,20 @@
 ../build/whiskit_gui \
 --MODEL_TYPE 1 \
 --PRINT 2 \
---CDIST 50 \
---CPITCH -30 \
---CYAW 150 \
---BLOW 1 \
+--CDIST 300 \
+--CPITCH -50 \
+--CYAW 90 \
+--BLOW 2 \
 --DEBUG 0 \
 --OBJECT 3 \
 --ACTIVE 1 \
 --TIME_STOP 1 \
---WHISKER_NAMES R \
+--WHISKER_NAMES ALL \
 --ORIENTATION 0.17 0 1.6 \
 --POSITION -80 40 -170 \
---SAVE_VIDEO 0 \
+--SAVE_VIDEO 3 \
 --SAVE 0 \
+--file_whisking_id "15-40-8" \
 --file_env "../data/environment/dynamo_env_v2.obj" \
---file_video "../output/video_wall.mp4" \
+--file_video "../output/video_env_active_8x.mp4" \
 --dir_out "/media/nadina/Nadina's Soul1/__projects/01_Dynamo/01_datasets/simulation_examples/whiskit_output/whiskit_env_active_8x"

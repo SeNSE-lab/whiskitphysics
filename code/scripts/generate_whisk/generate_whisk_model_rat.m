@@ -131,12 +131,12 @@ function generate_whisk_model_rat(retr_degree,prot_degree,whisk_freq,time_stop)
     % A12345 B12345 C1234567 D1234567 E234567
 
     a_vel = cell2mat(cellfun(@tensor2vector, W, 'UniformOutput', false));
-    writematrix(a_vel, '../../data/whisker_param_model_rat/whisking_trajectory.csv', 'Delimiter', ',');
+    writematrix(a_vel, sprintf('../../data/whisker_param_model_rat/whisking_trajectory_%d-%d-%d.csv',retr_degree, prot_degree, whisk_freq), 'Delimiter', ',');
 
     %% Step 4: 
     a_loc = [EulerThetasList(:,1), EulerPhisList(:,1), EulerZetasList(:,1);...
              -EulerThetasList(:,1), EulerPhisList(:,1), -EulerZetasList(:,1)]*pi/180;
-    writematrix(a_loc, '../../data/whisker_param_model_rat/whisking_init_angle.csv', 'Delimiter', ',');
+    writematrix(a_loc, sprintf('../../data/whisker_param_model_rat/whisking_init_angle_%d-%d-%d.csv',retr_degree, prot_degree, whisk_freq), 'Delimiter', ',');
     
     t = datestr(datetime('now'));
     logfile = 'whisk_model_log.txt';

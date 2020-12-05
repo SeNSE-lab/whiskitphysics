@@ -489,6 +489,12 @@ whisker_config Whisker::get_config(std::string wname,Parameters* parameters){
     read_csv_float(parameters->dir_param +"param_s_a.csv",whisker_geom);
     read_csv_float(parameters->dir_param +"param_angles.csv",whisker_angles);
     read_csv_float(parameters->dir_param +"param_bp_pos.csv",whisker_bp_coor);
+
+	if (parameters->ACTIVE){
+		parameters->file_whisking_id = ""? "": ("_"+parameters->file_whisking_id);
+		parameters->file_whisking_init_angle = "whisking_init_angle"+parameters->file_whisking_id+".csv";
+		parameters->file_whisking_angle = "whisking_trajectory"+parameters->file_whisking_id+".csv";
+	}
     read_csv_float(parameters->dir_param + parameters->file_whisking_init_angle,whisker_bp_angles);
     
 	// find parameters for specific whiskers from "data"

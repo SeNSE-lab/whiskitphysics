@@ -45,8 +45,9 @@ Parameters::Parameters(){
 	// enable/disable whisking mode for added whiskers
 	// Note: the whisking trajectory is pre-specified by user.
 	ACTIVE = 1;				
-	file_whisking_init_angle = ACTIVE?"whisking_init_angle.csv":"param_bp_angles.csv";
-	file_whisking_angle = "whisking_trajectory.csv";
+	file_whisking_id = "";
+	file_whisking_init_angle = "param_bp_angles.csv";
+	file_whisking_angle = "";
 
 	// enable/disable exploring mode for rat head
 	// Note: the head trajectory is 
@@ -61,7 +62,7 @@ Parameters::Parameters(){
 	RATHEAD_ANGVEL = {0,0,0};		// set angular head velocity
 
 	// camera parameters for visualization
-	CPOS = btVector3(0, 26, 20);	// set camera pos relative to rathead
+	CPOS = btVector3(0, 0, 0);	// set camera pos relative to rathead
 	CDIST=50;						// set camera distance
 	CPITCH=-89;						// set camera pitch
 	CYAW=0;							// set camera yaw

@@ -151,6 +151,7 @@ int main(int argc, char** argv)
 		
 		("SPEED", po::value<float>(&param->PEG_SPEED), "peg speed")
 
+		("file_whisking_id", po::value<std::string>(&param->file_whisking_id), "filename extension to identify whisking file")
 		("dir_out", po::value<std::string>(&param->dir_out), "foldername for output file")
 		("file_video", po::value<std::string>(&param->file_video), "filename of video")
 		("file_env", po::value<std::string>(&param->file_env), "filename for environment");
@@ -352,7 +353,7 @@ int main(int argc, char** argv)
 				DrawGridData dg;
 		        dg.upAxis = app->getUpAxis();
 				app->setBackgroundColor(1,1,1);
-				app->drawGrid(dg);
+				// app->drawGrid(dg);
 				// char bla[1024];
 				// std::sprintf(bla, "Simple test frame %d", frameCount);
 				// app->drawText(bla, 10, 10);

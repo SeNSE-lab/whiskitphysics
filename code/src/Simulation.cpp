@@ -37,9 +37,16 @@ void Simulation::stepSimulation(){
 		// moving object 1
 		if(parameters->OBJECT==1){
 			if(parameters->PEG_SPEED>0){
-				btScalar w = 2*PI*8;
-				// btVector3 velocity = parameters->PEG_SPEED * sinf32(w*(m_time)) * btVector3(0,-1,0);
 				btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
+				peg->setLinearVelocity(velocity);
+				
+			}
+		}
+		else if (parameters->OBJECT==2){
+			if(parameters->PEG_SPEED>0){
+				btScalar w = 2*PI*8;
+				btVector3 velocity = parameters->PEG_SPEED * sinf32(w*(m_time)) * btVector3(0,-1,0);
+				// btVector3 velocity = parameters->PEG_SPEED * btVector3(0.4,-1,0).normalized();
 				peg->setLinearVelocity(velocity);
 				
 			}
@@ -105,6 +112,19 @@ void Simulation::stepSimulation(){
 	auto time_remaining = (int)((parameters->TIME_STOP - m_time) * (factor));
 	if(parameters->PRINT==2){
 		std::cout << "\rSimulation time: " << std::setprecision(2) << m_time << "s\tCompleted: " << std::setprecision(2) << m_time/parameters->TIME_STOP*100 << " %\tTime remaining: " << std::setprecision(4) << time_remaining/60 << " min " << std::setprecision(4) << (time_remaining % 60) << " s\n" << std::flush;
+	}
+
+	if (parameters->SAVE_VIDEO==2){
+		// if (camPitch > -40) camPitch -= 0.05;
+		// if (camDist > 70) camDist -= 1.;
+		if (camYaw > 100) camYaw -= 0.5;
+		resetCamera();
+	}
+	else if (parameters->SAVE_VIDEO==3){
+		if (camPitch > -40) camPitch -= 0.05;
+		if (camDist > 70) camDist -= 1.;
+		if (camYaw < 140) camYaw += 0.5;
+		resetCamera();
 	}
     
 }
@@ -189,13 +209,12 @@ void Simulation::initPhysics()
 	
 	// create object to collide with
 	// peg
-	if(parameters->OBJECT==1){
+	if(parameters->OBJECT==1 || parameters->OBJECT==2){
 		// to place peg at the nose it needs coordinates (0,35,0)
 		btCollisionShape* pegShape = new btCylinderShapeZ(btVector3(1,1,80));
 		pegShape->setMargin(0.1);
 		m_collisionShapes.push_back(pegShape);
-		btVector3 peg_init = parameters->PEG_LOC; // Scenario 1
-		// btVector3 peg_init = scabbers->getWhisker(1)->get_unit(19)->getCenterOfMassPosition() + parameters->PEG_LOC; // Scenario 2 and 3
+		btVector3 peg_init = parameters->PEG_LOC; // Scenario 1, 2, 3
 		std::cout << "\n==============================================================\n" << std::endl;
 		std::cout << peg_init[0] << ", " << peg_init[1] << ", " << peg_init[2] << std::endl;
 		btTransform trans = createFrame(peg_init,btVector3(0, 0, 0));
@@ -204,16 +223,6 @@ void Simulation::initPhysics()
 		peg->setActivationState(DISABLE_DEACTIVATION);
 		
 	}
-	// create object to collide with wall
-	else if(parameters->OBJECT==2){
-		btCollisionShape* wallShape = new btBoxShape(btVector3(5,200,60));
-		wallShape->setMargin(0.1);
-		m_collisionShapes.push_back(wallShape);
-		btTransform trans = createFrame(btVector3(50,0,0),btVector3(0,0,PI/6));
-		wall = createDynamicBody(0,trans, wallShape, BLUE);
-		m_dynamicsWorld->addRigidBody(wall,COL_ENV,envCollidesWith);
-	}
-	// create object from 3D scan
 	else if(parameters->OBJECT==3){
 		// add environment to world
 		btVector4 envColor = btVector4(0.6,0.6,0.6,1);
