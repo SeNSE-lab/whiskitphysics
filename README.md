@@ -12,7 +12,7 @@ For more information or feedback contact nzweifel@u.northwestern.edu
 ## Installation Instructions:
 1. Install OpenGL/Glut with `sudo apt-get install freeglut3-dev`
 
-2. Install Boost 1.62 library with `sudo apt-get install libboost1.62-all-dev`
+2. Install Boost 1.62 library with `sudo apt-get install libboost-all-dev`
 
 3. Clone this repository:
 
