@@ -26,10 +26,10 @@ if __name__ == "__main__":
     inputPath = f'{directory}/{args.inputpath}'    
 
     # save data in mat and npz file for further analysis
-    read_whiskit_data(pathin=inputPath, pathout=f'{inputPath}/{inputPath}_signals',t0=5, tf=0.5)
+    read_whiskit_data(pathin=inputPath, pathout=f'{inputPath}/{args.inputpath}_signals',t0=5, tf=0.5)
 
     # load simulated signals
-    data = np.load(f'{inputPath}/{inputPath}_signals.npz')
+    data = np.load(f'{inputPath}/{args.inputpath}_signals.npz')
 
     M = data['M']
     F = data['F']
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     mzmax = np.nanmax(np.abs(M[:,2,:]), axis=1)
     
     fig = plt.figure()
-    fig.suptitle(f'{inputPath}')
+    fig.suptitle(f'{args.inputpath}')
     ax = fig.add_subplot(311)
     ax.bar(range(mxmax.size), mxmax)
     ax.xaxis.set_visible(False)
@@ -72,7 +72,6 @@ if __name__ == "__main__":
     
     # plot individual signals for each whisker
     for k, (m, f) in enumerate(zip(M,F)):
-        print(m.shape)
         fig = plt.figure(figsize=(doublecol,doublecol/2))
         ax = fig.add_subplot(211)
         ax.plot(m.T)
