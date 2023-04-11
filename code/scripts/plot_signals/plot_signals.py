@@ -51,7 +51,7 @@ if __name__ == "__main__":
     mzmax = np.nanmax(np.abs(M[:,2,:]), axis=1)
     
     fig = plt.figure()
-    fig.suptitle('Non-contact Whisking')
+    fig.suptitle(f'{inputPath}')
     ax = fig.add_subplot(311)
     ax.bar(range(mxmax.size), mxmax)
     ax.xaxis.set_visible(False)
