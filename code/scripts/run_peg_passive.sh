@@ -2,9 +2,7 @@
 ../build/whiskit_gui \
 --CDIST 50 \
 --CPITCH -89 \
---NO_MASS 0 \
 --CYAW 90 \
---BLOW 1 \
 --DEBUG 0 \
 --OBJECT 1 \
 --SPEED 300 \
