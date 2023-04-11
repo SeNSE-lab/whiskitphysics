@@ -26,10 +26,10 @@ if __name__ == "__main__":
     inputPath = f'{directory}/{args.inputpath}'    
 
     # save data in mat and npz file for further analysis
-    read_whiskit_data(pathin=inputPath, pathout=f'{inputPath}/signals',t0=5, tf=0.5)
+    read_whiskit_data(pathin=inputPath, pathout=f'{inputPath}/{inputPath}_signals',t0=5, tf=0.5)
 
     # load simulated signals
-    data = np.load(f'{inputPath}/signals.npz')
+    data = np.load(f'{inputPath}/{inputPath}_signals.npz')
 
     M = data['M']
     F = data['F']
