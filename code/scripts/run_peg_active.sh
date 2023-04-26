@@ -1,7 +1,7 @@
 ../build/whiskit_gui \
 --MODEL_TYPE 1 \
 --CDIST 50 \
---CPITCH -89 \
+--CPITCH -50 \
 --CYAW 90 \
 --DEBUG 0 \
 --OBJECT 1 \

@@ -55,18 +55,18 @@ function generate_whisk_model_rat(retr_degree,prot_degree,whisk_freq,time_stop)
     EulerZetas = zeros(num_whiskers, timepoints);
     
     % Elevation with azimuth
-    dPhi = [0.12*ones(5,1);     %   A row:  0.12 +/- 0.17
-            0.3*ones(6,1);      %   B row:  0.num_whiskers +/- 0.17
-            0.3*ones(7,1);      %   C row:  0.num_whiskers +/- 0.13
-            0.14*ones(7,1);     %   D row:  0.14 +/- 0.14
-            -0.02*ones(6,1)];   %   E row:  -0.02 +/- 0.13
+    dPhi = [0.398*ones(5,1);    %   A row:  0.398 +/- 0.005
+            0.591*ones(6,1);    %   B row:  0.591 +/- 0.008
+            0.578*ones(7,1);    %   C row:  0.578 +/- 0.000
+            0.393*ones(7,1);    %   D row:  0.393 +/- 0.001
+            0.217*ones(6,1)];   %   E row:  0.217 +/- 0.000
     
     % Torsion with azimuth
-    dZeta = [-0.75*ones(5,1);   %   A row:  -0.75
-            -0.25*ones(6,1);    %   B row:  -0.25
-            0.20*ones(7,1);     %   C row:  0.20
-            0.40*ones(7,1);     %   D row:  0.40
-            0.73*ones(6,1)];    %   E row:  0.73
+    dZeta = [-0.900*ones(5,1);   %   A row:  -0.900 +/- 0.026
+            -0.284*ones(6,1);    %   B row:  -0.284 +/- 0.005
+            0.243*ones(7,1);     %   C row:  0.243 +/- 0.000
+            0.449*ones(7,1);     %   D row:  0.449 +/- 0.001
+            0.744*ones(6,1)];    %   E row:  0.744 +/- 0.001
     
     % for num_whiskers whiskers
     for i = 1:num_whiskers
