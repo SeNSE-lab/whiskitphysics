@@ -1,7 +1,11 @@
-# Repostory folder
+# VS Code
+*/.vscode
+
+# Repository folder
 code/output/
 code/build/
 code/bulletlib/lib
+code/bulletlib/examples/pybullet
 
 CMakeLists.txt.user
 CMakeCache.txt

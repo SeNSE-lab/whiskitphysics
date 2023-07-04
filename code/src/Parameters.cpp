@@ -27,8 +27,8 @@ Parameters::Parameters(){
 	NUM_STEP_INT = 100;	// set internal time step
 	TIME_STOP = 1.5;		// set overall simulation time
     PRINT = 2;			// set to PRINT=1 to kinematics/dynamics realtime, set to PRINT = 2 to print simulation time
-	SAVE = 1;			// save results to csv file
-	SAVE_VIDEO = 1;		// save video when running main_opengl.cpp
+	SAVE = 0;			// save results to csv file
+	SAVE_VIDEO = 0;		// save video when running main_opengl.cpp
 
 	// collision object type
 	OBJECT = 0;			// 0: nothing

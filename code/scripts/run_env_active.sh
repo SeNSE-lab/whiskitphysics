@@ -4,7 +4,6 @@
 --CDIST 50 \
 --CPITCH -0 \
 --CYAW 180 \
---BLOW 1 \
 --DEBUG 0 \
 --OBJECT 3 \
 --ACTIVE 1 \
