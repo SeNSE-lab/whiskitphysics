@@ -1,0 +1,25 @@
+name: Whiskit
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository contents
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install dependencies
+      - name: Install apt dependencies
+        run: |
+          sudo apt update
+          sudo apt install libboost-all-dev freeglut3-dev mesa-utils
+      - name: Build Whiskit
+        run: |
+          mkdir whiskit-build
+          cd whiskit-build
+          cmake ${GITHUB_WORKSPACE}/code
+          make -j
+          sudo make install
+
