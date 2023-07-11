@@ -40,8 +40,6 @@ Whisker::Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* helper,btAl
 	// initialize collide array
 	std::vector<int> all_zeros(NUM_LINKS, 0);
 	collide = all_zeros;
-	dphi = {0.398f,0.591f,0.578f,0.393f,0.217f};
-	dzeta = {-0.9f,-0.284f,0.243f,0.449f, 0.744f};
 
 	//Whisker specific configuration parameters					// unit:
 	whisker_config config = get_config(w_name, parameters);
@@ -381,20 +379,8 @@ btVector3 Whisker::getPosition(int linknr){
 	return whisker[linknr]->getCenterOfMassPosition();
 }
 
-// function to get zeta angle of whisker motion (depends on row)
-float Whisker::get_dzeta(int index) const{
 
-	return dzeta[index];
-}
-
-// function to get phi angle of whisker motion (depends on row)
-float Whisker::get_dphi(int index) const{
-
-	return dphi[index];
-}
-
-
-btScalar Whisker::calc_base_radius(int row, int col, btScalar S) const{  
+btScalar Whisker::calc_base_radius(int row, int col, btScalar S) const{
 	// unit: mm
     btScalar dBase = 0.041 + 0.002*S + 0.011*row - 0.0039*col;
     return dBase/2;

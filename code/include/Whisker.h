@@ -64,8 +64,6 @@ struct link_data
 class Whisker
 {
 private:
-	std::vector<float> dphi;
-	std::vector<float> dzeta;
 	btVector4 color;
 	btDiscreteDynamicsWorld* m_dynamicsWorld;
 	btAlignedObjectArray<btCollisionShape*>* m_collisionShapes;
@@ -78,7 +76,7 @@ private:
 
 	btTransform basepointTransform;
 	btTransform baseTransform;
-	
+
 	btGeneric6DofConstraint* basePointConstraint;
 	btGeneric6DofConstraint* motorConstraint;
 	btGeneric6DofSpringConstraint* baseConstraint;
@@ -94,7 +92,7 @@ private:
 	whisker_config config;
 	Parameters* parameters;
 	std::vector<int> collide;
-	
+
 	// Whisker general configuration parameters
 	float friction;
 	btScalar mass;
@@ -128,15 +126,13 @@ private:
 	btScalar calc_volume(btScalar length, btScalar R, btScalar r) const;
 	btScalar calc_damping(btScalar k, btScalar mass, btScalar CoM, btScalar zeta, btScalar dt) const;
 	btScalar calc_stiffness(btScalar E, btScalar I, btScalar length) const;
-	float get_dzeta(int index) const;
-	float get_dphi(int index) const;
 
 public:
 
 	Whisker(btDiscreteDynamicsWorld* world, GUIHelperInterface* m_guiHelper,btAlignedObjectArray<btCollisionShape*>* shapes, std::string w_name, Parameters* parameters);
 	~Whisker(){}
 
-	int idx;	
+	int idx;
 	void buildWhisker(btRigidBody* refBody, btTransform offset);
 	void whisk(btScalar a_vel_0, btScalar a_vel_1, btScalar a_vel_2, btVector3 headAngularVelocity);
 
@@ -146,7 +142,7 @@ public:
 	btVector3 getTorques();
 	btVector3 getForces();
 	btVector3 getPosition(int linknr);
-	
+
 	std::vector<float> getX();
 	std::vector<float> getY();
 	std::vector<float> getZ();
