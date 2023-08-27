@@ -21,10 +21,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #define PI 3.1415927
 
-#define LINK_THETA_MAX PI/4
-#define LINK_PHI_MAX PI/4
-#define LINK_ZETA_MAX PI/360
-
 #include <string>
 #include <vector>
 #include "LinearMath/btVector3.h"
