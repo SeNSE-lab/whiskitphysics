@@ -20,8 +20,8 @@
     
 function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop)
 
-    fps = 1000;
-    dt = 1/fps;
+    fps_target = 1000;
+    dt_target = 1/fps_target;
     
     %% Collecting information    
 %     filename = 'new_ratmap_data.xlsx';
@@ -36,7 +36,7 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
 %     EulerPhiRest = data_avg(:,4);
 %     EulerZetaRest = data_avg(:,5);
 
-    param = compute_parameters('average','',0);
+    param = compute_parameters('average','../../data/whisker_param_average_rat/',0);
     
     EulerThetaRest = param.EulerThetaRest;
     EulerPhiRest = param.EulerPhiRest;
@@ -47,52 +47,42 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
 
     % The whisker start at rest.
     % Azimuth span: -retr_degree~prot_degree
-    
-    timepoints = floor(fps / whisk_freq);
-    
-    EulerThetas = zeros(num_whiskers, timepoints);
-    EulerPhis = zeros(num_whiskers, timepoints);
-    EulerZetas = zeros(num_whiskers, timepoints);
 
+    rows = unique(param.row);
+    nRow = zeros(max(rows), 1);
+    for r = rows'
+        nRow(r) = sum(param.row==r)/2;
+    end
     % Elevation with azimuth
-    dPhi = [0.398*ones(5,1);    %   A row:  0.398 +/- 0.005
-            0.591*ones(6,1);    %   B row:  0.591 +/- 0.008
-            0.578*ones(7,1);    %   C row:  0.578 +/- 0.000
-            0.393*ones(7,1);    %   D row:  0.393 +/- 0.001
-            0.217*ones(6,1)];   %   E row:  0.217 +/- 0.000
+    dPhi = [0.398*ones(nRow(1),1);    %   A row:  0.398 +/- 0.005
+            0.591*ones(nRow(2),1);    %   B row:  0.591 +/- 0.008
+            0.578*ones(nRow(3),1);    %   C row:  0.578 +/- 0.000
+            0.393*ones(nRow(4),1);    %   D row:  0.393 +/- 0.001
+            0.217*ones(nRow(5),1)];   %   E row:  0.217 +/- 0.000
     
     % Torsion with azimuth
-    dZeta = [-0.900*ones(5,1);   %   A row:  -0.900 +/- 0.026
-            -0.284*ones(6,1);    %   B row:  -0.284 +/- 0.005
-            0.243*ones(7,1);     %   C row:  0.243 +/- 0.000
-            0.449*ones(7,1);     %   D row:  0.449 +/- 0.001
-            0.744*ones(6,1)];    %   E row:  0.744 +/- 0.001
-    
-    % for num_whiskers whiskers
-    for i = 1:num_whiskers
-        EulerThetas(i, :) = linspace(EulerThetaRest(i)-retr_degree, EulerThetaRest(i)+prot_degree, timepoints);
-        EulerPhis(i, :) = linspace(EulerPhiRest(i)+retr_degree*dPhi(i), EulerPhiRest(i)+prot_degree*dPhi(i), timepoints);
-        EulerZetas(i, :) = linspace(EulerZetaRest(i)-retr_degree*dZeta(i), EulerZetaRest(i)+prot_degree*dZeta(i), timepoints);
-    end
-
+    dZeta = [-0.900*ones(nRow(1),1);   %   A row:  -0.900 +/- 0.026
+            -0.284*ones(nRow(2),1);    %   B row:  -0.284 +/- 0.005
+            0.243*ones(nRow(3),1);     %   C row:  0.243 +/- 0.000
+            0.449*ones(nRow(4),1);     %   D row:  0.449 +/- 0.001
+            0.744*ones(nRow(5),1)];    %   E row:  0.744 +/- 0.001
+   
     %%  Compute whisk
-    % Load look-up data ranging from ~70+[-retr_degree,prot_degree]
-    EulerThetaPhase = mean(EulerThetas);
-    EulerThetaMin = min(EulerThetaPhase);
-    EulerThetaMax = max(EulerThetaPhase);
+    t = 0:dt_target:time_stop;
+    nStep = length(t);
+    prot_degrees = cos(2*pi*whisk_freq*t + pi)*(prot_degree+retr_degree)/2 ...
+        + (prot_degree-retr_degree)/2; % sinusoidal trajectory
+    EulerThetasList = zeros(num_whiskers, nStep);
+    EulerPhisList = zeros(num_whiskers, nStep);
+    EulerZetasList = zeros(num_whiskers, nStep);
+    for i = 1:num_whiskers
+        EulerThetasList(i, :) = EulerThetaRest(i)+prot_degrees;
+        EulerPhisList(i, :) = EulerPhiRest(i)+prot_degrees*dPhi(i);
+        EulerZetasList(i, :) = EulerZetaRest(i)+prot_degrees*dZeta(i);
+    end
     
-    % generating sinusoidal whisking trajectory
-    t = 0:dt:time_stop;
-    phase = cos(2*pi*whisk_freq*t + pi)*(EulerThetaMax-EulerThetaMin)/2 ...
-            + (EulerThetaMax+EulerThetaMin)/2;
-
     %% Step 1: get orienation angles/matrix from each time step
-    EulerThetasList = interp1(EulerThetaPhase, EulerThetas', phase,'spline')';
-    EulerPhisList = interp1(EulerThetaPhase, EulerPhis', phase,'spline')';
-    EulerZetasList = interp1(EulerThetaPhase, EulerZetas', phase,'spline')';
-    
-   % create orientation matrix (both right and left)
-    nStep = length(phase);
+    % create orientation matrix (both right and left)
     orientMat = cell(max_whiskers,nStep);
     for s = 1:nStep
         for i = 1:num_whiskers
@@ -117,12 +107,12 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     W = cell(max_whiskers, nStep-1);
     for tt = 2:nStep-1
         for i = 1:max_whiskers
-            W{i, tt} = (orientMat{i, tt+1}-orientMat{i, tt-1})/2/dt*orientMat{i, tt}';
+            W{i, tt} = (orientMat{i, tt+1}-orientMat{i, tt-1})/2/dt_target*orientMat{i, tt}';
         end
     end
     % add first
     for i = 1:max_whiskers
-        W{i, 1} = (orientMat{i, 2}-orientMat{i, 1})/dt*orientMat{i, 1}';
+        W{i, 1} = (orientMat{i, 2}-orientMat{i, 1})/dt_target*orientMat{i, 1}';
     end
 
     %% Step 3: convert tensor to vector
@@ -131,12 +121,12 @@ function generate_whisk_average_rat(retr_degree,prot_degree,whisk_freq,time_stop
     % A12345 B12345 C1234567 D1234567 E234567
 
     a_vel = cell2mat(cellfun(@tensor2vector, W, 'UniformOutput', false));
-    writematrix(a_vel, '../../data/whisker_param_average_rat/whisking_trajectory.csv', 'Delimiter', ',');
+    csvwrite('../../data/whisker_param_average_rat/whisking_trajectory.csv', a_vel);
 
     %% Step 4: 
     a_loc = [EulerThetasList(:,1), EulerPhisList(:,1), EulerZetasList(:,1);...
              -EulerThetasList(:,1), EulerPhisList(:,1), -EulerZetasList(:,1)]*pi/180;
-    writematrix(a_loc, '../../data/whisker_param_average_rat/whisking_init_angle.csv', 'Delimiter', ',');
+    csvwrite('../../data/whisker_param_average_rat/whisking_init_angle.csv', a_loc);
  
  end
 
